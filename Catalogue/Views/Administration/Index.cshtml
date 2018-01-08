@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Catalogue.Models.Tables.Administration>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AminPanel.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AdministrationName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdministrationPost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdministrationAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdministrationFax)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdministrationEMail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdministrationSkype)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdministrationCode)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdministrationName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdministrationPost)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdministrationAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdministrationFax)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdministrationEMail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdministrationSkype)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdministrationCode)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.AdministrationId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.AdministrationId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.AdministrationId })
+        </td>
+    </tr>
+}
+
+</table>
