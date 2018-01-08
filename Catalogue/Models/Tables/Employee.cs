@@ -20,7 +20,7 @@ namespace Catalogue.Models.Tables
         /// relationship one to many
         /// </summary>
         public int? PositionId { get; set; }
-        public Position GetPosition { get; set; }
+        public Position Position { get; set; }
 
 
         public int? DepartmentId { get; set; }

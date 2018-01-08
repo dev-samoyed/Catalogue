@@ -22,7 +22,7 @@ namespace Catalogue.Models.Tables
             //    .HasForeignKey<int?>(s => s.PositionId);
             modelBuilder.Entity<Position>()
                 .HasMany<Employee>(g => g.Employees)
-                .WithRequired(s => s.GetPosition)
+                .WithRequired(s => s.Position)
                 .HasForeignKey<int?>(s => s.PositionId);
             modelBuilder.Entity<Department>()
                 .HasMany<Employee>(g => g.Employees)
