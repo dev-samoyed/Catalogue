@@ -16,7 +16,7 @@ namespace Catalogue.Models.Tables
         public string AdministrationSkype { get; set; }
         public int AdministrationCode { get; set; }
 
-        public int DepartmentId { get; set; }
+        public ICollection<Department> Departments{ get; set; }
 
     }
 }

@@ -201,16 +201,12 @@
     <Compile Include="Models\Tables\Administration.cs" />
     <Compile Include="Models\Tables\CatalogueContext.cs" />
     <Compile Include="Models\Tables\Department.cs" />
-    <Compile Include="Models\Tables\Employees.cs" />
+    <Compile Include="Models\Tables\Employee.cs" />
     <Compile Include="Models\Tables\Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Catalogue.mdf" />
-    <Content Include="App_Data\Catalogue_log.ldf">
-      <DependentUpon>Catalogue.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -268,7 +264,9 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>

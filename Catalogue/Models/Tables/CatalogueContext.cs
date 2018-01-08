@@ -11,9 +11,28 @@ namespace Catalogue.Models.Tables
         public DbSet<Administration> Administrations { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Position> Positions { get; set; }
-        public DbSet<Employees> Employees { get; set; }
+        public DbSet<Employee> Employees { get; set; }
 
-
-
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            // configures one-to-many relationship
+            //modelBuilder.Entity<Employee>()
+            //    .HasRequired<Position>(s => s.GetPosition)
+            //    .WithMany(g => g.Employees)
+            //    .HasForeignKey<int?>(s => s.PositionId);
+            modelBuilder.Entity<Position>()
+                .HasMany<Employee>(g => g.Employees)
+                .WithRequired(s => s.GetPosition)
+                .HasForeignKey<int?>(s => s.PositionId);
+            modelBuilder.Entity<Department>()
+                .HasMany<Employee>(g => g.Employees)
+                .WithRequired(s => s.Department)
+                .HasForeignKey<int?>(s => s.DepartmentId);
+            modelBuilder.Entity<Administration>()
+                .HasMany<Department>(g => g.Departments)
+                .WithRequired(s => s.Administration)
+                .HasForeignKey<int?>(s => s.AdministrationId);
+        }
     }
+
 }

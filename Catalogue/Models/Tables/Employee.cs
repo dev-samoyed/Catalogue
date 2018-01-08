@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Catalogue.Models.Tables
 {
-    public class Employees
+    public class Employee
     {
         public int EmployeeId { get; set; }
         public string EmployeeFullName { get; set; }
@@ -15,8 +15,15 @@ namespace Catalogue.Models.Tables
         public string EmployeePersonalPhone { get; set; }
         public string EmployeeEmail { get; set; }
         public string EmployeeSkype { get; set; }
-        
-        public int PositionId { get; set; }
-        public int DepartmentId { get; set; }
+
+        /// <summary>
+        /// relationship one to many
+        /// </summary>
+        public int? PositionId { get; set; }
+        public Position GetPosition { get; set; }
+
+
+        public int? DepartmentId { get; set; }
+        public Department Department { get; set; }
     }
 }
