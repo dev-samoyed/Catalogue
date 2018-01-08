@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Catalogue.Models.Tables;
 
 namespace Catalogue.Controllers.CRUD
 {
     public class DepartmentController : Controller
     {
+        CatalogueContext db = new CatalogueContext();
         // GET: Department
         public ActionResult Index()
         {
-            return View();
+            return View(db.Departments);
         }
 
         // GET: Department/Details/5
@@ -28,12 +30,12 @@ namespace Catalogue.Controllers.CRUD
 
         // POST: Department/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Department collection)
         {
             try
             {
-                // TODO: Add insert logic here
-
+                db.Departments.Add(collection);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch

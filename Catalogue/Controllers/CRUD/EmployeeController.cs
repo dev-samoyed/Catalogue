@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Catalogue.Models.Tables;
 
 namespace Catalogue.Controllers.CRUD
 {
     public class EmployeeController : Controller
     {
+        CatalogueContext db = new CatalogueContext();
+
         // GET: Employee
         public ActionResult Index()
         {
             //git pull
-            return View();
+            return View(db.Employees);
         }
 
         // GET: Employee/Details/5
@@ -29,12 +32,12 @@ namespace Catalogue.Controllers.CRUD
 
         // POST: Employee/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Employee collection)
         {
             try
             {
-                // TODO: Add insert logic here
-
+                db.Employees.Add(collection);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
