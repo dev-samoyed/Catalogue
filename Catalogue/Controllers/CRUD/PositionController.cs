@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Catalogue.Models.Tables;
 using Catalogue.Models;
+using System.Net;
 
 namespace Catalogue.Controllers.CRUD
 {
@@ -15,16 +16,22 @@ namespace Catalogue.Controllers.CRUD
         // GET: Position
         public ActionResult Index()
         {
-            return View(db.Positions);
+            return View(db.Positions.ToList());
         }
 
         // GET: Position/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
-            return View();
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            Position position = db.Positions.Find(id);
+            if (position == null)
+                return HttpNotFound();
+            return View(position);
         }
 
         // GET: Position/Create
+        [HttpGet]
         public ActionResult Create()
         {
             return View();
@@ -48,19 +55,24 @@ namespace Catalogue.Controllers.CRUD
         }
 
         // GET: Position/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return View();
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            Position position = db.Positions.Find(id);
+            if (position == null)
+                return HttpNotFound();
+            return View(position);
         }
 
         // POST: Position/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Position collection)
         {
             try
             {
-                // TODO: Add update logic here
-
+                db.Entry(collection).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
@@ -70,18 +82,30 @@ namespace Catalogue.Controllers.CRUD
         }
 
         // GET: Position/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
-            return View();
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            Position position = db.Positions.Find(id);
+            if (position == null)
+                return HttpNotFound();
+            return View(position);
         }
 
         // POST: Position/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int? id, Position collection)
         {
+            Position position = new Position();
             try
             {
-                // TODO: Add delete logic here
+                if (id == null)
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                position = db.Positions.Find(id);
+                if (position == null)
+                    return HttpNotFound();
+                db.Positions.Remove(position);
+                db.SaveChanges();
 
                 return RedirectToAction("Index");
             }

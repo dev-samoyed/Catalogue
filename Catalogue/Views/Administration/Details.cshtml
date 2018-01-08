@@ -1,0 +1,75 @@
+﻿@model Catalogue.Models.Tables.Administration
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_AminPanel.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Administration</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AdministrationName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdministrationName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdministrationPost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdministrationPost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdministrationAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdministrationAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdministrationFax)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdministrationFax)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdministrationEMail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdministrationEMail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdministrationSkype)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdministrationSkype)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdministrationCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdministrationCode)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AdministrationId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
