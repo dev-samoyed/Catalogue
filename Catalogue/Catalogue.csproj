@@ -193,6 +193,7 @@
     <Compile Include="Controllers\CRUD\AdministrationController.cs" />
     <Compile Include="Controllers\CRUD\DepartmentController.cs" />
     <Compile Include="Controllers\CRUD\EmployeeController.cs" />
+    <Compile Include="Controllers\CRUD\MainController.cs" />
     <Compile Include="Controllers\CRUD\PositionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -267,6 +268,8 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_AminPanel.cshtml" />
+    <Content Include="Views\Main\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
