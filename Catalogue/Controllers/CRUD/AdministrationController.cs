@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Catalogue.Models.Tables;
 
 namespace Catalogue.Controllers.CRUD
 {
     public class AdministrationController : Controller
     {
+        CatalogueContext db = new CatalogueContext();
+
         // GET: Administration
         public ActionResult Index()
         {
-            return View();
+            return View(db.Administrations);
         }
 
         // GET: Administration/Details/5
@@ -28,12 +31,13 @@ namespace Catalogue.Controllers.CRUD
 
         // POST: Administration/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Administration collection)
         {
             try
             {
                 // TODO: Add insert logic here
-
+                db.Administrations.Add(collection);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
