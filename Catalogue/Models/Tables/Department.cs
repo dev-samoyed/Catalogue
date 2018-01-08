@@ -9,5 +9,9 @@ namespace Catalogue.Models.Tables
     {
         public int DepartmentId { get; set; }
         public string DepartmentName { get; set; }
+
+        public int EmployeesId { get; set; }
+        public int AdministrationId { get; set; }
+
     }
 }

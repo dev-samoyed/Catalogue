@@ -15,5 +15,8 @@ namespace Catalogue.Models.Tables
         public string AdministrationEMail{ get; set; }
         public string AdministrationSkype { get; set; }
         public int AdministrationCode { get; set; }
+
+        public int DepartmentId { get; set; }
+
     }
 }
