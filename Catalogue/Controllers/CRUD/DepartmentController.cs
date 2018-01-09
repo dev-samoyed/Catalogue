@@ -33,6 +33,8 @@ namespace Catalogue.Controllers.CRUD
         // GET: Department/Create
         public ActionResult Create()
         {
+            SelectList administrationList = new SelectList(db.Administrations, "AdministrationId", "AdministrationName");
+            ViewBag.AdministrationList = administrationList;
             return View();
         }
 

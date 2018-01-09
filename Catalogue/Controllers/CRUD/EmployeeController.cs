@@ -33,6 +33,10 @@ namespace Catalogue.Controllers.CRUD
         // GET: Employee/Create
         public ActionResult Create()
         {
+            SelectList departmentList = new SelectList(db.Departments, "DepartmentId", "DepartmentName");
+            ViewBag.DepartmentList = departmentList;
+            SelectList positionList = new SelectList(db.Positions, "PositionId", "PositionName");
+            ViewBag.PositionList = positionList;
             return View();
         }
 

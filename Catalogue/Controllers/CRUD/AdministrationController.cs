@@ -104,7 +104,7 @@ namespace Catalogue.Controllers.CRUD
                     return HttpNotFound();
                 db.Administrations.Remove(administration);
                 db.SaveChanges();
-                               
+
                 return RedirectToAction("Index");
             }
             catch
