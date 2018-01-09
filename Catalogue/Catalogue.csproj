@@ -211,7 +211,6 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Tables\Administration.cs" />
     <Compile Include="Models\Tables\CatalogueContext.cs" />
     <Compile Include="Models\Tables\Department.cs" />
@@ -224,6 +223,10 @@
     <Content Include="App_Data\aspnet-Catalogue-20180108113947.mdf" />
     <Content Include="App_Data\aspnet-Catalogue-20180108113947_log.ldf">
       <DependentUpon>aspnet-Catalogue-20180108113947.mdf</DependentUpon>
+    </Content>
+    <Content Include="App_Data\Catalogue.Models.Tables.CatalogueContext.mdf" />
+    <Content Include="App_Data\Catalogue.Models.Tables.CatalogueContext_log.ldf">
+      <DependentUpon>Catalogue.Models.Tables.CatalogueContext.mdf</DependentUpon>
     </Content>
     <Content Include="Content\app.css" />
     <Content Include="Content\bootstrap.css" />
