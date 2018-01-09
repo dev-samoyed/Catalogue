@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Catalogue.Models.Tables;
 using System.Net;
 using System.Data.Entity;
+using PagedList;
 
 namespace Catalogue.Controllers.CRUD
 {
