@@ -14,12 +14,15 @@ namespace Catalogue.Controllers.CRUD
         CatalogueContext db = new CatalogueContext();
 
         // GET: Position
+        [Authorize(Roles = "admin")]
         public ActionResult Index()
         {
             return View(db.Positions.ToList());
         }
 
         // GET: Position/Details/5
+
+        [Authorize(Roles = "admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -32,6 +35,7 @@ namespace Catalogue.Controllers.CRUD
 
         // GET: Position/Create
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             return View();
@@ -39,6 +43,7 @@ namespace Catalogue.Controllers.CRUD
 
         // POST: Position/Create
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Create(Position collection)
         {
             try
@@ -55,6 +60,7 @@ namespace Catalogue.Controllers.CRUD
         }
 
         // GET: Position/Edit/5
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -67,6 +73,7 @@ namespace Catalogue.Controllers.CRUD
 
         // POST: Position/Edit/5
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int id, Position collection)
         {
             try
@@ -82,6 +89,7 @@ namespace Catalogue.Controllers.CRUD
         }
 
         // GET: Position/Delete/5
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -94,6 +102,7 @@ namespace Catalogue.Controllers.CRUD
 
         // POST: Position/Delete/5
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id, Position collection)
         {
             Position position = new Position();
