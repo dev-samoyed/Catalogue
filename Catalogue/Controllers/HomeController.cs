@@ -19,6 +19,12 @@ namespace Catalogue.Controllers
             return View();
         }
 
+        public ActionResult DepartmentEmployees (int DepartmentId)
+        {
+            var employees = db.Employees.Where(e => e.DepartmentId == DepartmentId).OrderBy(d => d.EmployeeFullName).Include(c => c.Department).Include(b => b.Position).ToList();
+            return View(employees);
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

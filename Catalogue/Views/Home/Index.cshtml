@@ -32,7 +32,7 @@
                     @foreach (var department in administration.Departments)
                     {
                         string name = department.DepartmentName;
-                        @Html.ActionLink(name, "DepartmentEmployees", "Home", new { AdministrationId = department.AdministrationId, DepartmentId = department.DepartmentId }, new { @class = "col-item" })
+                        @Html.ActionLink(name, "DepartmentEmployees", "Home", new { DepartmentId = department.DepartmentId }, new { @class = "col-item" })
                     }
                 </div>
                 
