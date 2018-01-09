@@ -1,0 +1,13 @@
+html {
+    overflow-y: scroll;
+}
+
+.col-item {
+    display: block;
+    padding: 2px 0 2px 20px;
+    border-bottom: 1px solid #efefef;
+}
+
+#title {
+    padding-left: 20px;
+}

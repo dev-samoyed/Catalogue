@@ -4,25 +4,46 @@
 }
 
 <div>
-    <form action="/" method="post">
-        <input type="search" name="search" value="" />
-        <input type="submit" value="Search" />
-    </form>
-
+    <h3 id="title">Поиск</h3>
     <div class="row">
-        <div class="col-md-6">
-            <h2>Справочник</h2>
-            <div id="custom-search-input">
-                <div class="input-group col-md-12">
-                    <form action="/" method="post">
-                        <input type="text" class="form-control input-lg" placeholder="поиск" />
-                        <span class="input-group-btn">
-                            <button class="btn btn-info btn-lg" type="button">
-                                <i class="glyphicon glyphicon-search"></i>
-                            </button>
-                        </span>
-                    </form>
-                </div>
+        <div class="col-md-12">
+            <div class="col-md-12">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="впишите имя сотрудника">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-search"></span> Искать</button>
+                    </span>
+                </div><!-- /input-group -->
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Admin 1</a>
+                </h4>
+            </div>
+            <div id="collapse1" class="panel-collapse collapse in">
+                <a class="col-item" href="#">Depart 1</a>
+                <a class="col-item" href="#">Depart 2</a>
+                <a class="col-item" href="#">Depart 3</a>
+                <a class="col-item" href="#">Depart 4</a>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Admin 2</a>
+                </h4>
+            </div>
+            <div id="collapse2" class="panel-collapse collapse">
+                <a class="col-item" href="#">Depart 5</a>
+                <a class="col-item" href="#">Depart 6</a>
+                <a class="col-item" href="#">Depart 7</a>
+                <a class="col-item" href="#">Depart 8</a>
             </div>
         </div>
     </div>
