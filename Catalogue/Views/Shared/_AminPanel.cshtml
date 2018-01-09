@@ -36,7 +36,10 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year – приложение ASP.NET</p>
+            @if (DateTime.Now.Year == 2018)
+                {<p>&copy; @DateTime.Now.Year Отдел программирования.</p> }
+            else
+                {<p>&copy; 2018 - @DateTime.Now.Year Отдел программирования.</p>}
         </footer>
     </div>
 
