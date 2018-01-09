@@ -23,6 +23,7 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
+App_Data/
 
 # Visual Studio 2015 cache/options directory
 .vs/
@@ -216,10 +217,6 @@ Backup*/
 UpgradeLog*.XML
 UpgradeLog*.htm
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 8a40a610b3cba0685180f524fe259e3b7c596bdc
 
 # Business Intelligence projects
 *.rdl.data
