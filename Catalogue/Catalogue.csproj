@@ -220,6 +220,17 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
+    <Content Include="App_Data\aspnet-Catalogue-20180108113947.mdf" />
+    <Content Include="App_Data\aspnet-Catalogue-20180108113947_log.ldf">
+      <DependentUpon>aspnet-Catalogue-20180108113947.mdf</DependentUpon>
+    </Content>
+    <Content Include="App_Data\Catalogue.Models.Tables.CatalogueContext.mdf" />
+    <Content Include="App_Data\Catalogue.Models.Tables.CatalogueContext_log.ldf">
+      <DependentUpon>Catalogue.Models.Tables.CatalogueContext.mdf</DependentUpon>
+    </Content>
+=======
+>>>>>>> 57b3be0644738906a78a7c550f64fa930eadd7a3
     <Content Include="Content\app.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
