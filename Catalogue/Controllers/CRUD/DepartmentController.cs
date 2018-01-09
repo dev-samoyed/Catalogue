@@ -17,13 +17,8 @@ namespace Catalogue.Controllers.CRUD
         [Authorize(Roles = "admin")]
         public ActionResult Index()
         {
-<<<<<<< HEAD
             var departments = db.Departments.Include(e => e.Administration);
             return View(departments.ToList());
-=======
-            var administration = db.Departments.Include(e => e.Administration);
-            return View(administration.ToList());
->>>>>>> aa9aa44fcc6ed771236587a702275a1edf715dbb
         }
 
         // GET: Department/Details/5
