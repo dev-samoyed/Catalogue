@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Catalogue.Models.Tables;
 using System.Net;
+using System.Data.Entity;
 
 namespace Catalogue.Controllers.CRUD
 {
@@ -15,7 +16,8 @@ namespace Catalogue.Controllers.CRUD
         // GET: Department
         public ActionResult Index()
         {
-            return View(db.Departments.ToList());
+            var departments = db.Departments.Include(e => e.Administration);
+            return View(departments.ToList());
         }
 
         // GET: Department/Details/5
