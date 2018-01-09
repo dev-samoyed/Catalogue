@@ -13,12 +13,14 @@ namespace Catalogue.Controllers.CRUD
         CatalogueContext db = new CatalogueContext();
 
         // GET: Administration
+        [Authorize(Roles = "admin")]
         public ActionResult Index()
         {
             return View(db.Administrations.ToList());
         }
 
         // GET: Administration/Details/5
+        [Authorize(Roles = "admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -31,6 +33,7 @@ namespace Catalogue.Controllers.CRUD
 
         // GET: Administration/Create
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             return View();
@@ -38,6 +41,7 @@ namespace Catalogue.Controllers.CRUD
 
         // POST: Administration/Create
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Create(Administration collection)
         {
             try
@@ -53,6 +57,7 @@ namespace Catalogue.Controllers.CRUD
         }
 
         // GET: Administration/Edit/5
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -65,6 +70,7 @@ namespace Catalogue.Controllers.CRUD
 
         // POST: Administration/Edit/5
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int id, Administration collection)
         {
             try
@@ -80,6 +86,7 @@ namespace Catalogue.Controllers.CRUD
         }
 
         // GET: Administration/Delete/5
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -92,6 +99,7 @@ namespace Catalogue.Controllers.CRUD
 
         // POST: Administration/Delete/5
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id, Administration collection)
         {
             Administration administration = new Administration();
