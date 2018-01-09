@@ -3,24 +3,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Catalogue.Models.Tables;
+using System.Net;
 
 namespace Catalogue.Controllers.CRUD
 {
     public class EmployeeController : Controller
     {
+        CatalogueContext db = new CatalogueContext();
+
         // GET: Employee
         public ActionResult Index()
         {
-            //git pull
-            return View();
+            return View(db.Employees.ToList());
         }
 
         // GET: Employee/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
-            return View();
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            Employee employee = db.Employees.Find(id);
+            if (employee == null)
+                return HttpNotFound();
+            return View(employee);
         }
 
+        [HttpGet]
         // GET: Employee/Create
         public ActionResult Create()
         {
@@ -29,12 +38,12 @@ namespace Catalogue.Controllers.CRUD
 
         // POST: Employee/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Employee collection)
         {
             try
             {
-                // TODO: Add insert logic here
-
+                db.Employees.Add(collection);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
@@ -44,19 +53,24 @@ namespace Catalogue.Controllers.CRUD
         }
 
         // GET: Employee/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
-            return View();
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            Employee employee = db.Employees.Find(id);
+            if (employee == null)
+                return HttpNotFound();
+            return View(employee);
         }
 
         // POST: Employee/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Employee collection)
         {
             try
             {
-                // TODO: Add update logic here
-
+                db.Entry(collection).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
@@ -66,18 +80,30 @@ namespace Catalogue.Controllers.CRUD
         }
 
         // GET: Employee/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
-            return View();
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            Employee employee = db.Employees.Find(id);
+            if (employee == null)
+                return HttpNotFound();
+            return View(employee);
         }
 
         // POST: Employee/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int? id, Employee collection)
         {
+            Employee employee = new Employee();
             try
             {
-                // TODO: Add delete logic here
+                if (id == null)
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                employee = db.Employees.Find(id);
+                if (employee == null)
+                    return HttpNotFound();
+                db.Employees.Remove(employee);
+                db.SaveChanges();
 
                 return RedirectToAction("Index");
             }
