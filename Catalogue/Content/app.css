@@ -11,3 +11,7 @@ html {
 #title {
     padding-left: 20px;
 }
+
+.ajax-form {
+    width: 100%;
+}
