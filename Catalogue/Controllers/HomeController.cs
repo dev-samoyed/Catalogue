@@ -19,7 +19,6 @@ namespace Catalogue.Controllers
             return View();
         }
 
-<<<<<<< HEAD
         public ActionResult DepartmentEmployees (int DepartmentId)
         {
             var employees = db.Employees
@@ -47,8 +46,6 @@ namespace Catalogue.Controllers
             return PartialView(employeeMatches);
         }
 
-=======
->>>>>>> ab9e19849f11ae0a38360e3c93e4c0836bf49d11
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
