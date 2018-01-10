@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_AminPanel.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Сотрудники</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Добавить новую запись", "Create")
 </p>
 <table class="table">
     <tr>
@@ -72,9 +72,9 @@
             @Html.DisplayFor(modelItem => item.EmployeeSkype)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.EmployeeId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.EmployeeId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.EmployeeId })
+            @Html.ActionLink("Редактировать", "Edit", new { id=item.EmployeeId }) |
+            @Html.ActionLink("Просмотр", "Details", new { id=item.EmployeeId }) |
+            @Html.ActionLink("Удалить", "Delete", new { id=item.EmployeeId })
         </td>
     </tr>
 }

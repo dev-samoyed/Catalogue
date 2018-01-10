@@ -26,11 +26,8 @@ namespace Catalogue.Controllers.CRUD
         {
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            Department department = db.Departments.Find(id);
-            if (department == null)
-                return HttpNotFound();
-            var administration = db.Departments.Include(e => e.Administration);
-            return View(administration.ToList().First());
+            Department administration = db.Departments.Include(e => e.Administration).SingleOrDefault(d => d.DepartmentId == id);
+            return View(administration);
         }
 
         [HttpGet]
