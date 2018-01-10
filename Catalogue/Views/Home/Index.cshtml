@@ -10,8 +10,7 @@
             @using (Ajax.BeginForm("EmployeeSearch", "Home", null,
                 new AjaxOptions {
                     UpdateTargetId = "results",
-                    LoadingElementId="loading",
-                    LoadingElementDuration=1000
+                    LoadingElementId="loading"
                 },
                 new { @class = "ajax-form" }))
             {
