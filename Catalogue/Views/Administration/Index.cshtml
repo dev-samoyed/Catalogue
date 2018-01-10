@@ -7,10 +7,10 @@
     Layout = "~/Views/Shared/_AminPanel.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Административные органы управления</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Добавить новую запись", "Create")
 </p>
 <table class="table">
     <tr>
@@ -63,9 +63,9 @@
                 @Html.DisplayFor(modelItem => item.AdministrationCode)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.AdministrationId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.AdministrationId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.AdministrationId })
+                @Html.ActionLink("Редактировать", "Edit", new { id = item.AdministrationId }) |
+                @Html.ActionLink("Просмотреть", "Details", new { id = item.AdministrationId }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.AdministrationId })
             </td>
         </tr>
     }
