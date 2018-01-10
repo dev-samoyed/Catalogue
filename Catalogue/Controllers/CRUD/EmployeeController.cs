@@ -16,7 +16,7 @@ namespace Catalogue.Controllers.CRUD
         // GET: Employee
         public ActionResult Index()
         {
-            var employee = db.Employees.Include(e => e.Department);
+            var employee = db.Employees.Include(e => e.Department).Include(p => p.Position);
             return View(employee.ToList());
         }
 
@@ -25,9 +25,7 @@ namespace Catalogue.Controllers.CRUD
         {
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            Employee employee = db.Employees.Find(id);
-            if (employee == null)
-                return HttpNotFound();
+            Employee employee = db.Employees.Include(p => p.Position).Include(d => d.Department).SingleOrDefault(e => e.EmployeeId == id);
             return View(employee);
         }
 
