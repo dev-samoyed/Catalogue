@@ -20,31 +20,23 @@
     <hr>
 
     <div class="panel-group" id="accordion">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Admin 1</a>
-                </h4>
+        @foreach (var administration in ViewBag.Administrations)
+        {
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#adm_@administration.AdministrationId">@administration.AdministrationName</a>
+                    </h4>
+                </div>
+                <div id="adm_@administration.AdministrationId" class="panel-collapse collapse">
+                    @foreach (var department in administration.Departments)
+                    {
+                        string name = department.DepartmentName;
+                        @Html.ActionLink(name, "DepartmentEmployees", "Home", new { DepartmentId = department.DepartmentId }, new { @class = "col-item" })
+                    }
+                </div>
+                
             </div>
-            <div id="collapse1" class="panel-collapse collapse in">
-                <a class="col-item" href="#">Depart 1</a>
-                <a class="col-item" href="#">Depart 2</a>
-                <a class="col-item" href="#">Depart 3</a>
-                <a class="col-item" href="#">Depart 4</a>
-            </div>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Admin 2</a>
-                </h4>
-            </div>
-            <div id="collapse2" class="panel-collapse collapse">
-                <a class="col-item" href="#">Depart 5</a>
-                <a class="col-item" href="#">Depart 6</a>
-                <a class="col-item" href="#">Depart 7</a>
-                <a class="col-item" href="#">Depart 8</a>
-            </div>
-        </div>
+        }
     </div>
 </div>

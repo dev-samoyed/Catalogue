@@ -21,6 +21,10 @@ namespace Catalogue.Controllers.CRUD
         }
 
         // GET: Position/Details/5
+<<<<<<< HEAD
+
+=======
+>>>>>>> 57b3be0644738906a78a7c550f64fa930eadd7a3
         [Authorize(Roles = "admin")]
         public ActionResult Details(int? id)
         {

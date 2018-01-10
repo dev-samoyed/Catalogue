@@ -3,14 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
+using Catalogue.Models.Tables;
 
 namespace Catalogue.Controllers
 {
     public class HomeController : Controller
     {
+        CatalogueContext db = new CatalogueContext();
+
         public ActionResult Index()
         {
+            var administrations = db.Administrations.Include(e => e.Departments);
+            ViewBag.Administrations = administrations;
             return View();
+        }
+
+        public ActionResult DepartmentEmployees (int DepartmentId)
+        {
+            var employees = db.Employees.Where(e => e.DepartmentId == DepartmentId).OrderBy(d => d.EmployeeFullName).Include(c => c.Department).Include(b => b.Position).ToList();
+            return View(employees);
         }
 
         public ActionResult About()
