@@ -7,6 +7,7 @@ namespace Catalogue.Models
     {
         [Required]
         [Display(Name = "Адрес электронной почты")]
+        [RegularExpression(".+\\@.+\\..+", ErrorMessage = "Вы ввели некорректный E-mail")]
         public string Email { get; set; }
     }
 
