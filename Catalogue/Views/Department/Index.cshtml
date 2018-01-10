@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Catalogue.Models.Tables.Department>
+﻿@model PagedList<Catalogue.Models.Tables.Department>
+@using PagedList;
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "Index";
@@ -13,10 +15,10 @@
 <table class="table">
     <tr> 
         <th>
-            @Html.DisplayNameFor(model => model.DepartmentName)
+            @Html.DisplayNameFor(model => model.First().DepartmentName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Administration.AdministrationName)
+            @Html.DisplayNameFor(model => model.First().Administration.AdministrationName)
         </th>
         <th></th>
     </tr>
@@ -38,3 +40,7 @@
 }
 
 </table>
+<br />
+
+Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
