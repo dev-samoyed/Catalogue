@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Catalogue.Models.Tables;
 using System.Net;
 using System.Data.Entity;
+using PagedList;
 
 namespace Catalogue.Controllers.CRUD
 {
@@ -14,15 +15,13 @@ namespace Catalogue.Controllers.CRUD
         CatalogueContext db = new CatalogueContext();
 
         // GET: Department
-        [Authorize(Roles = "admin")]
         public ActionResult Index()
         {
-            var departments = db.Departments.Include(e => e.Administration);
-            return View(departments.ToList());
+            var administration = db.Departments.Include(e => e.Administration);
+            return View(administration.ToList());
         }
 
         // GET: Department/Details/5
-        [Authorize(Roles = "admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -30,11 +29,11 @@ namespace Catalogue.Controllers.CRUD
             Department department = db.Departments.Find(id);
             if (department == null)
                 return HttpNotFound();
-            return View(department);
+            var administration = db.Departments.Include(e => e.Administration);
+            return View();
         }
 
         [HttpGet]
-        [Authorize(Roles = "admin")]
         // GET: Department/Create
         public ActionResult Create()
         {
@@ -45,7 +44,6 @@ namespace Catalogue.Controllers.CRUD
 
         // POST: Department/Create
         [HttpPost]
-        [Authorize(Roles = "admin")]
         public ActionResult Create(Department collection)
         {
             try
@@ -61,7 +59,6 @@ namespace Catalogue.Controllers.CRUD
         }
 
         // GET: Department/Edit/5
-        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -69,12 +66,14 @@ namespace Catalogue.Controllers.CRUD
             Department department = db.Departments.Find(id);
             if (department == null)
                 return HttpNotFound();
+
+            SelectList administrationList = new SelectList(db.Administrations, "AdministrationId", "AdministrationName");
+            ViewBag.AdministrationList = administrationList;
             return View(department);
         }
 
         // POST: Department/Edit/5
         [HttpPost]
-        [Authorize(Roles = "admin")]
         public ActionResult Edit(int id, Department collection)
         {
             try
@@ -90,7 +89,6 @@ namespace Catalogue.Controllers.CRUD
         }
 
         // GET: Department/Delete/5
-        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -103,7 +101,6 @@ namespace Catalogue.Controllers.CRUD
 
         // POST: Department/Delete/5
         [HttpPost]
-        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id, Department collection)
         {
             Department department = new Department();

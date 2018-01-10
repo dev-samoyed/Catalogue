@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Catalogue.Models.Tables;
 using System.Net;
+using System.Data.Entity;
 
 namespace Catalogue.Controllers.CRUD
 {
@@ -13,14 +14,13 @@ namespace Catalogue.Controllers.CRUD
         CatalogueContext db = new CatalogueContext();
 
         // GET: Employee
-        [Authorize(Roles = "admin")]
         public ActionResult Index()
         {
-            return View(db.Employees.ToList());
+            var employee = db.Employees.Include(e => e.Department);
+            return View(employee.ToList());
         }
 
         // GET: Employee/Details/5
-        [Authorize(Roles = "admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -33,7 +33,6 @@ namespace Catalogue.Controllers.CRUD
 
         [HttpGet]
         // GET: Employee/Create
-        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             SelectList departmentList = new SelectList(db.Departments, "DepartmentId", "DepartmentName");
@@ -45,7 +44,6 @@ namespace Catalogue.Controllers.CRUD
 
         // POST: Employee/Create
         [HttpPost]
-        [Authorize(Roles = "admin")]
         public ActionResult Create(Employee collection)
         {
             try
@@ -61,7 +59,6 @@ namespace Catalogue.Controllers.CRUD
         }
 
         // GET: Employee/Edit/5
-        [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -69,12 +66,16 @@ namespace Catalogue.Controllers.CRUD
             Employee employee = db.Employees.Find(id);
             if (employee == null)
                 return HttpNotFound();
+
+            SelectList departmentList = new SelectList(db.Departments, "DepartmentId", "DepartmentName");
+            ViewBag.DepartmentList = departmentList;
+            SelectList positionList = new SelectList(db.Positions, "PositionId", "PositionName");
+            ViewBag.PositionList = positionList;
             return View(employee);
         }
 
         // POST: Employee/Edit/5
         [HttpPost]
-        [Authorize(Roles = "admin")]
         public ActionResult Edit(int id, Employee collection)
         {
             try
@@ -90,7 +91,6 @@ namespace Catalogue.Controllers.CRUD
         }
 
         // GET: Employee/Delete/5
-        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -103,7 +103,6 @@ namespace Catalogue.Controllers.CRUD
 
         // POST: Employee/Delete/5
         [HttpPost]
-        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id, Employee collection)
         {
             Employee employee = new Employee();
