@@ -23,7 +23,6 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
-App_Data/
 
 # Visual Studio 2015 cache/options directory
 .vs/
@@ -217,11 +216,6 @@ Backup*/
 UpgradeLog*.XML
 UpgradeLog*.htm
 
-
-# SQL Server files
-*.mdf
-*.ldf
-*.ndf
 
 
 # Business Intelligence projects
