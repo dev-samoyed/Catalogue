@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Catalogue.Models.Tables;
 using System.Net;
+using PagedList;
 
 namespace Catalogue.Controllers.CRUD
 {
@@ -14,9 +15,11 @@ namespace Catalogue.Controllers.CRUD
 
         // GET: Administration
         [Authorize(Roles = "admin")]
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            return View(db.Administrations.ToList());
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(db.Administrations.OrderBy(i => i.AdministrationName).ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Administration/Details/5

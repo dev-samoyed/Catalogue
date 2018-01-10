@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Catalogue.Models.Position>
+﻿@model PagedList<Catalogue.Models.Position>
+@using PagedList;
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "Index";
@@ -13,7 +15,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.PositionName)
+            @Html.DisplayNameFor(model => model.First().PositionName)
         </th>
         <th></th>
     </tr>
@@ -32,3 +34,7 @@
 }
 
 </table>
+<br />
+
+Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
