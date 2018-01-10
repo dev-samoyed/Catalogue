@@ -496,7 +496,6 @@
     <Content Include="Views\Employee\Delete.cshtml" />
     <Content Include="Views\Home\DepartmentEmployees.cshtml" />
     <Content Include="Views\Home\EmployeeSearch.cshtml" />
-    <Content Include="Views\Account\Login1.cshtml" />
     <Content Include="Scripts\jquery-3.2.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.2.1.min.map" />
   </ItemGroup>
