@@ -1,15 +1,12 @@
 ﻿@model IEnumerable<Catalogue.Models.Tables.Employee>
 
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_AminPanel.cshtml";
+    ViewBag.Title = "DepartmentEmployees";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Сотрудники</h2>
+<h2>DepartmentEmployees</h2>
 
-<p>
-    @Html.ActionLink("Добавить новую запись", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -72,9 +69,7 @@
             @Html.DisplayFor(modelItem => item.EmployeeSkype)
         </td>
         <td>
-            @Html.ActionLink("Редактировать", "Edit", new { id=item.EmployeeId }) |
-            @Html.ActionLink("Просмотр", "Details", new { id=item.EmployeeId }) |
-            @Html.ActionLink("Удалить", "Delete", new { id=item.EmployeeId })
+            @Html.ActionLink("Details", "Details", new { id=item.EmployeeId })
         </td>
     </tr>
 }

@@ -7,10 +7,10 @@
     Layout = "~/Views/Shared/_AminPanel.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Должности</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Добавить новую запись", "Create")
 </p>
 <table class="table">
     <tr>
@@ -26,9 +26,9 @@
             @Html.DisplayFor(modelItem => item.PositionName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.PositionId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.PositionId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PositionId })
+            @Html.ActionLink("Редактировать", "Edit", new { id=item.PositionId }) |
+            @Html.ActionLink("Просмотреть", "Details", new { id=item.PositionId }) |
+            @Html.ActionLink("Удалить", "Delete", new { id=item.PositionId })
         </td>
     </tr>
 }
