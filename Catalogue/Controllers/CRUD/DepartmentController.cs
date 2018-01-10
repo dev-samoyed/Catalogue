@@ -30,7 +30,7 @@ namespace Catalogue.Controllers.CRUD
             if (department == null)
                 return HttpNotFound();
             var administration = db.Departments.Include(e => e.Administration);
-            return View();
+            return View(administration.ToList().First());
         }
 
         [HttpGet]
