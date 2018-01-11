@@ -7,7 +7,7 @@
 
 <h2>Добавление отдела</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
@@ -25,7 +25,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.AdministrationId, "Орган управления", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.AdministrationId, ViewBag.AdministrationList as SelectList)
+                @Html.DropDownListFor(model => model.AdministrationId, ViewBag.AdministrationList as SelectList, "Выберите орган управления...")
                 @Html.ValidationMessageFor(model => model.AdministrationId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -36,9 +36,10 @@
             </div>
         </div>
     </div>
-
 }
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
 
-    <div>
-        @Html.ActionLink("Назад", "Index")
-    </div>
+<div>
+    @Html.ActionLink("Назад", "Index")
+</div>

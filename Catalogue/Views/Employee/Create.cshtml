@@ -73,7 +73,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.PositionId, "Должность", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.PositionId, ViewBag.PositionList as SelectList)
+                @Html.DropDownListFor(model => model.PositionId, ViewBag.PositionList as SelectList, "Выберите должность...")
                 @Html.ValidationMessageFor(model => model.PositionId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -81,7 +81,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DepartmentId, "Отдел", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.DepartmentId, ViewBag.DepartmentList as SelectList)
+                @Html.DropDownListFor(model => model.DepartmentId, ViewBag.DepartmentList as SelectList, "Выберите отдел...")
                 @Html.ValidationMessageFor(model => model.DepartmentId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -93,7 +93,8 @@
         </div>
     </div>
 }
-
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
 <div>
     @Html.ActionLink("Назад", "Index")
 </div>

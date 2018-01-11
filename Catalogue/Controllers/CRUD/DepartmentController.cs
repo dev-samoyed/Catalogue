@@ -45,7 +45,7 @@ namespace Catalogue.Controllers.CRUD
         public ActionResult Create(Department collection)
         {
             try
-            {
+            {               
                 db.Departments.Add(collection);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -91,10 +91,8 @@ namespace Catalogue.Controllers.CRUD
         {
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            Department department = db.Departments.Find(id);
-            if (department == null)
-                return HttpNotFound();
-            return View(department);
+            Department administration = db.Departments.Include(e => e.Administration).SingleOrDefault(d => d.DepartmentId == id);
+            return View(administration);
         }
 
         // POST: Department/Delete/5

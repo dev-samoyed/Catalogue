@@ -8,6 +8,7 @@ namespace Catalogue.Models.Tables
 {
     public class Administration
     {
+        [Required(ErrorMessage = "Выберите орган управления")]
         public int AdministrationId { get; set; }
 
         [Display(Name = "Орган управления")]

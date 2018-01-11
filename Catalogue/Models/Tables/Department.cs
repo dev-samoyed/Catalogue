@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Catalogue.Models.Tables
 {
@@ -17,9 +18,9 @@ namespace Catalogue.Models.Tables
        
         public ICollection<Employee> Employees { get; set; }
 
-        [Required(ErrorMessage = "Заполните поле!")]
-        public int? AdministrationId { get; set; }
-        [Required(ErrorMessage = "Заполните поле!")]
+        [Required(ErrorMessage = "Необходимо выбрать орган управления!")]
+        public int AdministrationId { get; set; }
+
         public Administration Administration { get; set; }
     }
 }
