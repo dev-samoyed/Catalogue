@@ -438,6 +438,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\js\main.js" />
+    <Content Include="Scripts\js\settings.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\respond.js" />
@@ -496,13 +497,11 @@
     <Content Include="Views\Employee\Delete.cshtml" />
     <Content Include="Views\Home\DepartmentEmployees.cshtml" />
     <Content Include="Views\Home\EmployeeSearch.cshtml" />
-
     <Content Include="Scripts\jquery-3.2.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.2.1.min.map" />
-
     <Content Include="Views\Home\NotFound.cshtml" />
     <Content Include="Views\Home\ShowEmployee.cshtml" />
-
+    <Content Include="Views\Home\Settings.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

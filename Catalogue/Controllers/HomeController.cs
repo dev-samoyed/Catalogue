@@ -21,6 +21,11 @@ namespace Catalogue.Controllers
             return View();
         }
 
+        public ActionResult Settings()
+        {
+            return View();
+        }
+
         public ActionResult DepartmentEmployees (int DepartmentId)
         {
             List<Employee> employees = db.Employees
@@ -152,5 +157,6 @@ namespace Catalogue.Controllers
 
             return employeeMatches;
         }
+        
     }
 }
