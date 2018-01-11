@@ -15,14 +15,15 @@ namespace Catalogue.Controllers
 
         public ActionResult Index()
         {
-            var administrations = db.Administrations.Include(e => e.Departments);
+            IQueryable<Administration> administrations = db.Administrations.Include(e => e.Departments);
             ViewBag.Administrations = administrations;
+
             return View();
         }
 
         public ActionResult DepartmentEmployees (int DepartmentId)
         {
-            var employees = db.Employees
+            List<Employee> employees = db.Employees
                 .Where(e => e.DepartmentId == DepartmentId)
                 .OrderBy(d => d.EmployeeFullName)
                 .Include(c => c.Department)
@@ -36,7 +37,11 @@ namespace Catalogue.Controllers
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            Employee employee = db.Employees.Include(p => p.Position).Include(d => d.Department).SingleOrDefault(e => e.EmployeeId == id);
+            Employee employee = db.Employees
+                .Include(p => p.Position)
+                .Include(d => d.Department)
+                .SingleOrDefault(e => e.EmployeeId == id);
+
             return View(employee);
         }
 
@@ -49,13 +54,15 @@ namespace Catalogue.Controllers
         {
             Stack<string> parts = new Stack<string>();
             string[] partsArray = name.Split(' ');
-            int wordsAmount = partsArray.Length < 3 ? partsArray.Length : 3;
 
             List<Employee> employeeMatches = new List<Employee>();
 
             if (!string.IsNullOrEmpty(name))
+            {
+                int wordsAmount = partsArray.Length < 3 ? partsArray.Length : 3;
                 for (int i = 0; i < wordsAmount; i++)
                     parts.Push(partsArray[i]);
+            }
 
             if (parts.Count == 1)
             {
@@ -104,8 +111,8 @@ namespace Catalogue.Controllers
         private List<Employee> SearchResults (string part_1, string part_2)
         {
             IQueryable<Employee> query = db.Employees
-                .Where(n => n.EmployeeFullName.Contains(part_1))
-                .Where(m => m.EmployeeFullName.Contains(part_2));
+                .Where(e => e.EmployeeFullName.Contains(part_1)
+                        && e.EmployeeFullName.Contains(part_2));
 
             List<Employee> employeeMatches = AddIncludes(query);
 
@@ -122,9 +129,9 @@ namespace Catalogue.Controllers
         private List<Employee> SearchResults (string part_1, string part_2, string part_3)
         {
             IQueryable<Employee> query = db.Employees
-                .Where(n => n.EmployeeFullName.Contains(part_1))
-                .Where(m => m.EmployeeFullName.Contains(part_2))
-                .Where(l => l.EmployeeFullName.Contains(part_3));
+                .Where(e => e.EmployeeFullName.Contains(part_1)
+                        && e.EmployeeFullName.Contains(part_2)
+                        && e.EmployeeFullName.Contains(part_3));
 
             List<Employee> employeeMatches = AddIncludes(query);
 

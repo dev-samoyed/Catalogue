@@ -69,9 +69,12 @@
             @Html.DisplayFor(modelItem => item.EmployeeSkype)
         </td>
         <td>
-            @Html.ActionLink("Details", "Details", new { id=item.EmployeeId })
+            @Html.ActionLink("Подробнее", "ShowEmployee", "Home", new { id = item.EmployeeId }, null)
         </td>
     </tr>
 }
 
 </table>
+<p>
+    <a href="javascript:void(0);" onclick="history.go(-1);">Назад</a>
+</p>
