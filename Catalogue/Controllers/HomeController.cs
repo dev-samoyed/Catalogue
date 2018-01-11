@@ -91,7 +91,7 @@ namespace Catalogue.Controllers
         }
 
         /// <summary>
-        /// Поиск совпадений в сотрудниках по одному значению
+        /// Формирование запроса поиска сотрудников по одному параметру
         /// </summary>
         /// <param name="part_1"></param>
         /// <returns>employeeMatches</returns>
@@ -104,7 +104,7 @@ namespace Catalogue.Controllers
         }
 
         /// <summary>
-        /// Поиск совпадений в сотрудниках по двум значениям
+        /// Формирование запроса поиска сотрудников по двум параметрам
         /// </summary>
         /// <param name="part_1"></param>
         /// <param name="part_2"></param>
@@ -119,7 +119,7 @@ namespace Catalogue.Controllers
         }
 
         /// <summary>
-        /// Поиск совпадений в сотрудниках по трем значениям
+        /// Формирование запроса поиска сотрудников по трем параметрам
         /// </summary>
         /// <param name="part_1"></param>
         /// <param name="part_2"></param>
@@ -136,8 +136,8 @@ namespace Catalogue.Controllers
         }
 
         /// <summary>
-        /// Окончание запроса поиска совпадений в сотрудника,
-        /// добавляет сотрднику связи с его отделом и должностью
+        /// Дополнение запроса поиска сотрудников,
+        /// добавляет связи Position и Deparment
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
