@@ -38,11 +38,13 @@ namespace Catalogue.Models.Tables
         /// <summary>
         /// relationship one to many
         /// </summary>
-        public int? PositionId { get; set; }
+        /// 
+        [Required(ErrorMessage = "Необходимо выбрать должность!")]
+        public int PositionId { get; set; }
         public Position Position { get; set; }
 
-
-        public int? DepartmentId { get; set; }
+        [Required(ErrorMessage = "Необходимо выбрать отдел!")]
+        public int DepartmentId { get; set; }
         public Department Department { get; set; }
     }
 }
