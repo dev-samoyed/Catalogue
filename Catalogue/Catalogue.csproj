@@ -218,7 +218,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-
     <Content Include="App_Data\aspnet-Catalogue-20180108113947.mdf" />
     <Content Include="App_Data\aspnet-Catalogue-20180108113947_log.ldf">
       <DependentUpon>aspnet-Catalogue-20180108113947.mdf</DependentUpon>
@@ -306,6 +305,8 @@
     <Content Include="Views\Employee\Delete.cshtml" />
     <Content Include="Views\Home\DepartmentEmployees.cshtml" />
     <Content Include="Views\Home\EmployeeSearch.cshtml" />
+    <Content Include="Views\Home\NotFound.cshtml" />
+    <Content Include="Views\Home\ShowEmployee.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

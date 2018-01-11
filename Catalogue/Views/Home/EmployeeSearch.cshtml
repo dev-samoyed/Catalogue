@@ -53,7 +53,7 @@
                     @Html.DisplayFor(modelItem => item.EmployeeSkype)
                 </td>
                 <td>
-                    @Html.ActionLink("Details", "Details", new { id = item.EmployeeId })
+                    @Html.ActionLink("Подробнее", "ShowEmployee", "Home", new { id = item.EmployeeId })
                 </td>
             </tr>
         }
