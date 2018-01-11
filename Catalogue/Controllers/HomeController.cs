@@ -56,6 +56,7 @@ namespace Catalogue.Controllers
             string[] partsArray = name.Split(' ');
 
             List<Employee> employeeMatches = new List<Employee>();
+            IQueryable<Employee> searchQuery = Enumerable.Empty<Employee>().AsQueryable();
 
             if (!string.IsNullOrEmpty(name))
             {
@@ -67,22 +68,24 @@ namespace Catalogue.Controllers
             if (parts.Count == 1)
             {
                 string part_1 = parts.Pop();
-                employeeMatches = SearchResults(part_1);
+                searchQuery = BuildSearchQuery(part_1);
             }
             else if (parts.Count == 2)
             {
                 string part_1 = parts.Pop(), part_2 = parts.Pop();
-                employeeMatches = SearchResults(part_1, part_2);
+                searchQuery = BuildSearchQuery(part_1, part_2);
             }
             else if (parts.Count == 3)
             {
                 string part_1 = parts.Pop(), part_2 = parts.Pop(), part_3 = parts.Pop();
-                employeeMatches = SearchResults(part_1, part_2, part_3);
+                searchQuery = BuildSearchQuery(part_1, part_2, part_3);
             }
             else if (parts.Count <= 0)
             {
                 return PartialView("~/Views/Home/NotFound.cshtml");
             }
+
+            employeeMatches = AddIncludes(searchQuery);
 
             return PartialView(employeeMatches);
         }
@@ -92,14 +95,12 @@ namespace Catalogue.Controllers
         /// </summary>
         /// <param name="part_1"></param>
         /// <returns>employeeMatches</returns>
-        private List<Employee> SearchResults (string part_1)
+        private IQueryable<Employee> BuildSearchQuery (string part_1)
         {
             IQueryable<Employee> query = db.Employees
                 .Where(n => n.EmployeeFullName.Contains(part_1));
 
-            List<Employee> employeeMatches = AddIncludes(query);
-
-            return employeeMatches;
+            return query;
         }
 
         /// <summary>
@@ -108,15 +109,13 @@ namespace Catalogue.Controllers
         /// <param name="part_1"></param>
         /// <param name="part_2"></param>
         /// <returns></returns>
-        private List<Employee> SearchResults (string part_1, string part_2)
+        private IQueryable<Employee> BuildSearchQuery(string part_1, string part_2)
         {
             IQueryable<Employee> query = db.Employees
                 .Where(e => e.EmployeeFullName.Contains(part_1)
                         && e.EmployeeFullName.Contains(part_2));
 
-            List<Employee> employeeMatches = AddIncludes(query);
-
-            return employeeMatches;
+            return query;
         }
 
         /// <summary>
@@ -126,16 +125,14 @@ namespace Catalogue.Controllers
         /// <param name="part_2"></param>
         /// <param name="part_3"></param>
         /// <returns></returns>
-        private List<Employee> SearchResults (string part_1, string part_2, string part_3)
+        private IQueryable<Employee> BuildSearchQuery(string part_1, string part_2, string part_3)
         {
             IQueryable<Employee> query = db.Employees
                 .Where(e => e.EmployeeFullName.Contains(part_1)
                         && e.EmployeeFullName.Contains(part_2)
                         && e.EmployeeFullName.Contains(part_3));
 
-            List<Employee> employeeMatches = AddIncludes(query);
-
-            return employeeMatches;
+            return query;
         }
 
         /// <summary>
