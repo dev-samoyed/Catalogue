@@ -496,8 +496,13 @@
     <Content Include="Views\Employee\Delete.cshtml" />
     <Content Include="Views\Home\DepartmentEmployees.cshtml" />
     <Content Include="Views\Home\EmployeeSearch.cshtml" />
+
     <Content Include="Scripts\jquery-3.2.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.2.1.min.map" />
+
+    <Content Include="Views\Home\NotFound.cshtml" />
+    <Content Include="Views\Home\ShowEmployee.cshtml" />
+
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
