@@ -52,6 +52,8 @@ namespace Catalogue.Controllers
         /// <returns>PartialView</returns>
         public ActionResult EmployeeSearch (string name)
         {
+            int maxNumberOfWordsInFullName = 3;
+
             Stack<string> parts = new Stack<string>();
             string[] partsArray = name.Split(' ');
 
@@ -60,7 +62,7 @@ namespace Catalogue.Controllers
 
             if (!string.IsNullOrEmpty(name))
             {
-                int wordsAmount = partsArray.Length < 3 ? partsArray.Length : 3;
+                int wordsAmount = partsArray.Length < maxNumberOfWordsInFullName ? partsArray.Length : maxNumberOfWordsInFullName;
                 for (int i = 0; i < wordsAmount; i++)
                     parts.Push(partsArray[i]);
             }
