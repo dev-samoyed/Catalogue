@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Catalogue.Models.Tables;
 using System.Net;
 using System.Data.Entity;
+using PagedList;
 
 namespace Catalogue.Controllers.CRUD
 {
@@ -14,10 +15,11 @@ namespace Catalogue.Controllers.CRUD
         CatalogueContext db = new CatalogueContext();
 
         // GET: Employee
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            var employee = db.Employees.Include(e => e.Department).Include(p => p.Position);
-            return View(employee.ToList());
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(db.Employees.Include(e => e.Department).Include(p => p.Position).OrderBy(i => i.EmployeeFullName).ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Employee/Details/5

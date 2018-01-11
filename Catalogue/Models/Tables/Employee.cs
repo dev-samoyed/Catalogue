@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -8,12 +9,30 @@ namespace Catalogue.Models.Tables
     public class Employee
     {
         public int EmployeeId { get; set; }
+
+        [Display(Name = "ФИО")]
+        [Required(ErrorMessage = "Заполните поле!")]
         public string EmployeeFullName { get; set; }
+
+        [Display(Name = "Кабинет")]
+        [Required(ErrorMessage = "Заполните поле!")]
         public string EployeeRoom { get; set; }
+
+        [Display(Name = "Адрес")]
         public string EmployeeAddress { get; set; }
+
+        [Display(Name = "Телефон")]
+        [Required(ErrorMessage = "Заполните поле!")]
         public string EmployeePhone { get; set; }
+
+        [Display(Name = "Мобильный телефон")]
         public string EmployeePersonalPhone { get; set; }
+
+        [Display(Name = "E-mail")]
+        [RegularExpression(".+\\@.+\\..+", ErrorMessage = "Вы ввели некорректный E-mail")]
         public string EmployeeEmail { get; set; }
+
+        [Display(Name = "Skype")]
         public string EmployeeSkype { get; set; }
 
         /// <summary>

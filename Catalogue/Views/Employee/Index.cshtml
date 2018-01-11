@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Catalogue.Models.Tables.Employee>
+﻿@model PagedList<Catalogue.Models.Tables.Employee>
+@using PagedList;
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "Index";
@@ -13,31 +15,31 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Department.DepartmentName)
+            @Html.DisplayNameFor(model => model.First().Department.DepartmentName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Position.PositionName)
+            @Html.DisplayNameFor(model => model.First().Position.PositionName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EmployeeFullName)
+            @Html.DisplayNameFor(model => model.First().EmployeeFullName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EployeeRoom)
+            @Html.DisplayNameFor(model => model.First().EployeeRoom)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EmployeeAddress)
+            @Html.DisplayNameFor(model => model.First().EmployeeAddress)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EmployeePhone)
+            @Html.DisplayNameFor(model => model.First().EmployeePhone)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EmployeePersonalPhone)
+            @Html.DisplayNameFor(model => model.First().EmployeePersonalPhone)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EmployeeEmail)
+            @Html.DisplayNameFor(model => model.First().EmployeeEmail)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EmployeeSkype)
+            @Html.DisplayNameFor(model => model.First().EmployeeSkype)
         </th>
         <th></th>
     </tr>
@@ -80,3 +82,7 @@
 }
 
 </table>
+<br />
+
+Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
