@@ -11,8 +11,9 @@
                 @using (Ajax.BeginForm("EmployeeSearch", "Home", null,
 new AjaxOptions
 {
-UpdateTargetId = "results",
-LoadingElementId = "loading"
+UpdateTargetId = "employee-list",
+LoadingElementId = "loading",
+OnSuccess = "hideAccordion()"
 },
 new { @class = "ajax-form" }))
     {
@@ -35,28 +36,37 @@ new { @class = "ajax-form" }))
                 <hr>
 
                 <div id="results"></div>
+                <div id="employee-list"></div>
 
                 <div class="content" id="accordion">
                     @foreach (var administration in ViewBag.Administrations)
-        {
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#adm_@administration.AdministrationId">@administration.AdministrationName</a>
-                    </h4>
-                </div>
-                <div id="adm_@administration.AdministrationId" class="panel-collapse collapse">
-                    @foreach (var department in administration.Departments)
-        {
-            string name = department.DepartmentName;
-            @Html.ActionLink(name, "DepartmentEmployees", "Home", new { AdministrationId = department.AdministrationId, DepartmentId = department.DepartmentId }, new { @class = "col-item" })
-}
+                    {
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#adm_@administration.AdministrationId">@administration.AdministrationName</a>
+                        </h4>
+                        </div>
+                        <div id="adm_@administration.AdministrationId" class="panel-collapse collapse">
+                        @foreach (var department in administration.Departments)
+                        {
+                            string name = department.DepartmentName;
+                            @Ajax.ActionLink(name, "AjaxDepartmentEmployees", "Home",
+                                new { DepartmentId = department.DepartmentId },
+                                new AjaxOptions {
+                                    UpdateTargetId = "employee-list",
+                                    LoadingElementId = "loading",
+                                    OnSuccess = "hideAccordion()"
+                                },
+                                new { @class = "col-item" })
+                        }
+                        </div>
+                    </div>
+                    }
                 </div>
 
-            </div>
-}
-                </div>
             </div>
         </div>
     </div>
 </div>
+

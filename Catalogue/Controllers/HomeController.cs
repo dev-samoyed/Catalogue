@@ -11,6 +11,9 @@ namespace Catalogue.Controllers
 {
     public class HomeController : Controller
     {
+        // errors string values
+        public static readonly string notFound = "Не найдено";
+
         CatalogueContext db = new CatalogueContext();
 
         public ActionResult Index()
@@ -21,40 +24,53 @@ namespace Catalogue.Controllers
             return View();
         }
 
-        public ActionResult Settings()
+        /// <summary>
+        /// Shows list of employees of the department
+        /// </summary>
+        /// <param name="DepartmentId"></param>
+        /// <returns>list of employees</returns>
+        public ActionResult AjaxDepartmentEmployees (int? DepartmentId)
         {
-            return View();
+            if (DepartmentId == null)
+            {
+                ViewBag.Error = notFound;
+                return PartialView("~/Views/Home/Error.cshtml");
+            }
+
+            IQueryable<Employee> query = db.Employees
+                .Where(e => e.DepartmentId == DepartmentId);
+
+            List<Employee> employees = AddIncludes(query);
+
+            return PartialView(employees);
         }
 
-        public ActionResult DepartmentEmployees (int DepartmentId)
-        {
-            List<Employee> employees = db.Employees
-                .Where(e => e.DepartmentId == DepartmentId)
-                .OrderBy(d => d.EmployeeFullName)
-                .Include(c => c.Department)
-                .Include(b => b.Position).ToList();
-
-            return View(employees);
-        }
-
-        public ActionResult ShowEmployee (int? id)
+        /// <summary>
+        /// Shows employee's info by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>employee's info</returns>
+        public ActionResult AjaxShowEmployee (int? id)
         {
             if (id == null)
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            {
+                ViewBag.Error = notFound;
+                return PartialView("~/Views/Home/Error.cshtml");
+            }
 
             Employee employee = db.Employees
                 .Include(p => p.Position)
                 .Include(d => d.Department)
                 .SingleOrDefault(e => e.EmployeeId == id);
 
-            return View(employee);
+            return PartialView(employee);
         }
 
         /// <summary>
-        /// Возвращает частичное представление со списком найденных сотрудников
+        /// Forms partial view with a list of found employees
         /// </summary>
         /// <param name="name"></param>
-        /// <returns>PartialView</returns>
+        /// <returns>PartialView with a list of employees</returns>
         public ActionResult EmployeeSearch (string name)
         {
             int maxNumberOfWordsInFullName = 3;
@@ -89,19 +105,26 @@ namespace Catalogue.Controllers
             }
             else if (parts.Count <= 0)
             {
-                return PartialView("~/Views/Home/NotFound.cshtml");
+                ViewBag.Error = notFound;
+                return PartialView("~/Views/Home/Error.cshtml");
             }
 
             employeeMatches = AddIncludes(searchQuery);
+
+            if (employeeMatches.Count <= 0)
+            {
+                ViewBag.Error = notFound;
+                return PartialView("~/Views/Home/Error.cshtml");
+            }
 
             return PartialView(employeeMatches);
         }
 
         /// <summary>
-        /// Формирование запроса поиска сотрудников по одному параметру
+        /// Forms a search query for employees by one param
         /// </summary>
         /// <param name="part_1"></param>
-        /// <returns>employeeMatches</returns>
+        /// <returns>query</returns>
         private IQueryable<Employee> BuildSearchQuery (string part_1)
         {
             IQueryable<Employee> query = db.Employees
@@ -111,11 +134,11 @@ namespace Catalogue.Controllers
         }
 
         /// <summary>
-        /// Формирование запроса поиска сотрудников по двум параметрам
+        /// Forms a search query for employees by two params
         /// </summary>
         /// <param name="part_1"></param>
         /// <param name="part_2"></param>
-        /// <returns></returns>
+        /// <returns>query</returns>
         private IQueryable<Employee> BuildSearchQuery(string part_1, string part_2)
         {
             IQueryable<Employee> query = db.Employees
@@ -126,12 +149,12 @@ namespace Catalogue.Controllers
         }
 
         /// <summary>
-        /// Формирование запроса поиска сотрудников по трем параметрам
+        /// Forms a search query for employees by three params
         /// </summary>
         /// <param name="part_1"></param>
         /// <param name="part_2"></param>
         /// <param name="part_3"></param>
-        /// <returns></returns>
+        /// <returns>query</returns>
         private IQueryable<Employee> BuildSearchQuery(string part_1, string part_2, string part_3)
         {
             IQueryable<Employee> query = db.Employees
@@ -143,14 +166,14 @@ namespace Catalogue.Controllers
         }
 
         /// <summary>
-        /// Дополнение запроса поиска сотрудников,
-        /// добавляет связи Position и Deparment
+        /// Adds relationships Position and Department to the (Employee) query
         /// </summary>
         /// <param name="query"></param>
-        /// <returns></returns>
+        /// <returns>list of employees</returns>
         private List<Employee> AddIncludes (IQueryable<Employee> query)
         {
             List<Employee> employeeMatches = query
+                .OrderBy(c => c.EmployeeFullName)
                 .Include(p => p.Position)
                 .Include(d => d.Department)
                 .ToList();

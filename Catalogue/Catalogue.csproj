@@ -502,6 +502,9 @@
     <Content Include="Views\Home\NotFound.cshtml" />
     <Content Include="Views\Home\ShowEmployee.cshtml" />
     <Content Include="Views\Home\Settings.cshtml" />
+    <Content Include="Views\Home\Error.cshtml" />
+    <Content Include="Views\Home\AjaxDepartmentEmployees.cshtml" />
+    <Content Include="Views\Home\AjaxShowEmployee.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

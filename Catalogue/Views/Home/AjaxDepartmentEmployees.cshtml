@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Catalogue.Models.Tables.Employee>
+
+<table class="table table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Department.DepartmentName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Position.PositionName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeFullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EployeeRoom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeePhone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeePersonalPhone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeSkype)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Department.DepartmentName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Position.PositionName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmployeeFullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EployeeRoom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmployeeAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmployeePhone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmployeePersonalPhone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmployeeEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmployeeSkype)
+        </td>
+        <td>
+            <!--     -->
+            @Ajax.ActionLink("Подробнее", "AjaxShowEmployee", "Home",
+                                new { id = item.EmployeeId },
+                                new AjaxOptions
+                                {
+                                    UpdateTargetId = "results",
+                                    LoadingElementId = "loading",
+                                    OnSuccess = "hideEmployeeList()"
+                                },
+                                null)
+        </td>
+    </tr>
+}
+    
+</table>
+<button class="btn btn-default" onclick="toPrevMain('list')">Назад</button>
