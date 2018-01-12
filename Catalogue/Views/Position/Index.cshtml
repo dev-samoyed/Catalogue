@@ -14,7 +14,7 @@
                 <div class="header">
                     <h2>Должности</h2>
                     <p>
-                        @Html.ActionLink("Добавить новую запись", "Create")
+                        <a class="btn btn-default" name="createButton" id="createButton" href="@Url.Action("Create","Position")">Добавить новую запись</a>
                     </p>
                 </div>
                 <div class="content">
@@ -33,13 +33,12 @@
                                     @Html.DisplayFor(modelItem => item.PositionName)
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Редактировать", "Edit", new { id = item.PositionId }) |
-                                    @Html.ActionLink("Просмотреть", "Details", new { id = item.PositionId }) |
-                                    @Html.ActionLink("Удалить", "Delete", new { id = item.PositionId })
+                                    <a class="btn btn-default" name="editButton" id="editButton" href="@Url.Action("Edit","Position", new {id = item.PositionId})">Редактировать</a> |
+                                    <a class="btn btn-default" name="detailsButton" id="detailsButton" href="@Url.Action("Details","Position", new {id = item.PositionId})">Просмотреть</a> |
+                                    <a class="btn btn-default" name="deleteButton" id="deleteButton" href="@Url.Action("Delete","Position", new {id = item.PositionId})">Удалить</a>
                                 </td>
                             </tr>
                         }
-
                     </table>
                 </div>
             </div>

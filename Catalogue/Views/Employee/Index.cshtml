@@ -14,7 +14,7 @@
                 <div class="header">
                     <h2>Сотрудники</h2>
                     <p>
-                        @Html.ActionLink("Добавить новую запись", "Create")
+                        <a class="btn btn-default" name="createButton" id="createButton" href="@Url.Action("Create","Employee")">Добавить новую запись</a>
                     </p>
                 </div>
                 <div class="content">
@@ -81,9 +81,9 @@
                                     @Html.DisplayFor(modelItem => item.EmployeeSkype)
                                 </td>
                                 <td>
-                                    @Html.ActionLink("Редактировать", "Edit", new { id = item.EmployeeId }) |
-                                    @Html.ActionLink("Просмотр", "Details", new { id = item.EmployeeId }) |
-                                    @Html.ActionLink("Удалить", "Delete", new { id = item.EmployeeId })
+                                    <a class="btn btn-default" name="editButton" id="editButton" href="@Url.Action("Edit","Employee", new {id = item.EmployeeId})">Редактировать</a> |
+                                    <a class="btn btn-default" name="detailsButton" id="detailsButton" href="@Url.Action("Details","Employee", new {id = item.EmployeeId})">Просмотреть</a> |
+                                    <a class="btn btn-default" name="deleteButton" id="deleteButton" href="@Url.Action("Delete","Employee", new {id = item.EmployeeId})">Удалить</a>
                                 </td>
                             </tr>
                         }
