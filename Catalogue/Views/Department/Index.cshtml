@@ -18,7 +18,7 @@
                     </p>
                 </div>
                 <div class="content">
-                    <table class="table">
+                    <table class="table" id="listTable">
                         <tr>
                             <th>
                                 @Html.DisplayNameFor(model => model.First().DepartmentName)
@@ -46,12 +46,32 @@
                             </tr>
                         }
                     </table>
+
+                    <div id="result"> </div>
+                    <script>
+                    $('.showList').click(function (e) {
+                    var row_num = this.getAttribute("data-rows");
+                    $ajax({
+                    type: "GET",
+                    url: "Department/AjaxPositionList",
+                    data: { id: row_num },
+                    success: function (data) {
+                    $("#result").html(data);
+                    },
+                     error: function () {
+                         alert("alert").html(data);
+                     }
+                     });
+                    });
+                    </script>
+
+                    <div id="paginationToDelete">
+                        @Html.PagedListPager(Model, page => Url.Action("AjaxPositionList", new { page }),
+                         PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "result", OnSuccess = "hideBlock()" }))
+                        Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<br />
-
-Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
-@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

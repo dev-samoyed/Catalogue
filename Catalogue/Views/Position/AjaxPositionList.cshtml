@@ -1,0 +1,31 @@
+﻿@model PagedList<Catalogue.Models.Position>
+@using PagedList;
+@using PagedList.Mvc;
+
+<table class="table" id="listTable">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().PositionName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PositionName)
+            </td>
+            <td>
+                <a class="btn btn-default" name="editButton" id="editButton" href="@Url.Action("Edit","Position", new {id = item.PositionId})">Редактировать</a> |
+                <a class="btn btn-default" name="detailsButton" id="detailsButton" href="@Url.Action("Details","Position", new {id = item.PositionId})">Просмотреть</a> |
+                <a class="btn btn-default" name="deleteButton" id="deleteButton" href="@Url.Action("Delete","Position", new {id = item.PositionId})">Удалить</a>
+            </td>
+        </tr>
+    }
+
+</table>
+
+        @Html.PagedListPager(Model, page => Url.Action("AjaxPositionList", new {page}),
+            PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "result", OnSuccess = "hideBlock()"}))
+        Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount

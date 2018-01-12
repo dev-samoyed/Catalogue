@@ -6,9 +6,9 @@ $('.collapse').on('hidden.bs.collapse', function () {
 
 //on open collapse
 $('.collapse').on('shown.bs.collapse', function () {
-  var target = '#'+$(this).attr('data-parent');
-  $(target).addClass('collapse-open');
-})
+    var target = '#'+$(this).attr('data-parent');
+    $(target).addClass('collapse-open');
+});
 
 
 function hideAccordion() {
@@ -19,7 +19,7 @@ function hideEmployeeList() {
     $("#employee-list").hide();
 }
 
-function toPrevMain(from="") {
+function toPrevMain(from = "") {
     if (from == "list") {
         $("#employee-list").empty();
     } else {
@@ -32,4 +32,9 @@ function toPrevMain(from="") {
 function toPrevEmployeeList() {
     $("#results").empty();
     $("#employee-list").show();
+}
+
+function hideBlock() {
+    $("#listTable").empty();
+    $("#paginationToDelete").remove();
 }
