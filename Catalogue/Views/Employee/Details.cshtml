@@ -91,8 +91,8 @@
                         </dl>
                     </div>
                     <p>
-                        @Html.ActionLink("Редактировать", "Edit", new { id = Model.EmployeeId }) |
-                        <a class="btn btn-default" name="backButton" id="backButton" href="@Url.Action("Index","Emloyee")">Назад</a>
+                        <a class="btn btn-default" name="editButton" id="editButton" href="@Url.Action("Edit","Employee", new {id = Model.EmployeeId})">Редактировать</a> |
+                        <a class="btn btn-default" name="backButton" id="backButton" href="@Url.Action("Index","Employee")">Назад</a>
                     </p>
                 </div>
             </div>

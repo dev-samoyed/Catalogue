@@ -14,7 +14,7 @@
                 <div class="header">
                     <h2>Административные органы управления</h2>
                     <p>
-                        @Html.ActionLink("Добавить новую запись", "Create")
+                        <a class="btn btn-default" name="createButton" id="createButton" href="@Url.Action("Create","Administration")">Добавить новую запись</a>
                     </p>
                 </div>
                 <div class="content">
@@ -68,10 +68,10 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.AdministrationCode)
                                 </td>
-                                <td>
-                                    @Html.ActionLink("Редактировать", "Edit", new { id = item.AdministrationId }) |
-                                    @Html.ActionLink("Просмотреть", "Details", new { id = item.AdministrationId }) |
-                                    @Html.ActionLink("Удалить", "Delete", new { id = item.AdministrationId })
+                                <td>                                   
+                                    <a class="btn btn-default" name="editButton" id="editButton" href="@Url.Action("Edit","Administration", new {id = item.AdministrationId})">Редактировать</a> |
+                                    <a class="btn btn-default" name="detailsButton" id="detailsButton" href="@Url.Action("Details","Administration", new {id = item.AdministrationId})">Просмотреть</a> |
+                                    <a class="btn btn-default" name="deleteButton" id="deleteButton" href="@Url.Action("Delete","Administration", new {id = item.AdministrationId})">Удалить</a>
                                 </td>
                             </tr>
                         }

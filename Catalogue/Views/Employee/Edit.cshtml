@@ -96,16 +96,14 @@
 
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Сохранить" class="btn btn-default" />
+                                <input type="submit" value="Сохранить" class="btn btn-default" /> |
+                                <a class="btn btn-default" name="backButton" id="backButton" href="@Url.Action("Index","Employee")">Назад</a>
                             </div>
                         </div>
                     </div>
                    }
                 @Scripts.Render("~/bundles/jquery")
                 @Scripts.Render("~/bundles/jqueryval")
-                <div>
-                    <a class="btn btn-default" name="backButton" id="backButton" href="@Url.Action("Index","Emloyee")">Назад</a>
-                </div>
                 </div>
             </div>
         </div>
