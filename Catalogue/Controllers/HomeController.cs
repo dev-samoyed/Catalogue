@@ -24,24 +24,25 @@ namespace Catalogue.Controllers
             return View();
         }
 
-        public ActionResult Settings()
-        {
-            return View();
-        }
-
         /// <summary>
         /// Shows list of employees of the department
         /// </summary>
         /// <param name="DepartmentId"></param>
         /// <returns>list of employees</returns>
-        public ActionResult DepartmentEmployees (int DepartmentId)
+        public ActionResult AjaxDepartmentEmployees (int? DepartmentId)
         {
+            if (DepartmentId == null)
+            {
+                ViewBag.Error = notFound;
+                return PartialView("~/Views/Home/Error.cshtml");
+            }
+
             IQueryable<Employee> query = db.Employees
                 .Where(e => e.DepartmentId == DepartmentId);
 
             List<Employee> employees = AddIncludes(query);
 
-            return View(employees);
+            return PartialView(employees);
         }
 
         /// <summary>
@@ -49,17 +50,20 @@ namespace Catalogue.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns>employee's info</returns>
-        public ActionResult ShowEmployee (int? id)
+        public ActionResult AjaxShowEmployee (int? id)
         {
             if (id == null)
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            {
+                ViewBag.Error = notFound;
+                return PartialView("~/Views/Home/Error.cshtml");
+            }
 
             Employee employee = db.Employees
                 .Include(p => p.Position)
                 .Include(d => d.Department)
                 .SingleOrDefault(e => e.EmployeeId == id);
 
-            return View(employee);
+            return PartialView(employee);
         }
 
         /// <summary>

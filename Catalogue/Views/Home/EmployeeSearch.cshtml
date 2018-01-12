@@ -53,10 +53,19 @@
                     @Html.DisplayFor(modelItem => item.EmployeeSkype)
                 </td>
                 <td>
-                    @Html.ActionLink("Подробнее", "ShowEmployee", "Home", new { id = item.EmployeeId }, null)
+                    @Ajax.ActionLink("Подробнее", "AjaxShowEmployee", "Home",
+                                new { id = item.EmployeeId },
+                                new AjaxOptions
+                                {
+                                    UpdateTargetId = "results",
+                                    LoadingElementId = "loading",
+                                    OnSuccess = "hideEmployeeList()"
+                                },
+                                null)
                 </td>
             </tr>
         }
 
     </table>
+    <button class="btn btn-default" onclick="toPrevMain('list')">Назад</button>
 </div>
