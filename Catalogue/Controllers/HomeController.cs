@@ -63,7 +63,7 @@ namespace Catalogue.Controllers
         }
 
         /// <summary>
-        /// Возвращает частичное представление со списком найденных сотрудников
+        /// Forms partial view with a list of found employees
         /// </summary>
         /// <param name="name"></param>
         /// <returns>PartialView with a list of employees</returns>
@@ -117,7 +117,7 @@ namespace Catalogue.Controllers
         }
 
         /// <summary>
-        /// Forms a search query for emplyees by one param
+        /// Forms a search query for employees by one param
         /// </summary>
         /// <param name="part_1"></param>
         /// <returns>query</returns>
@@ -130,7 +130,7 @@ namespace Catalogue.Controllers
         }
 
         /// <summary>
-        /// Forms a search query for emplyees by two params
+        /// Forms a search query for employees by two params
         /// </summary>
         /// <param name="part_1"></param>
         /// <param name="part_2"></param>
@@ -145,7 +145,7 @@ namespace Catalogue.Controllers
         }
 
         /// <summary>
-        /// Forms a search query for emplyees by three params
+        /// Forms a search query for employees by three params
         /// </summary>
         /// <param name="part_1"></param>
         /// <param name="part_2"></param>
