@@ -1,40 +1,58 @@
 ﻿@model Catalogue.Models.Tables.Department
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Удаление отдела";
     Layout = "~/Views/Shared/_AminPanel.cshtml";
 }
 
-<h2>Удаление отдела</h2>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="header">
+                    <h2>Удаление отдела</h2>
+                    <br/>
+                    <h3>Вы действительно хотите удалить запись?</h3>
+                </div>
+                <div class="content">
+                    <div>
+                        <hr />
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Administration.AdministrationName)
+                            </dt>
 
-<h3>Вы действительно хотите удалить запись?</h3>
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Administration.AdministrationName)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Administration.AdministrationName)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Administration.AdministrationName)
-        </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.DepartmentName)
+                            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DepartmentName)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.DepartmentName)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.DepartmentName)
-        </dd>
+                        </dl>
 
-    </dl>
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Удалить" class="btn btn-default" /> |
-            @Html.ActionLink("Назад", "Index")
+                            <div class="form-actions no-color">
+                                <input type="submit" value="Удалить" class="btn btn-default" /> |
+                                <a class="btn btn-default" name="backButton" id="backButton" href="@Url.Action("Index","Department")">Назад</a>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
         </div>
-    }
+    </div>
 </div>
+
+
+
+
+

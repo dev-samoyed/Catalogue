@@ -1,34 +1,49 @@
 ﻿@model Catalogue.Models.Tables.Department
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Просмотр отдела";
     Layout = "~/Views/Shared/_AminPanel.cshtml";
 }
 
-<h2>Просмотр отдела</h2>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="header">
+                    <h2>Просмотр отдела</h2>
+                </div>
+                <div class="content">
+                    <div>
+                        <hr />
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Administration.AdministrationName)
+                            </dt>
 
-<div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Administration.AdministrationName)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Administration.AdministrationName)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Administration.AdministrationName)
-        </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.DepartmentName)
+                            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DepartmentName)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.DepartmentName)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.DepartmentName)
-        </dd>
-
-    </dl>
+                        </dl>
+                    </div>
+                    <p>
+                        @Html.ActionLink("Редактировать", "Edit", new { id = Model.DepartmentId }) |
+                        <a class="btn btn-default" name="backButton" id="backButton" href="@Url.Action("Index","Department")">Назад</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Редактировать", "Edit", new { id = Model.DepartmentId }) |
-    @Html.ActionLink("Назад", "Index")
-</p>
+
+
+
+

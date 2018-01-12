@@ -3,85 +3,97 @@
 @using PagedList.Mvc;
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Сотрудники";
     Layout = "~/Views/Shared/_AminPanel.cshtml";
 }
 
-<h2>Сотрудники</h2>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="header">
+                    <h2>Сотрудники</h2>
+                    <p>
+                        @Html.ActionLink("Добавить новую запись", "Create")
+                    </p>
+                </div>
+                <div class="content">
+                    <table class="table">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().Department.DepartmentName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().Position.PositionName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().EmployeeFullName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().EployeeRoom)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().EmployeeAddress)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().EmployeePhone)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().EmployeePersonalPhone)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().EmployeeEmail)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().EmployeeSkype)
+                            </th>
+                            <th></th>
+                        </tr>
 
-<p>
-    @Html.ActionLink("Добавить новую запись", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.First().Department.DepartmentName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().Position.PositionName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().EmployeeFullName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().EployeeRoom)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().EmployeeAddress)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().EmployeePhone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().EmployeePersonalPhone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().EmployeeEmail)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.First().EmployeeSkype)
-        </th>
-        <th></th>
-    </tr>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Department.DepartmentName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Position.PositionName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EmployeeFullName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EployeeRoom)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EmployeeAddress)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EmployeePhone)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EmployeePersonalPhone)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EmployeeEmail)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EmployeeSkype)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Редактировать", "Edit", new { id = item.EmployeeId }) |
+                                    @Html.ActionLink("Просмотр", "Details", new { id = item.EmployeeId }) |
+                                    @Html.ActionLink("Удалить", "Delete", new { id = item.EmployeeId })
+                                </td>
+                            </tr>
+                        }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Department.DepartmentName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Position.PositionName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EmployeeFullName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EployeeRoom)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EmployeeAddress)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EmployeePhone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EmployeePersonalPhone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EmployeeEmail)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EmployeeSkype)
-        </td>
-        <td>
-            @Html.ActionLink("Редактировать", "Edit", new { id=item.EmployeeId }) |
-            @Html.ActionLink("Просмотр", "Details", new { id=item.EmployeeId }) |
-            @Html.ActionLink("Удалить", "Delete", new { id=item.EmployeeId })
-        </td>
-    </tr>
-}
-
-</table>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <br />
 
 Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
