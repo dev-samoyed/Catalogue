@@ -502,6 +502,7 @@
     <Content Include="Views\Home\NotFound.cshtml" />
     <Content Include="Views\Home\ShowEmployee.cshtml" />
     <Content Include="Views\Home\Settings.cshtml" />
+    <Content Include="Views\Home\Error.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
