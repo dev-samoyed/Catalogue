@@ -14,6 +14,13 @@ namespace Catalogue.Controllers.CRUD
     {
         CatalogueContext db = new CatalogueContext();
 
+        public ActionResult AjaxPositionList(int? page)
+        {
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return PartialView(db.Departments.Include(e => e.Administration).OrderBy(i => i.DepartmentName).ToPagedList(pageNumber, pageSize));
+        }
+
         // GET: Department
         public ActionResult Index(int? page)
         {

@@ -13,6 +13,14 @@ namespace Catalogue.Controllers.CRUD
     {
         CatalogueContext db = new CatalogueContext();
 
+        [Authorize(Roles = "admin")]
+        public ActionResult AjaxPositionList(int? page)
+        {
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return PartialView(db.Administrations.OrderBy(i => i.AdministrationName).ToPagedList(pageNumber, pageSize));
+        }
+
         // GET: Administration
         [Authorize(Roles = "admin")]
         public ActionResult Index(int? page)
