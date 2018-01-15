@@ -18,7 +18,7 @@
                     </p>
                 </div>
                 <div class="content">
-                    <table class="table">
+                    <table class="table" id="listTable">
                         <tr>
                             <th>
                                 @Html.DisplayNameFor(model => model.First().Department.DepartmentName)
@@ -89,12 +89,16 @@
                         }
 
                     </table>
+
+                    <div id="result"> </div>
+                   
+                    <div id="paginationToDelete">
+                        @Html.PagedListPager(Model, page => Url.Action("AjaxPositionList", new { page }),
+                         PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "result", OnSuccess = "removeListAndPagination()" }))
+                        Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<br />
-
-Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
-@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

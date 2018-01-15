@@ -509,6 +509,8 @@
     <Content Include="Views\Home\AjaxShowEmployee.cshtml" />
     <Content Include="Views\Position\AjaxPositionList.cshtml" />
     <Content Include="Views\Department\AjaxPositionList.cshtml" />
+    <Content Include="Views\Administration\AjaxPositionList.cshtml" />
+    <Content Include="Views\Employee\AjaxPositionList.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

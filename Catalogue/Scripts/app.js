@@ -34,7 +34,7 @@ function toPrevEmployeeList() {
     $("#employee-list").show();
 }
 
-function hideBlock() {
-    $("#listTable").empty();
+function removeListAndPagination() {
+    $("#listTable").remove();
     $("#paginationToDelete").remove();
 }
