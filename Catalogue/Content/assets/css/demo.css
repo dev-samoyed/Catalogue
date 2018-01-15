@@ -367,8 +367,9 @@
         transform-origin: 0 0;
     }
 
-    .fixed-plugin .dropdown.show .dropdown-menu {
+    .fixed-plugin .dropdown.open .dropdown-menu {
         opacity: 1;
+        visibility: visible;
         -webkit-transform: translateY(-13%);
         -moz-transform: translateY(-13%);
         -o-transform: translateY(-13%);

@@ -10,9 +10,10 @@ $().ready(function () {
 
     fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
 
-    if (window_width > 767 && fixed_plugin_open == 'Dashboard') {
-        if ($('.fixed-plugin .dropdown').hasClass('show-dropdown')) {
-            $('.fixed-plugin .dropdown').addClass('show');
+    if (window_width > 767) {
+        if ($('.fixed-plugin .dropdown').hasclass('show-dropdown')) {
+            console.log("show");
+            $('.fixed-plugin .dropdown').addclass('show');
         }
 
     }
