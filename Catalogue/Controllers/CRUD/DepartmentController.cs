@@ -16,7 +16,7 @@ namespace Catalogue.Controllers.CRUD
 
         public ActionResult AjaxPositionList(int? page)
         {
-            int pageSize = 5;
+            int pageSize = 10;
             int pageNumber = (page ?? 1);
             return PartialView(db.Departments.Include(e => e.Administration).OrderBy(i => i.DepartmentName).ToPagedList(pageNumber, pageSize));
         }
@@ -24,7 +24,7 @@ namespace Catalogue.Controllers.CRUD
         // GET: Department
         public ActionResult Index(int? page)
         {
-            int pageSize = 5;
+            int pageSize = 10;
             int pageNumber = (page ?? 1);
             return View(db.Departments.Include(e => e.Administration).OrderBy(i => i.DepartmentName).ToPagedList(pageNumber, pageSize));
         }

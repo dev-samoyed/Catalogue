@@ -11,8 +11,9 @@ namespace Catalogue.Models.Tables
     {
         public int DepartmentId { get; set; }
 
-        [Display(Name = "Наименование отдела")]
         [Required(ErrorMessage = "Заполните поле!")]
+       // [StringLength(5, ErrorMessage = "Длина строки превышает 50 символов")]
+        [Display(Name = "Наименование отдела")]
         public string DepartmentName { get; set; }
 
        

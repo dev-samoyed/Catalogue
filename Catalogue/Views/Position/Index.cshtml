@@ -18,7 +18,7 @@
                     </p>
                 </div>
                 <div class="content">
-                    <table class="table" id="listTable">
+                    <table class="table" id="listTable" style="table-layout: fixed; width: 100%">
                         <tr>
                             <th>
                                 @Html.DisplayNameFor(model => model.First().PositionName)
@@ -29,7 +29,7 @@
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <td>
+                                <td class="td-title">
                                     @Html.DisplayFor(modelItem => item.PositionName)
                                 </td>
                                 <td>

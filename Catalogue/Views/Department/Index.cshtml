@@ -32,11 +32,11 @@
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Administration.AdministrationName)
-                                </td>
-                                <td>
+                                <td class="td-title">
                                     @Html.DisplayFor(modelItem => item.DepartmentName)
+                                </td>
+                                <td class="td-title">
+                                    @Html.DisplayFor(modelItem => item.Administration.AdministrationName)
                                 </td>
                                 <td>
                                     <a class="btn btn-default" name="editButton" id="editButton" href="@Url.Action("Edit","Department", new {id = item.DepartmentId})">Редактировать</a> |
