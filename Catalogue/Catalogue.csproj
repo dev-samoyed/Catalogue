@@ -218,6 +218,7 @@
     <Compile Include="Models\Tables\Administration.cs" />
     <Compile Include="Models\Tables\CatalogueContext.cs" />
     <Compile Include="Models\Tables\Department.cs" />
+    <Compile Include="Models\Tables\Division.cs" />
     <Compile Include="Models\Tables\Employee.cs" />
     <Compile Include="Models\Tables\Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

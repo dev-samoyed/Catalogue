@@ -39,5 +39,11 @@ namespace Catalogue.Models.Tables
 
         public ICollection<Department> Departments{ get; set; }
 
+        public int DivisionId { get; set; }
+
+        public Division Division { get; set; }
+
+        
+
     }
 }
