@@ -81,7 +81,7 @@
                             @Html.AntiForgeryToken()
 
                             <div class="form-actions no-color">
-                                <input type="submit" value="Удалить" class="btn btn-default" /> |
+                                <input onclick="myFunction()" type="submit" value="Удалить" class="btn btn-default" /> |
                                 <a class="btn btn-default" name="backButton" id="backButton" href ="@Url.Action("Index","Administration")">Назад</a>                           
                             </div>
                         }

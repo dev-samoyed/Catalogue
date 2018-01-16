@@ -14,22 +14,26 @@
 //function GreenColor() {
 //    document.getElementById("myDIV").style.backgroundColor = "lightblue";
 //}
-function AzureColor() {
-    document.getElementsByClassName("sidebar").style.backgroundColor = "azure";
-}
-function lightslategrayColor() {
-    document.getElementsByClassName("sidebar").style.backgroundColor = "lightslategray";
-}
-function lawngreenColor() {
-    document.getElementsByClassName("sidebar").style.backgroundColor = "lawngreen";
-}
-function darkredColor() {
-    document.getElementsByClassName("sidebar").style.backgroundColor = "darkred";
-}
-function cyanColor() {
-    document.getElementsByClassName("sidebar").style.backgroundColor = "cyan";
+
+
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
 }
 
+function filterFunction() {
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    div = document.getElementById("myDropdown");
+    a = div.getElementsByTagName("a");
+    for (i = 0; i < a.length; i++) {
+        if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+            a[i].style.display = "";
+        } else {
+            a[i].style.display = "none";
+        }
+    }
+}
 
 /*
 <div class="content">
