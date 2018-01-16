@@ -46,5 +46,15 @@ namespace Catalogue.Models.Tables
         [Required(ErrorMessage = "Необходимо выбрать отдел!")]
         public int DepartmentId { get; set; }
         public Department Department { get; set; }
+
+        [Display(Name = "Дата принятия")]
+        [Required(ErrorMessage = "Заполните поле!")]
+        public int DateAdoption { get; set; }
+        [Display(Name = "Дата увольнения")]
+        [Required(ErrorMessage = "Заполните поле!")]
+        public int DateDismissal { get; set; }
+        [Display(Name = "Уволен")]
+        [Required(ErrorMessage = "Заполните поле!")]
+        public int Dismissed { get; set; }
     }
 }

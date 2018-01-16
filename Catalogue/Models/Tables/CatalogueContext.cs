@@ -12,6 +12,7 @@ namespace Catalogue.Models.Tables
         public DbSet<Department> Departments { get; set; }
         public DbSet<Position> Positions { get; set; }
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<Division> Divisions { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -32,6 +33,10 @@ namespace Catalogue.Models.Tables
                 .HasMany<Department>(g => g.Departments)
                 .WithRequired(s => s.Administration)
                 .HasForeignKey<int?>(s => s.AdministrationId);
+            modelBuilder.Entity<Division>()
+                .HasMany<Administration>(g => g.Administrations)
+                .WithRequired(s => s.Division)
+                .HasForeignKey<int?>(s => s.DivisionId);
         }
     }
 
