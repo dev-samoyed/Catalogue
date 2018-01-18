@@ -1,0 +1,46 @@
+﻿@model Catalogue.Models.Tables.Division
+
+@{
+    ViewBag.Title = "Удаление административного деления";
+    Layout = "~/Views/Shared/_AminPanel.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="header">
+                    <h2>Удаление административного деления</h2>
+                    <br />
+                    <h3>Вы действительно хотите удалить запись?</h3>
+                </div>
+                <div class="content">
+                    <div>
+                        <hr />
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.DivisionName)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.DivisionName)
+                            </dd>
+
+                        </dl>
+
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-actions no-color">
+                                <input type="submit" value="Удалить" class="btn btn-default" /> |
+                                <a class="btn btn-default" name="backButton" id="backButton" href="@Url.Action("Index","Division")">Назад</a>
+                            </div>
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

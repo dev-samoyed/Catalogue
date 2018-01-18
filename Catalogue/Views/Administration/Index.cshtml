@@ -21,8 +21,11 @@
                     <table class="table" id="listTable">
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.First().AdministrationName)
+                                @Html.DisplayNameFor(model => model.First().Division.DivisionName)
                             </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().AdministrationName)
+                            </th>                      
                             <th>
                                 @Html.DisplayNameFor(model => model.First().AdministrationPost)
                             </th>
@@ -47,8 +50,11 @@
                         {
                             <tr>
                                 <td class="td-title">
-                                    @Html.DisplayFor(modelItem => item.AdministrationName)
+                                    @Html.DisplayFor(modelItem => item.Division.DivisionName)
                                 </td>
+                                <td class="td-title">
+                                    @Html.DisplayFor(modelItem => item.AdministrationName)
+                                </td>                              
                                 <td class="td-title">
                                     @Html.DisplayFor(modelItem => item.AdministrationPost)
                                 </td>

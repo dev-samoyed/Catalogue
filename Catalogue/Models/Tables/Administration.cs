@@ -8,7 +8,6 @@ namespace Catalogue.Models.Tables
 {
     public class Administration
     {
-        [Required(ErrorMessage = "Выберите орган управления")]
         public int AdministrationId { get; set; }
 
         [Display(Name = "Орган управления")]
@@ -39,11 +38,9 @@ namespace Catalogue.Models.Tables
 
         public ICollection<Department> Departments{ get; set; }
 
+        [Required(ErrorMessage = "Необходимо выбрать административное деление!")]
         public int DivisionId { get; set; }
 
-        public Division Division { get; set; }
-
-        
-
+        public Division Division { get; set; }      
     }
 }

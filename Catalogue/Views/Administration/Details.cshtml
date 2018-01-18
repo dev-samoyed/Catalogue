@@ -17,12 +17,20 @@
                         <hr />
                         <dl class="dl-horizontal">
                             <dt>
+                                @Html.DisplayNameFor(model => model.Division.DivisionName)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.Division.DivisionName)
+                            </dd>
+
+                            <dt>
                                 @Html.DisplayNameFor(model => model.AdministrationName)
                             </dt>
 
                             <dd>
                                 @Html.DisplayFor(model => model.AdministrationName)
-                            </dd>
+                            </dd>                          
 
                             <dt>
                                 @Html.DisplayNameFor(model => model.AdministrationPost)

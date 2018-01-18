@@ -206,6 +206,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CRUD\AdministrationController.cs" />
     <Compile Include="Controllers\CRUD\DepartmentController.cs" />
+    <Compile Include="Controllers\CRUD\DivisionController.cs" />
     <Compile Include="Controllers\CRUD\EmployeeController.cs" />
     <Compile Include="Controllers\CRUD\MainController.cs" />
     <Compile Include="Controllers\CRUD\PositionController.cs" />
@@ -512,6 +513,12 @@
     <Content Include="Views\Department\AjaxPositionList.cshtml" />
     <Content Include="Views\Administration\AjaxPositionList.cshtml" />
     <Content Include="Views\Employee\AjaxPositionList.cshtml" />
+    <Content Include="Views\Division\AjaxPositionList.cshtml" />
+    <Content Include="Views\Division\Index.cshtml" />
+    <Content Include="Views\Division\Details.cshtml" />
+    <Content Include="Views\Division\Create.cshtml" />
+    <Content Include="Views\Division\Edit.cshtml" />
+    <Content Include="Views\Division\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

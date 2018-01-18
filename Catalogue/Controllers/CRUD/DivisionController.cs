@@ -4,61 +4,60 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Catalogue.Models.Tables;
+using Catalogue.Models;
 using System.Net;
-using System.Data.Entity;
 using PagedList;
 
 namespace Catalogue.Controllers.CRUD
 {
-    public class AdministrationController : Controller
+    public class DivisionController : Controller
     {
         CatalogueContext db = new CatalogueContext();
 
-        [Authorize(Roles = "admin")]
         public ActionResult AjaxPositionList(int? page)
         {
             int pageSize = 10;
             int pageNumber = (page ?? 1);
-            return PartialView(db.Administrations.Include(e => e.Division).OrderBy(i => i.AdministrationName).ToPagedList(pageNumber, pageSize));
+            return PartialView(db.Divisions.OrderBy(i => i.DivisionName).ToPagedList(pageNumber, pageSize));
         }
-
-        // GET: Administration
+        // GET: Position
         [Authorize(Roles = "admin")]
         public ActionResult Index(int? page)
         {
             int pageSize = 10;
             int pageNumber = (page ?? 1);
-            return View(db.Administrations.Include(e => e.Division).OrderBy(i => i.AdministrationName).ToPagedList(pageNumber, pageSize));
+            return View(db.Divisions.OrderBy(i => i.DivisionName).ToPagedList(pageNumber, pageSize));
         }
 
-        // GET: Administration/Details/5
+        // GET: Position/Details/5
         [Authorize(Roles = "admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            Administration administration = db.Administrations.Include(e => e.Division).SingleOrDefault(d => d.AdministrationId == id);
-            return View(administration);
+            Division division = db.Divisions.Find(id);
+            if (division == null)
+                return HttpNotFound();
+            return View(division);
         }
 
-        // GET: Administration/Create
+        // GET: Position/Create
         [HttpGet]
         [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
-            SelectList divisionList = new SelectList(db.Divisions, "DivisionId", "DivisionName");
-            ViewBag.AdministrationList = divisionList;
             return View();
         }
 
-        // POST: Administration/Create
+        // POST: Position/Create
         [HttpPost]
         [Authorize(Roles = "admin")]
-        public ActionResult Create(Administration collection)
+        public ActionResult Create(Division collection)
         {
             try
             {
-                db.Administrations.Add(collection);
+                // TODO: Add insert logic here
+                db.Divisions.Add(collection);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -68,25 +67,22 @@ namespace Catalogue.Controllers.CRUD
             }
         }
 
-        // GET: Administration/Edit/5
+        // GET: Position/Edit/5
         [Authorize(Roles = "admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            Administration administration = db.Administrations.Find(id);
-            if (administration == null)
+            Division division = db.Divisions.Find(id);
+            if (division == null)
                 return HttpNotFound();
-
-            SelectList divisionList = new SelectList(db.Divisions, "DivisionId", "DivisionName");
-            ViewBag.AdministrationList = divisionList;
-            return View(administration);
+            return View(division);
         }
 
-        // POST: Administration/Edit/5
+        // POST: Position/Edit/5
         [HttpPost]
         [Authorize(Roles = "admin")]
-        public ActionResult Edit(int id, Administration collection)
+        public ActionResult Edit(int id, Division collection)
         {
             try
             {
@@ -100,32 +96,32 @@ namespace Catalogue.Controllers.CRUD
             }
         }
 
-        // GET: Administration/Delete/5
+        // GET: Position/Delete/5
         [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            Administration administration = db.Administrations.Find(id);
-            if (administration == null)
+            Division division = db.Divisions.Find(id);
+            if (division == null)
                 return HttpNotFound();
-            return View(administration);
+            return View(division);
         }
 
-        // POST: Administration/Delete/5
+        // POST: Position/Delete/5
         [HttpPost]
         [Authorize(Roles = "admin")]
-        public ActionResult Delete(int? id, Administration collection)
+        public ActionResult Delete(int? id, Division collection)
         {
-            Administration administration = new Administration();
+            Division division = new Division();
             try
             {
                 if (id == null)
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                administration = db.Administrations.Find(id);
-                if (administration == null)
+                division = db.Divisions.Find(id);
+                if (division == null)
                     return HttpNotFound();
-                db.Administrations.Remove(administration);
+                db.Divisions.Remove(division);
                 db.SaveChanges();
 
                 return RedirectToAction("Index");
