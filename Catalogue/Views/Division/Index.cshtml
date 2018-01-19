@@ -1,0 +1,55 @@
+﻿@model PagedList<Catalogue.Models.Tables.Division>
+@using PagedList;
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Административные деления";
+    Layout = "~/Views/Shared/_AminPanel.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="header">
+                    <h2>Административные деления</h2>
+                    <p>
+                        <a class="btn btn-default" name="createButton" id="createButton" href="@Url.Action("Create","Division")">Добавить новую запись</a>
+                    </p>
+                </div>
+                <div class="content">
+                    <table class="table" id="listTable" style="table-layout: fixed; width: 100%">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().DivisionName)
+                            </th>
+                            <th></th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="td-title">
+                                    @Html.DisplayFor(modelItem => item.DivisionName)
+                                </td>
+                                <td>
+                                    <a class="btn btn-default" name="editButton" id="editButton" href="@Url.Action("Edit","Division", new {id = item.DivisionId})">Редактировать</a> |
+                                    <a class="btn btn-default" name="detailsButton" id="detailsButton" href="@Url.Action("Details","Division", new {id = item.DivisionId})">Просмотреть</a> |
+                                    <a class="btn btn-default" name="deleteButton" id="deleteButton" href="@Url.Action("Delete","Division", new {id = item.DivisionId})">Удалить</a>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+
+                    <div id="result"> </div>
+
+                    <div id="paginationToDelete">
+                        @Html.PagedListPager(Model, page => Url.Action("AjaxPositionList", new { page }),
+                         PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "result", OnSuccess = "removeListAndPagination()" }))
+                        Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

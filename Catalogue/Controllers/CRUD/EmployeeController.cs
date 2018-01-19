@@ -54,7 +54,7 @@ namespace Catalogue.Controllers.CRUD
         public ActionResult Create(Employee collection)
         {
             try
-            {
+            {                                                                                                                                 
                 db.Employees.Add(collection);
                 db.SaveChanges();
                 return RedirectToAction("Index");

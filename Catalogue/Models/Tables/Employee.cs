@@ -48,13 +48,17 @@ namespace Catalogue.Models.Tables
         public Department Department { get; set; }
 
         [Display(Name = "Дата принятия")]
-        [Required(ErrorMessage = "Заполните поле!")]
-        public int DateAdoption { get; set; }
+        [Required(ErrorMessage = "Необходимо выбрать дату принятия сотрудника!")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime DateAdoption { get; set; }
+
         [Display(Name = "Дата увольнения")]
-        [Required(ErrorMessage = "Заполните поле!")]
-        public int DateDismissal { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public Nullable<DateTime> DateDismissal { get; set; }
+
         [Display(Name = "Уволен")]
-        [Required(ErrorMessage = "Заполните поле!")]
-        public int Dismissed { get; set; }
+        public bool Dismissed { get; set; }
     }
 }

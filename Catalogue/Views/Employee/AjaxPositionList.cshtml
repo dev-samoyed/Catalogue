@@ -31,6 +31,15 @@
         <th>
             @Html.DisplayNameFor(model => model.First().EmployeeSkype)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().DateAdoption)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().DateDismissal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Dismissed)
+        </th>
         <th></th>
     </tr>
 
@@ -62,6 +71,15 @@
         </td>
         <td class="td-title">
             @Html.DisplayFor(modelItem => item.EmployeeSkype)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateAdoption)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateDismissal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dismissed)
         </td>
         <td>
             <a class="btn btn-default" name="editButton" id="editButton" href="@Url.Action("Edit","Employee", new {id = item.EmployeeId})">Редактировать</a> |

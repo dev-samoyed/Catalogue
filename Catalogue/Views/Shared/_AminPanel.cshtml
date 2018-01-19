@@ -23,6 +23,7 @@
 
     <!--  CSS for Purpose, don't include it in your project     -->
     @Styles.Render("~/Content/assets/css/demo.css")
+    @Styles.Render("~/Content/Site.css")
 
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
@@ -47,6 +48,12 @@
                 </div>
 
                 <ul class="nav">
+                    <li class="active">
+                        <a href="@Url.Action("Index", "Division")">
+                            <i class="pe-7s-global"></i>
+                            <p>Административные деления</p>
+                        </a>
+                    </li>
                     <li class="active">
                         <a href="@Url.Action("Index", "Administration")">
                             <i class="pe-7s-culture"></i>
@@ -130,7 +137,6 @@
 
     <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
     <script src="@Url.Content("~/Content/assets/js/demo.js")"></script>
-    <script src="@Url.Content("~/Scripts/js/settings.js")"> </script>
 
 </body>
 @Scripts.Render("~/bundles/jquery")
