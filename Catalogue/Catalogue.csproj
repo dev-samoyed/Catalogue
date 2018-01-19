@@ -245,12 +245,7 @@
     <Content Include="Content\assets\img\full-screen-image-3.jpg" />
     <Content Include="Content\assets\img\loading-bubbles.svg" />
     <Content Include="Content\assets\img\mask.png" />
-    <Content Include="Content\assets\img\sidebar-1.jpg" />
-    <Content Include="Content\assets\img\sidebar-2.jpg" />
-    <Content Include="Content\assets\img\sidebar-3.jpg" />
-    <Content Include="Content\assets\img\sidebar-4.jpg" />
-    <Content Include="Content\assets\img\sidebar-5.jpg" />
-    <Content Include="Content\assets\img\sidebar-6.jpg" />
+    <Content Include="Content\assets\img\sidebar.jpg" />
     <Content Include="Content\assets\js\bootstrap-notify.js" />
     <Content Include="Content\assets\js\bootstrap-select.js" />
     <Content Include="Content\assets\js\bootstrap.min.js" />
