@@ -159,7 +159,7 @@ namespace Catalogue.Controllers
                 } else
                 {
                     ViewBag.Divisions = divisions;
-                    view += "Division.cshtml";
+                    view += "Divisions.cshtml";
                 }
             }
 
