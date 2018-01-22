@@ -88,19 +88,11 @@ namespace Catalogue.Controllers
             return employeeMatches;
         }
 
-        public ActionResult Test ()
+        public string Test ()
         {
-            return View();
-        }
-
-        [HttpPost]
-        public string Test (int? request)
-        {
-            if (request == null)
-            {
-                return "requset is null";
-            }
-            return request.ToString();
+            string title = "my job is coding";
+            string[] words = title.Split(' ');
+            return string.Join(" ", words);
         }
 
     }

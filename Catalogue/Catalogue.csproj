@@ -497,6 +497,10 @@
     <Content Include="Views\Home\AjaxShowEmployee.cshtml" />
     <Content Include="Views\Search\EmployeeSearch.cshtml" />
     <Content Include="Views\Home\Test.cshtml" />
+    <Content Include="Views\Search\Departments.cshtml" />
+    <Content Include="Views\Search\Error.cshtml" />
+    <Content Include="Views\Search\Administrations.cshtml" />
+    <Content Include="Views\Search\Positions.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
