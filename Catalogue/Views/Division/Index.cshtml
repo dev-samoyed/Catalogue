@@ -1,9 +1,9 @@
-﻿@model PagedList<Catalogue.Models.Position>
+﻿@model PagedList<Catalogue.Models.Tables.Division>
 @using PagedList;
 @using PagedList.Mvc;
 
 @{
-    ViewBag.Title = "Должности";
+    ViewBag.Title = "Административные деления";
     Layout = "~/Views/Shared/_AminPanel.cshtml";
 }
 
@@ -12,16 +12,16 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="header">
-                    <h2>Должности</h2>
+                    <h2>Административные деления</h2>
                     <p>
-                        <a class="btn btn-default" name="createButton" id="createButton" href="@Url.Action("Create","Position")">Добавить новую запись</a>
+                        <a class="btn btn-default" name="createButton" id="createButton" href="@Url.Action("Create","Division")">Добавить новую запись</a>
                     </p>
                 </div>
                 <div class="content">
                     <table class="table" id="listTable" style="table-layout: fixed; width: 100%">
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.First().PositionName)
+                                @Html.DisplayNameFor(model => model.First().DivisionName)
                             </th>
                             <th></th>
                         </tr>
@@ -30,12 +30,12 @@
                         {
                             <tr>
                                 <td class="td-title">
-                                    @Html.DisplayFor(modelItem => item.PositionName)
+                                    @Html.DisplayFor(modelItem => item.DivisionName)
                                 </td>
                                 <td>
-                                    <a class="btn btn-default" name="editButton" id="editButton" href="@Url.Action("Edit","Position", new {id = item.PositionId})">Редактировать</a> |
-                                    <a class="btn btn-default" name="detailsButton" id="detailsButton" href="@Url.Action("Details","Position", new {id = item.PositionId})">Просмотреть</a> |
-                                    <a class="btn btn-default" name="deleteButton" id="deleteButton" href="@Url.Action("Delete","Position", new {id = item.PositionId})">Удалить</a>
+                                    <a class="btn btn-default" name="editButton" id="editButton" href="@Url.Action("Edit","Division", new {id = item.DivisionId})">Редактировать</a> |
+                                    <a class="btn btn-default" name="detailsButton" id="detailsButton" href="@Url.Action("Details","Division", new {id = item.DivisionId})">Просмотреть</a> |
+                                    <a class="btn btn-default" name="deleteButton" id="deleteButton" href="@Url.Action("Delete","Division", new {id = item.DivisionId})">Удалить</a>
                                 </td>
                             </tr>
                         }

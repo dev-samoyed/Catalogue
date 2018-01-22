@@ -20,9 +20,18 @@
                     <div class="form-horizontal">
                         <hr />
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
                         <div class="form-group">
-                            @Html.LabelFor(model => model.AdministrationName, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.DivisionId, "Административное деление", htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
+                                @Html.DropDownListFor(model => model.DivisionId, ViewBag.AdministrationList as SelectList, "Выберите административное деление...")
+                                @Html.ValidationMessageFor(model => model.DivisionId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                         <div class="form-group">
+                            @Html.LabelFor(model => model.AdministrationName, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10" style="word-wrap:break-word">
                                 @Html.EditorFor(model => model.AdministrationName, new { htmlAttributes = new { @class = "form-control" } })
                                 @Html.ValidationMessageFor(model => model.AdministrationName, "", new { @class = "text-danger" })
                             </div>
@@ -75,7 +84,7 @@
                                 @Html.ValidationMessageFor(model => model.AdministrationCode, "", new { @class = "text-danger" })
                             </div>
                         </div>
-
+                      
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
                                 <input type="submit" value="Добавить" class="btn btn-default" /> |
@@ -84,7 +93,8 @@
                         </div>
                     </div>
                    }
-
+                    @Scripts.Render("~/bundles/jquery")
+                    @Scripts.Render("~/bundles/jqueryval")
                 </div>
             </div>
         </div>

@@ -15,3 +15,12 @@
 .dl-horizontal dt {
     white-space: normal;
 }
+.td-title {
+   word-wrap:break-word;
+    overflow-wrap:break-word;
+}
+
+.custom-checkbox{
+    position: relative !important;
+    margin: -6px -10px 10px !important;
+}

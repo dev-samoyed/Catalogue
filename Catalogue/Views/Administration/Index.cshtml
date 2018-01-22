@@ -18,11 +18,14 @@
                     </p>
                 </div>
                 <div class="content">
-                    <table class="table">
+                    <table class="table" id="listTable">
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.First().AdministrationName)
+                                @Html.DisplayNameFor(model => model.First().Division.DivisionName)
                             </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().AdministrationName)
+                            </th>                      
                             <th>
                                 @Html.DisplayNameFor(model => model.First().AdministrationPost)
                             </th>
@@ -41,31 +44,33 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.First().AdministrationCode)
                             </th>
-                            <th></th>
                         </tr>
 
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.AdministrationName)
+                                <td class="td-title">
+                                    @Html.DisplayFor(modelItem => item.Division.DivisionName)
                                 </td>
-                                <td>
+                                <td class="td-title">
+                                    @Html.DisplayFor(modelItem => item.AdministrationName)
+                                </td>                              
+                                <td class="td-title">
                                     @Html.DisplayFor(modelItem => item.AdministrationPost)
                                 </td>
-                                <td>
+                                <td class="td-title"> 
                                     @Html.DisplayFor(modelItem => item.AdministrationAddress)
                                 </td>
-                                <td>
+                                <td class="td-title">
                                     @Html.DisplayFor(modelItem => item.AdministrationFax)
                                 </td>
-                                <td>
+                                <td class="td-title">
                                     @Html.DisplayFor(modelItem => item.AdministrationEMail)
                                 </td>
-                                <td>
+                                <td class="td-title">
                                     @Html.DisplayFor(modelItem => item.AdministrationSkype)
                                 </td>
-                                <td>
+                                <td class="td-title">
                                     @Html.DisplayFor(modelItem => item.AdministrationCode)
                                 </td>
                                 <td>                                   
@@ -76,12 +81,16 @@
                             </tr>
                         }
                     </table>
+
+                    <div id="result"> </div>
+
+                    <div id="paginationToDelete">
+                        @Html.PagedListPager(Model, page => Url.Action("AjaxPositionList", new { page }),
+                         PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "result", OnSuccess = "removeListAndPagination()" }))
+                        Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<br />
-
-Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
-@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

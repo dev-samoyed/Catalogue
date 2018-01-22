@@ -1,0 +1,37 @@
+﻿@model Catalogue.Models.Tables.Division
+
+@{
+    ViewBag.Title = "Просмотр административного деления";
+    Layout = "~/Views/Shared/_AminPanel.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="header">
+                    <h2>Просмотр административного деления</h2>
+                </div>
+                <div class="content">
+                    <div>
+                        <hr />
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.DivisionName)
+                            </dt>
+
+                            <dd>
+                                @Html.DisplayFor(model => model.DivisionName)
+                            </dd>
+
+                        </dl>
+                    </div>
+                    <p>
+                        <a class="btn btn-default" name="editButton" id="editButton" href="@Url.Action("Edit","Division", new {id = Model.DivisionId})">Редактировать</a> |
+                        <a class="btn btn-default" name="backButton" id="backButton" href="@Url.Action("Index","Division")">Назад</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

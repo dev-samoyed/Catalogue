@@ -50,10 +50,12 @@
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.4.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
@@ -204,6 +206,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CRUD\AdministrationController.cs" />
     <Compile Include="Controllers\CRUD\DepartmentController.cs" />
+    <Compile Include="Controllers\CRUD\DivisionController.cs" />
     <Compile Include="Controllers\CRUD\EmployeeController.cs" />
     <Compile Include="Controllers\CRUD\MainController.cs" />
     <Compile Include="Controllers\CRUD\PositionController.cs" />
@@ -218,6 +221,7 @@
     <Compile Include="Models\Tables\Administration.cs" />
     <Compile Include="Models\Tables\CatalogueContext.cs" />
     <Compile Include="Models\Tables\Department.cs" />
+    <Compile Include="Models\Tables\Division.cs" />
     <Compile Include="Models\Tables\Employee.cs" />
     <Compile Include="Models\Tables\Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -240,26 +244,10 @@
     <Content Include="Content\assets\css\pe-icon-7-stroke.css" />
     <Content Include="Content\assets\fonts\Pe-icon-7-stroke.svg" />
     <Content Include="Content\assets\img\default-avatar.png" />
-    <Content Include="Content\assets\img\faces\face-0.jpg" />
-    <Content Include="Content\assets\img\faces\face-1.jpg" />
-    <Content Include="Content\assets\img\faces\face-2.jpg" />
-    <Content Include="Content\assets\img\faces\face-3.jpg" />
-    <Content Include="Content\assets\img\faces\face-4.jpg" />
-    <Content Include="Content\assets\img\faces\face-5.jpg" />
-    <Content Include="Content\assets\img\faces\face-6.jpg" />
-    <Content Include="Content\assets\img\faces\face-7.jpg" />
-    <Content Include="Content\assets\img\faces\tim_vector.jpe" />
-    <Content Include="Content\assets\img\favicon.ico" />
     <Content Include="Content\assets\img\full-screen-image-3.jpg" />
     <Content Include="Content\assets\img\loading-bubbles.svg" />
     <Content Include="Content\assets\img\mask.png" />
-    <Content Include="Content\assets\img\new_logo.png" />
-    <Content Include="Content\assets\img\sidebar-1.jpg" />
-    <Content Include="Content\assets\img\sidebar-2.jpg" />
-    <Content Include="Content\assets\img\sidebar-3.jpg" />
-    <Content Include="Content\assets\img\sidebar-4.jpg" />
-    <Content Include="Content\assets\img\sidebar-5.jpg" />
-    <Content Include="Content\assets\img\tim_80x80.png" />
+    <Content Include="Content\assets\img\sidebar.jpg" />
     <Content Include="Content\assets\js\bootstrap-notify.js" />
     <Content Include="Content\assets\js\bootstrap-select.js" />
     <Content Include="Content\assets\js\bootstrap.min.js" />
@@ -294,7 +282,7 @@
     <Content Include="Content\vendor\select2\select2.min.css" />
     <Content Include="Content\vendor\select2\select2.min.js" />
     <Content Include="Content\vendor\tilt\tilt.jquery.min.js" />
-    <Content Include="favicon.ico" />
+    <Content Include="favicon.png" />
     <Content Include="fonts\font-awesome-4.7.0\css\font-awesome.css" />
     <Content Include="fonts\font-awesome-4.7.0\css\font-awesome.min.css" />
     <Content Include="fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
@@ -303,7 +291,7 @@
     <Content Include="fonts\montserrat\OFL.txt" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="images\icons\favicon.ico" />
+    <Content Include="images\icons\favicon.png" />
     <Content Include="images\img-01.png" />
     <Content Include="Scripts\app.js" />
     <Content Include="Scripts\bootstrap.js" />

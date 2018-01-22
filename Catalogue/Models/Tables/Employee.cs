@@ -46,5 +46,19 @@ namespace Catalogue.Models.Tables
         [Required(ErrorMessage = "Необходимо выбрать отдел!")]
         public int DepartmentId { get; set; }
         public Department Department { get; set; }
+
+        [Display(Name = "Дата принятия")]
+        [Required(ErrorMessage = "Необходимо выбрать дату принятия сотрудника!")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime DateAdoption { get; set; }
+
+        [Display(Name = "Дата увольнения")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public Nullable<DateTime> DateDismissal { get; set; }
+
+        [Display(Name = "Уволен")]
+        public bool Dismissed { get; set; }
     }
 }

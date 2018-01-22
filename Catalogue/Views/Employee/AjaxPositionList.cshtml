@@ -1,0 +1,94 @@
+﻿@model PagedList<Catalogue.Models.Tables.Employee>
+@using PagedList;
+@using PagedList.Mvc;
+
+<table class="table" id="listTable">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Department.DepartmentName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Position.PositionName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().EmployeeFullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().EployeeRoom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().EmployeeAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().EmployeePhone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().EmployeePersonalPhone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().EmployeeEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().EmployeeSkype)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().DateAdoption)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().DateDismissal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Dismissed)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td class="td-title">
+            @Html.DisplayFor(modelItem => item.Department.DepartmentName)
+        </td>
+        <td class="td-title">
+            @Html.DisplayFor(modelItem => item.Position.PositionName)
+        </td>
+        <td class="td-title">
+            @Html.DisplayFor(modelItem => item.EmployeeFullName)
+        </td>
+        <td class="td-title">
+            @Html.DisplayFor(modelItem => item.EployeeRoom)
+        </td>
+        <td class="td-title">
+            @Html.DisplayFor(modelItem => item.EmployeeAddress)
+        </td>
+        <td class="td-title">
+            @Html.DisplayFor(modelItem => item.EmployeePhone)
+        </td>
+        <td class="td-title">
+            @Html.DisplayFor(modelItem => item.EmployeePersonalPhone)
+        </td>
+        <td class="td-title">
+            @Html.DisplayFor(modelItem => item.EmployeeEmail)
+        </td>
+        <td class="td-title">
+            @Html.DisplayFor(modelItem => item.EmployeeSkype)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateAdoption)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateDismissal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dismissed)
+        </td>
+        <td>
+            <a class="btn btn-default" name="editButton" id="editButton" href="@Url.Action("Edit","Employee", new {id = item.EmployeeId})">Редактировать</a> |
+            <a class="btn btn-default" name="detailsButton" id="detailsButton" href="@Url.Action("Details","Employee", new {id = item.EmployeeId})">Просмотреть</a> |
+            <a class="btn btn-default" name="deleteButton" id="deleteButton" href="@Url.Action("Delete","Employee", new {id = item.EmployeeId})">Удалить</a>
+        </td>
+    </tr>
+}
+</table>
+@Html.PagedListPager(Model, page => Url.Action("AjaxPositionList", new { page }),
+         PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "result"}))
+        Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount

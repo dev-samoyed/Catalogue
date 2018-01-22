@@ -18,7 +18,7 @@
                     </p>
                 </div>
                 <div class="content">
-                    <table class="table">
+                    <table class="table" id="listTable">
                         <tr>
                             <th>
                                 @Html.DisplayNameFor(model => model.First().Department.DepartmentName)
@@ -47,38 +47,56 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.First().EmployeeSkype)
                             </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().DateAdoption)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().DateDismissal)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.First().Dismissed)
+                            </th>
                             <th></th>
                         </tr>
 
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <td>
+                                <td class="td-title">
                                     @Html.DisplayFor(modelItem => item.Department.DepartmentName)
                                 </td>
-                                <td>
+                                <td class="td-title">
                                     @Html.DisplayFor(modelItem => item.Position.PositionName)
                                 </td>
-                                <td>
+                                <td class="td-title">
                                     @Html.DisplayFor(modelItem => item.EmployeeFullName)
                                 </td>
-                                <td>
+                                <td class="td-title">
                                     @Html.DisplayFor(modelItem => item.EployeeRoom)
                                 </td>
-                                <td>
+                                <td class="td-title">
                                     @Html.DisplayFor(modelItem => item.EmployeeAddress)
                                 </td>
-                                <td>
+                                <td class="td-title">
                                     @Html.DisplayFor(modelItem => item.EmployeePhone)
                                 </td>
-                                <td>
+                                <td class="td-title">
                                     @Html.DisplayFor(modelItem => item.EmployeePersonalPhone)
                                 </td>
-                                <td>
+                                <td class="td-title">
                                     @Html.DisplayFor(modelItem => item.EmployeeEmail)
                                 </td>
-                                <td>
+                                <td class="td-title">
                                     @Html.DisplayFor(modelItem => item.EmployeeSkype)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DateAdoption)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DateDismissal)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Dismissed)
                                 </td>
                                 <td>
                                     <a class="btn btn-default" name="editButton" id="editButton" href="@Url.Action("Edit","Employee", new {id = item.EmployeeId})">Редактировать</a> |
@@ -89,12 +107,16 @@
                         }
 
                     </table>
+
+                    <div id="result"> </div>
+                   
+                    <div id="paginationToDelete">
+                        @Html.PagedListPager(Model, page => Url.Action("AjaxPositionList", new { page }),
+                         PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "result", OnSuccess = "removeListAndPagination()" }))
+                        Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<br />
-
-Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
-@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
