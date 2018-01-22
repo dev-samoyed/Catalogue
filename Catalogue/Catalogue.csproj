@@ -498,25 +498,10 @@
     <Content Include="Views\Home\AjaxShowEmployee.cshtml" />
     <Content Include="Views\Search\EmployeeSearch.cshtml" />
     <Content Include="Views\Home\Test.cshtml" />
-<<<<<<< HEAD
-    <Content Include="Views\Division\AjaxPositionList.cshtml" />
-    <Content Include="Views\Division\Create.cshtml" />
-    <Content Include="Views\Division\Delete.cshtml" />
-    <Content Include="Views\Division\Details.cshtml" />
-    <Content Include="Views\Division\Edit.cshtml" />
-    <Content Include="Views\Division\Index.cshtml" />
-    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
-    <Content Include="Views\Manage\ChangePassword.cshtml" />
-    <Content Include="Views\Manage\Index.cshtml" />
-    <Content Include="Views\Manage\ManageLogins.cshtml" />
-    <Content Include="Views\Manage\SetPassword.cshtml" />
-    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
-=======
     <Content Include="Views\Search\Departments.cshtml" />
     <Content Include="Views\Search\Error.cshtml" />
     <Content Include="Views\Search\Administrations.cshtml" />
     <Content Include="Views\Search\Positions.cshtml" />
->>>>>>> 57d1587ad365eff0b849172bdb232bedc15db382
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
