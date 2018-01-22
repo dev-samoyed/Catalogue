@@ -26,6 +26,12 @@ namespace Catalogue.Controllers
             List<Department> departments = db.Departments.ToList();
             ViewBag.Departments = departments;
 
+            List<Administration> admins = db.Administrations.ToList();
+            ViewBag.Admins = admins;
+
+            List<Division> divisions = db.Divisions.ToList();
+            ViewBag.Divisions = divisions;
+
             return View();
         }
 
@@ -80,6 +86,21 @@ namespace Catalogue.Controllers
                 .ToList();
 
             return employeeMatches;
+        }
+
+        public ActionResult Test ()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public string Test (int? request)
+        {
+            if (request == null)
+            {
+                return "requset is null";
+            }
+            return request.ToString();
         }
 
     }

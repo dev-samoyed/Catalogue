@@ -20,18 +20,8 @@ namespace Catalogue.Controllers
         /// </summary>
         /// <param name="name"></param>
         /// <returns>PartialView with a list of employees</returns>
-        public ActionResult EmployeeSearch(string name, int? positionId, int? departmentId)
+        public ActionResult EmployeeSearch(string name, int? positionId, int? departmentId, int? administrationId, int? divisionId)
         {
-            if (positionId == null)
-            {
-                positionId = 0;
-            }
-
-            if (departmentId == null)
-            {
-                departmentId = 0;
-            }
-
             ViewBag.Position = db.Positions.Find(positionId);
             ViewBag.Department = db.Departments.Find(departmentId);
 
@@ -69,6 +59,29 @@ namespace Catalogue.Controllers
             {
                 ViewBag.Error = Errors.notFound;
                 return PartialView("~/Views/Home/Error.cshtml");
+            }
+
+            if (positionId != null)
+            {
+                searchQuery = searchQuery.Where(e => e.PositionId == positionId);
+            }
+
+            if (departmentId != null)
+            {
+                searchQuery = searchQuery.Where(e => e.DepartmentId == departmentId);
+            }
+
+            if (administrationId != null)
+            {
+                List<int> departmentIds = db.Departments.Where(d => d.AdministrationId == administrationId).Select(i => i.DepartmentId).ToList();
+                searchQuery = searchQuery.Where(e => departmentIds.Contains(e.DepartmentId));
+            }
+
+            if (divisionId != null)
+            {
+                List<int> administrationIds = db.Administrations.Where(a => a.DivisionId == divisionId).Select(i => i.AdministrationId).ToList();
+                List<int> departmentsIds = db.Departments.Where(d => administrationIds.Contains(d.AdministrationId)).Select(i => i.DepartmentId).ToList();
+                searchQuery = searchQuery.Where(e => departmentsIds.Contains(e.DepartmentId));
             }
 
             employeeMatches = AddIncludes(searchQuery);

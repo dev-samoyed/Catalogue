@@ -496,6 +496,7 @@
     <Content Include="Views\Home\AjaxDepartmentEmployees.cshtml" />
     <Content Include="Views\Home\AjaxShowEmployee.cshtml" />
     <Content Include="Views\Search\EmployeeSearch.cshtml" />
+    <Content Include="Views\Home\Test.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
