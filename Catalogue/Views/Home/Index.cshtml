@@ -8,18 +8,13 @@
         <div class="col-md-12">
             <div class="card">
 
-<<<<<<< HEAD
                 @using (Ajax.BeginForm("EmployeeSearch", "Search", null,
-=======
-                @using (Ajax.BeginForm("EmployeeSearch", "Home", null,
->>>>>>> origin
                 new AjaxOptions
                 {
                     UpdateTargetId = "employee-list",
                     LoadingElementId = "loading",
                     OnSuccess = "hideAccordion()"
                 },
-<<<<<<< HEAD
                 new { @class = "ajax-form" }))
                 {
                     @Html.AntiForgeryToken()
@@ -51,31 +46,14 @@
                             </select>
                         </div>
                         <div class="col-md-4">
-=======
-                    new { @class = "ajax-form" }))
-                     {
-                    <div class="header">
-
-                        <h3 id="title">Поиск</h3>
-                        <div class="col-md-11">
-                            <input type="text" class="form-control" name="name" placeholder="впишите имя сотрудника">
-                        </div>
-                        <div class="col-4">
->>>>>>> origin
                             <span class="input-group-btn">
                                 <button type="submit" class="btn btn-default"><span class="fa fa-search"></span> Искать</button>
                             </span>
                         </div>
-<<<<<<< HEAD
                     </div>
                 </div><!-- /input-group -->
 }
                 <div id="loading" style="display:none"><p>Идет поиск</p></div>
-=======
-                    </div><!-- /input-group -->
-    }
-                    <div id="loading" style="display:none"><p>Идет поиск</p></div>
->>>>>>> origin
 
 
                     <hr>
