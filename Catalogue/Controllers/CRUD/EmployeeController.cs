@@ -7,6 +7,7 @@ using Catalogue.Models.Tables;
 using System.Net;
 using System.Data.Entity;
 using PagedList;
+using System.IO;
 
 namespace Catalogue.Controllers.CRUD
 {
@@ -51,13 +52,27 @@ namespace Catalogue.Controllers.CRUD
 
         // POST: Employee/Create
         [HttpPost]
-        public ActionResult Create(Employee collection)
+        public ActionResult Create(Employee collection, HttpPostedFileBase productImg)
         {
             try
-            {                                                                                                                                 
-                db.Employees.Add(collection);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+            {
+                if (ModelState.IsValid)
+                {
+                    if (productImg != null)
+                    {
+                        var fileName = Path.GetFileName(productImg.FileName);
+                        var directoryToSave = Server.MapPath(Url.Content("~/images"));
+
+                        var pathToSave = Path.Combine(directoryToSave, fileName);
+                        productImg.SaveAs(pathToSave);
+                        collection.EmployeePhoto = fileName;
+                    }
+                    db.Employees.Add(collection);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
+                return View(collection);  
             }
             catch
             {
@@ -83,14 +98,38 @@ namespace Catalogue.Controllers.CRUD
 
         // POST: Employee/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, Employee collection)
+        public ActionResult Edit(int id, Employee collection, HttpPostedFileBase productImg)
         {
             try
             {
-                db.Entry(collection).State = System.Data.Entity.EntityState.Modified;
+                if (ModelState.IsValid)
+                {
+                    if (productImg == null)
+                    {
+                        var fileName = Path.GetFileName(productImg.FileName);                     
+                        //var fileName = Path.GetFileName(db.Employees.Find(id).EmployeePhoto);
+                        
+                        string path = Path.Combine(Server.MapPath(Url.Content("~/images")), fileName);
+                        productImg.SaveAs(path);
+
+                        db.Entry(collection).State = EntityState.Added;
+                    }
+                    else if (productImg != null)
+                    {
+                        var fileName = Path.GetFileName(productImg.FileName);
+
+                        var directoryToSave = Server.MapPath(Url.Content("~/images"));
+
+                        var pathToSave = Path.Combine(directoryToSave, fileName);
+                        productImg.SaveAs(pathToSave);
+                        collection.EmployeePhoto = fileName;
+                    }
+                }
+                db.Entry(collection).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+                
             catch
             {
                 return View();

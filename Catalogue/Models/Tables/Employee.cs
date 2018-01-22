@@ -35,6 +35,10 @@ namespace Catalogue.Models.Tables
         [Display(Name = "Skype")]
         public string EmployeeSkype { get; set; }
 
+        [Display(Name = "Фото сотрудника")]
+        [RegularExpression(@"([a-zA-Z0-9\s_\\.\-:])+(.png|.jpg|.jpeg)$", ErrorMessage = "Формат файла должен быть .jpg, .png, .jpeg, .bmp")]
+        public string EmployeePhoto { get; set; }
+
         /// <summary>
         /// relationship one to many
         /// </summary>
