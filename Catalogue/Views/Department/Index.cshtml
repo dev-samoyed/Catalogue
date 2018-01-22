@@ -17,7 +17,39 @@
                         <a class="btn btn-default" name="createButton" id="createButton" href="@Url.Action("Create","Department")">Добавить новую запись</a>
                     </p>
                 </div>
-                <div class="content">
+                <hr />
+                @using (Ajax.BeginForm("AdminSearch", "Search", null,
+            new AjaxOptions
+            {
+                UpdateTargetId = "results",
+                LoadingElementId = "loading",
+                OnSuccess = "hideAccordion()"
+            },
+            new { @class = "ajax-form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="type" value="department" />
+                    <div class="header">
+                        <div class="row">
+                            <div class="col-md-11">
+                                <input type="text" class="form-control" name="title" placeholder="Введите название отдела">
+                            </div>
+                            <div class="col-md-1">
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-default"><span class="fa fa-search"></span> Искать</button>
+                                </span>
+                            </div>
+                        </div>
+                    </div><!-- /input-group -->
+                }
+                <div id="loading" style="display:none"><p>Идет поиск</p></div>
+
+
+                <hr>
+
+                <div id="results"></div>
+
+                <div class="content" id="accordion">
                     <table class="table" id="listTable">
                         <tr>
                             <th>

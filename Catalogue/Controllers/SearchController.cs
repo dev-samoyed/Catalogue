@@ -16,7 +16,7 @@ namespace Catalogue.Controllers
         CatalogueContext db = new CatalogueContext();
 
         /// <summary>
-        /// Forms partial view with a list of found employees
+        /// Forms a partial view with a list of found employees
         /// </summary>
         /// <param name="name"></param>
         /// <returns>PartialView with a list of employees</returns>
@@ -62,27 +62,24 @@ namespace Catalogue.Controllers
             }
 
             if (positionId != null)
-            {
                 searchQuery = searchQuery.Where(e => e.PositionId == positionId);
-            }
 
             if (departmentId != null)
-            {
                 searchQuery = searchQuery.Where(e => e.DepartmentId == departmentId);
-            }
 
             if (administrationId != null)
             {
-                List<int> departmentIds = db.Departments.Where(d => d.AdministrationId == administrationId).Select(i => i.DepartmentId).ToList();
+                List<int> departmentIds = GetDepartmentIds("administration", administrationId);
                 searchQuery = searchQuery.Where(e => departmentIds.Contains(e.DepartmentId));
             }
+                
 
             if (divisionId != null)
             {
-                List<int> administrationIds = db.Administrations.Where(a => a.DivisionId == divisionId).Select(i => i.AdministrationId).ToList();
-                List<int> departmentsIds = db.Departments.Where(d => administrationIds.Contains(d.AdministrationId)).Select(i => i.DepartmentId).ToList();
-                searchQuery = searchQuery.Where(e => departmentsIds.Contains(e.DepartmentId));
+                List<int> departmentIds = GetDepartmentIds("division", divisionId);
+                searchQuery = searchQuery.Where(e => departmentIds.Contains(e.DepartmentId));
             }
+                
 
             employeeMatches = AddIncludes(searchQuery);
 
@@ -96,11 +93,125 @@ namespace Catalogue.Controllers
         }
 
         /// <summary>
+        /// Forms a partial view with a list of found entities
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        [Authorize(Roles = "admin")]
+        public ActionResult AdminSearch (string title, string type)
+        {
+            string view = "~/Views/Search/";
+            string[] words = title.ToLower().Split(' ');
+
+            if (title.Length <= 0)
+            {
+                ViewBag.Error = Errors.notFound;
+                return PartialView("~/Views/Search/Error.cshtml");
+            }
+
+            if (type == "department")
+            {
+                List<Department> departments = BuildDepartmentSearchQuery(words).ToList();
+                if (departments.Count <= 0)
+                {
+                    ViewBag.Error = Errors.notFound;
+                    view += "Error.cshtml";
+                } else
+                {
+                    ViewBag.Departments = departments;
+                    view += "Departments.cshtml";
+                }
+            }
+            else if (type == "administration")
+            {
+                List<Administration> administrations = BuildAdministartionSearchQuery(words).ToList();
+                if (administrations.Count <= 0)
+                {
+                    ViewBag.Error = Errors.notFound;
+                    view += "Error.cshtml";
+                } else
+                {
+                    ViewBag.Administrations = administrations;
+                    view += "Administrations.cshtml";
+                }
+            }
+            else if (type == "position")
+            {
+                List<Position> positions = BuildPositionSearchQuery(words).ToList();
+                if (positions.Count <= 0)
+                {
+                    ViewBag.Error = Errors.notFound;
+                    view += "Error.cshtml";
+                } else
+                {
+                    ViewBag.Positions = positions;
+                    view += "Positions.cshtml";
+                }
+            }
+            else if (type == "division")
+            {
+                List<Division> divisions = BuildDivisionSearchQuery(words).ToList();
+                if (divisions.Count <= 0)
+                {
+                    ViewBag.Error = Errors.notFound;
+                    view += "Error.cshtml";
+                } else
+                {
+                    ViewBag.Divisions = divisions;
+                    view += "Division.cshtml";
+                }
+            }
+
+            return PartialView(view);
+        }
+
+        /// <summary>
+        /// Builds a search query that matches all words of the array 'words'
+        /// </summary>
+        /// <param name="words"></param>
+        /// <returns>IEnumerable query</returns>
+        private IEnumerable<Department> BuildDepartmentSearchQuery (params string[] words)
+        {
+            IEnumerable<Department> query = db.Departments
+                .Include(a => a.Administration)
+                .ToList()
+                .Where(d => words.All(d.DepartmentName.ToLower().Contains));
+
+            return query;
+        }
+        private IEnumerable<Administration> BuildAdministartionSearchQuery (params string[] words)
+        {
+            IEnumerable<Administration> query = db.Administrations
+                .Include(a => a.Division)
+                .ToList()
+                .Where(d => words.All(d.AdministrationName.ToLower().Contains));
+
+            return query;
+        }
+        private IEnumerable<Position> BuildPositionSearchQuery (params string[] words)
+        {
+            IEnumerable<Position> query = db.Positions
+                .ToList()
+                .Where(d => words.All(d.PositionName.ToLower().Contains));
+
+            return query;
+        }
+        private IEnumerable<Division> BuildDivisionSearchQuery (params string[] words)
+        {
+            IEnumerable<Division> query = db.Divisions
+                .ToList()
+                .Where(d => words.All(d.DivisionName.ToLower().Contains));
+
+            return query;
+        }
+
+        /// <summary>
         /// Forms a search query for employees by one param
         /// </summary>
         /// <param name="part_1"></param>
         /// <returns>query</returns>
-        private IQueryable<Employee> BuildSearchQuery(string part_1)
+        private IQueryable<Employee> BuildSearchQuery (string part_1)
         {
             IQueryable<Employee> query = db.Employees
                 .Where(n => n.EmployeeFullName.Contains(part_1));
@@ -154,6 +265,37 @@ namespace Catalogue.Controllers
                 .ToList();
 
             return employeeMatches;
+        }
+
+        /// <summary>
+        /// Returns a list of the ids of deparments related to a particular administration/division
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="id"></param>
+        /// <returns>list of ids</returns>
+        private List<int> GetDepartmentIds(string type, int? id)
+        {
+            List<int> departmentIds = new List<int>();
+            if (type == "administration")
+            {
+                departmentIds = db.Departments
+                    .Where(d => d.AdministrationId == id)
+                    .Select(i => i.DepartmentId)
+                    .ToList();
+            }
+            else if (type == "division")
+            {
+                List<int> administrationIds = db.Administrations
+                    .Where(a => a.DivisionId == id)
+                    .Select(i => i.AdministrationId)
+                    .ToList();
+                departmentIds = db.Departments
+                    .Where(d => administrationIds.Contains(d.AdministrationId))
+                    .Select(i => i.DepartmentId)
+                    .ToList();
+            }
+
+            return departmentIds;
         }
     }
 }

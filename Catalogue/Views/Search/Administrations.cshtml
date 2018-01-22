@@ -1,0 +1,30 @@
+﻿<table class="table">
+    <tr>
+        <th>
+            Административное деление
+        </th>
+        <th>
+            Орган управления
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var administration in ViewBag.Administrations)
+    {
+        <tr>
+            <td>
+                @administration.Division.DivisionName
+            </td>
+            <td>
+                @administration.AdministrationName
+            </td>
+            <td>
+                <a class="btn btn-default" name="editButton" id="editButton" href="@Url.Action("Edit","Administration", new {id = administration.AdministrationId})">Редактировать</a> |
+                <a class="btn btn-default" name="detailsButton" id="detailsButton" href="@Url.Action("Details","Administration", new {id = administration.AdministrationId})">Просмотреть</a> |
+                <a class="btn btn-default" name="deleteButton" id="deleteButton" href="@Url.Action("Delete","Administration", new {id = administration.AdministrationId})">Удалить</a>
+            </td>
+        </tr>
+    }
+
+</table>
+<button class="btn btn-default" onclick="toPrevMain()">Назад</button>
