@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Catalogue.Models.Tables;
-using Catalogue.Models;
 using System.Net;
 using PagedList;
 

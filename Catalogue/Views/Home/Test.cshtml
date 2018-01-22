@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Test";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Test</h2>
+
+@using (Html.BeginForm("Test", "Home", FormMethod.Post))
+{
+    <p>
+        <label class="control-label" for="department-select-list">Выберите отдел (опционально)</label>
+        <select id="department-select-list" class="form-control" name="request">
+            <option selected value="">Отдел</option>
+            <option value="1">one</option>
+            <option value="2">two</option>
+            <option value="3">three</option>
+        </select>
+        <input type="submit" value="Send" />
+    </p>
+} 

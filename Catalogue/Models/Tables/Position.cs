@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 
-namespace Catalogue.Models
+namespace Catalogue.Models.Tables
 {
     public class Position
     {
