@@ -13,7 +13,7 @@
                     <h2>Добавление сотрудника</h2>
                 </div>
                 <div class="content">
-                    @using (Html.BeginForm())
+                    @using (Html.BeginForm("Create", "Employee", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
 
@@ -75,7 +75,7 @@
                                     @Html.ValidationMessageFor(model => model.EmployeeSkype, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-
+                        
                             <div class="form-group">
                                 @Html.LabelFor(model => model.PositionId, "Должность", htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
@@ -113,6 +113,14 @@
                                         <div class="checkbox-inline custom-checkbox">                                        
                                              @Html.CheckBoxFor(model => model.Dismissed, new { @class = "custom-checkbox",@id="checkBox"})
                                         </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.EmployeePhoto, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="editor-field">
+                                    <input type="file" name="productImg" />
+                                    @Html.ValidationMessageFor(model => model.EmployeePhoto, "", new { @class = "text-danger" })
                                 </div>
                             </div>
 
