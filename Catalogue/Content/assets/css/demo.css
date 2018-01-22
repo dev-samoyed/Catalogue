@@ -846,17 +846,7 @@
     margin-bottom: 40px;
 }
 
-.invision-logo {
-    max-width: 70px;
-    top: -2px;
-    position: relative;
-}
 
-.creative-tim-logo {
-    max-width: 140px;
-    top: -2px;
-    position: relative;
-}
 
 .section-javascript .title {
     margin-bottom: 0;
@@ -878,22 +868,6 @@
     margin-bottom: 10px;
 }
 
-.section-navbars .navbar-collapse {
-    display: none;
-}
 
-.section-basic {
-    padding-top: 0;
-}
 
-.section-images {
-    padding-bottom: 0;
-}
 
-.documentation .dropdown .dropdown-menu {
-    transform: translate3d(0, 0, 0) !important;
-}
-
-    .documentation .dropdown .dropdown-menu.show {
-        transform: translate3d(0, 39px, 0) !important;
-    }
