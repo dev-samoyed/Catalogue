@@ -208,6 +208,8 @@
     <Compile Include="Controllers\CRUD\MainController.cs" />
     <Compile Include="Controllers\CRUD\PositionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\Utils\Errors.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -505,6 +507,7 @@
     <Content Include="Views\Home\Error.cshtml" />
     <Content Include="Views\Home\AjaxDepartmentEmployees.cshtml" />
     <Content Include="Views\Home\AjaxShowEmployee.cshtml" />
+    <Content Include="Views\Search\EmployeeSearch.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
