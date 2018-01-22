@@ -502,6 +502,7 @@
     <Content Include="Views\Search\Error.cshtml" />
     <Content Include="Views\Search\Administrations.cshtml" />
     <Content Include="Views\Search\Positions.cshtml" />
+    <Content Include="Views\Search\Divisions.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
