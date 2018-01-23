@@ -25,6 +25,18 @@ namespace Catalogue.Controllers.CRUD
         // GET: Employee
         public ActionResult Index(int? page)
         {
+            List<Position> positions = db.Positions.ToList();
+            ViewBag.Positions = positions;
+
+            List<Department> departments = db.Departments.ToList();
+            ViewBag.Departments = departments;
+
+            List<Administration> admins = db.Administrations.ToList();
+            ViewBag.Admins = admins;
+
+            List<Division> divisions = db.Divisions.ToList();
+            ViewBag.Divisions = divisions;
+
             int pageSize = 10;
             int pageNumber = (page ?? 1);
             return View(db.Employees.Include(e => e.Department).Include(p => p.Position).OrderBy(i => i.EmployeeFullName).ToPagedList(pageNumber, pageSize));

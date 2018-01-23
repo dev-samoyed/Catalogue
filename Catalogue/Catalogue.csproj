@@ -515,6 +515,7 @@
     <Content Include="Views\Manage\ManageLogins.cshtml" />
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Search\AdminEmployeeSearch.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
