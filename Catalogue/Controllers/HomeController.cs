@@ -90,9 +90,8 @@ namespace Catalogue.Controllers
 
         public string Test ()
         {
-            string title = "my job is coding";
-            string[] words = title.Split(' ');
-            return string.Join(" ", words);
+            bool result = User.IsInRole("admin");
+            return result ? "admin" : "user";
         }
 
     }

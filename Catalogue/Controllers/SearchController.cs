@@ -27,8 +27,14 @@ namespace Catalogue.Controllers
 
             int maxNumberOfWordsInFullName = 3;
 
+            if (name.Trim().Length <= 0)
+            {
+                ViewBag.Error = Errors.notFound;
+                return PartialView("~/Views/Home/Error.cshtml");
+            }
+
             Stack<string> parts = new Stack<string>();
-            string[] partsArray = name.Split(' ');
+            string[] partsArray = name.Trim().Split(' ');
 
             List<Employee> employeeMatches = new List<Employee>();
             IQueryable<Employee> searchQuery = Enumerable.Empty<Employee>().AsQueryable();
@@ -89,7 +95,16 @@ namespace Catalogue.Controllers
                 return PartialView("~/Views/Home/Error.cshtml");
             }
 
-            return PartialView(employeeMatches);
+            string view = "";
+            if (User.IsInRole("admin"))
+            {
+                view = "~/Views/Search/AdminEmployeeSearch.cshtml";
+            } else
+            {
+                view = "~/Views/Search/EmployeeSearch.cshtml";
+            }
+
+            return PartialView(view, employeeMatches);
         }
 
         /// <summary>
@@ -104,7 +119,7 @@ namespace Catalogue.Controllers
             string view = "~/Views/Search/";
             string[] words = title.ToLower().Split(' ');
 
-            if (title.Length <= 0)
+            if (title.Trim().Length <= 0)
             {
                 ViewBag.Error = Errors.notFound;
                 return PartialView("~/Views/Search/Error.cshtml");
