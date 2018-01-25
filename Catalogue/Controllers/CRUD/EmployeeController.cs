@@ -45,8 +45,10 @@ namespace Catalogue.Controllers.CRUD
         // GET: Employee/Details/5
         public ActionResult Details(int? id)
         {
+
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            
             Employee employee = db.Employees.Include(p => p.Position).Include(d => d.Department).SingleOrDefault(e => e.EmployeeId == id);
             return View(employee);
         }

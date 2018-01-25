@@ -212,6 +212,7 @@
     <Compile Include="Controllers\CRUD\PositionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\Utils\ErrorController.cs" />
     <Compile Include="Controllers\Utils\Errors.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -262,6 +263,9 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\main.css" />
     <Content Include="Content\css\util.css" />
+    <Content Include="Content\error\img\404.png" />
+    <Content Include="Content\error\css\fonts.css" />
+    <Content Include="Content\error\css\main.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\vendor\animate\animate.css" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap-grid.css" />
@@ -516,6 +520,8 @@
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Search\AdminEmployeeSearch.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Error\Forbidden.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

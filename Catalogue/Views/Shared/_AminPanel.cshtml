@@ -10,20 +10,15 @@
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Bootstrap core CSS     -->
-    @Styles.Render("~/Content/assets/css/bootstrap.min.css")
+    @Styles.Render("~/Content/bootstrap.min.css")
 
-    <!-- Animation library for notifications   -->
-    @Styles.Render("~/Content/assets/css/animate.min.css")
-
-
-
+    @Styles.Render("~/Content/app.css")
     <!--  Light Bootstrap Table core CSS    -->
-    @Styles.Render("~/Content/assets/css/light-bootstrap-dashboard.css?v=1.4.0")
+    @Styles.Render("~/Content/assets/css/light-bootstrap-dashboard.css")
 
 
     <!--  CSS for Purpose, don't include it in your project     -->
     @Styles.Render("~/Content/assets/css/demo.css")
-    @Styles.Render("~/Content/Site.css")
 
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
@@ -32,21 +27,13 @@
 </head>
 <body>
     <div class="wrapper">
-        <div class="sidebar" data-color="black" data-image="@Url.Content("~/Content/assets/img/sidebar-5.jpg")">
-
-            <!--
-
-                Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
-                Tip 2: you can also add an image using data-image tag
-
-            -->
+        <div class="sidebar" data-color="black" data-image="@Url.Content("~/Content/assets/img/sidebar.jpg")">
             <div class="sidebar-wrapper">
                 <div class="logo">
                     <a href="@Url.Action("Index", "Home")" class="simple-text">
                         Справочник НСК/ГВЦ
                     </a>
                 </div>
-
                 <ul class="nav">
                     <li class="active">
                         <a href="@Url.Action("Index", "Division")">
@@ -120,32 +107,22 @@
 
 
     </div>
-    <script src="@Url.Content("~/Content/assets/js/jquery.3.2.1.min.js")" type="text/javascript"></script>
+    <!--   Core JS Files   -->
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.js")
+
+    @Scripts.Render("~/Scripts/app.js")
     <script src="@Url.Content("~/Content/assets/js/bootstrap.min.js")" type="text/javascript"></script>
 
-    <!--  Charts Plugin -->
-    <script src="@Url.Content("~/Content/assets/js/chartist.min.js")"></script>
-
-    <!--  Notifications Plugin    -->
-    <script src="@Url.Content("~/Content/assets/js/bootstrap-notify.js")"></script>
-
-    <!--  Google Maps Plugin
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-        -->
     <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
     <script src="@Url.Content("~/Content/assets/js/light-bootstrap-dashboard.js?v=1.4.0")"></script>
 
     <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
     <script src="@Url.Content("~/Content/assets/js/demo.js")"></script>
 
-</body>
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/bootstrap")
-@Scripts.Render("~/Scripts/app.js")
-@Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.js")
 
-<!--   Core JS Files   -->
-
-@RenderSection("scripts", required: false)
+    @RenderSection("scripts", required: false)
 
 </html>
