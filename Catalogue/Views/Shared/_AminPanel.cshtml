@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html>
 <head>
 
@@ -121,6 +121,14 @@
 
     <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
     <script src="@Url.Content("~/Content/assets/js/demo.js")"></script>
+
+</body>
+
+@Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/Scripts/app.js")
+@Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.js")
+
+<!--   Core JS Files   -->
 
 
     @RenderSection("scripts", required: false)
