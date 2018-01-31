@@ -8,6 +8,7 @@ using Catalogue.Models.Tables;
 using System.Net;
 
 using Catalogue.Controllers.Utils;
+using System.Web.UI;
 
 namespace Catalogue.Controllers
 {
@@ -15,6 +16,7 @@ namespace Catalogue.Controllers
     {
         CatalogueContext db = new CatalogueContext();
 
+        [OutputCache(Duration = 30, Location = OutputCacheLocation.Downstream)]
         public ActionResult Index()
         {
             IQueryable<Administration> administrations = db.Administrations.Include(e => e.Departments);
