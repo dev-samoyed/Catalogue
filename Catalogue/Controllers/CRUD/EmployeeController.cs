@@ -8,6 +8,7 @@ using System.Net;
 using System.Data.Entity;
 using PagedList;
 using System.IO;
+using Catalogue.Models;
 
 namespace Catalogue.Controllers.CRUD
 {
@@ -49,7 +50,7 @@ namespace Catalogue.Controllers.CRUD
             ViewBag.PositionList = positionList;
             return View();
         }
-
+        
         // POST: Employee/Create
         [HttpPost]
         public ActionResult Create(Employee collection, HttpPostedFileBase productImg)
@@ -59,8 +60,12 @@ namespace Catalogue.Controllers.CRUD
                 if (ModelState.IsValid)
                 {
                     if (productImg != null)
-                    {
+                    {                       
+                       
                         var fileName = Path.GetFileName(productImg.FileName);
+
+                        fileName =  DateTime.Now.ToString("yyyyMMddHHmmssfff") + fileName;
+
                         var directoryToSave = Server.MapPath(Url.Content("~/images"));
 
                         var pathToSave = Path.Combine(directoryToSave, fileName);
@@ -98,42 +103,28 @@ namespace Catalogue.Controllers.CRUD
 
         // POST: Employee/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, Employee collection, HttpPostedFileBase productImg)
+        public ActionResult Edit(int id, Employee collection, HttpPostedFileBase productImg, string photo)
         {
-            try
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
+                if (productImg == null)
                 {
-                    if (productImg == null)
-                    {
-                        var fileName = Path.GetFileName(productImg.FileName);                     
-                        //var fileName = Path.GetFileName(db.Employees.Find(id).EmployeePhoto);
-                        
-                        string path = Path.Combine(Server.MapPath(Url.Content("~/images")), fileName);
-                        productImg.SaveAs(path);
-
-                        db.Entry(collection).State = EntityState.Added;
-                    }
-                    else if (productImg != null)
-                    {
-                        var fileName = Path.GetFileName(productImg.FileName);
-
-                        var directoryToSave = Server.MapPath(Url.Content("~/images"));
-
-                        var pathToSave = Path.Combine(directoryToSave, fileName);
-                        productImg.SaveAs(pathToSave);
-                        collection.EmployeePhoto = fileName;
-                    }
+                    collection.EmployeePhoto = photo;                 
                 }
-                db.Entry(collection).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                else if (productImg != null)
+                {
+                    var fileName = Path.GetFileName(productImg.FileName);
+
+                    var directoryToSave = Server.MapPath(Url.Content("~/images"));
+
+                    var pathToSave = Path.Combine(directoryToSave, fileName);
+                    productImg.SaveAs(pathToSave);
+                    collection.EmployeePhoto = fileName;
+                }
             }
-                
-            catch
-            {
-                return View();
-            }
+            db.Entry(collection).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         // GET: Employee/Delete/5
@@ -147,7 +138,7 @@ namespace Catalogue.Controllers.CRUD
 
         // POST: Employee/Delete/5
         [HttpPost]
-        public ActionResult Delete(int? id, Employee collection)
+        public ActionResult Delete(int? id, Employee collection, string photoName)
         {
             Employee employee = new Employee();
             try
@@ -157,6 +148,13 @@ namespace Catalogue.Controllers.CRUD
                 employee = db.Employees.Find(id);
                 if (employee == null)
                     return HttpNotFound();
+
+                string fullPath = Request.MapPath("~/images/" + photoName);
+                if (System.IO.File.Exists(fullPath))
+                {
+                    System.IO.File.Delete(fullPath);
+                }
+
                 db.Employees.Remove(employee);
                 db.SaveChanges();
 

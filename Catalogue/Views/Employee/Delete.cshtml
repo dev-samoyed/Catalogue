@@ -104,6 +104,7 @@
 
                         @using (Html.BeginForm())
                         {
+                            <input type="hidden" name="photoName" value="@Model.EmployeePhoto" />
                             @Html.AntiForgeryToken()
 
                             <div class="form-actions no-color">
@@ -112,7 +113,6 @@
                             </div>
                         }
                     </div>
-
                 </div>
             </div>
         </div>
