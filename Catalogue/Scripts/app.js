@@ -38,7 +38,7 @@ function removeListAndPagination() {
     $("#listTable").remove();
     $("#paginationToDelete").remove();
 }
-   
+
 function check () {
     $("#dateDis").on('change', function () {
         var dis_date = $("#dateDis")[0];
