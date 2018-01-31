@@ -22,45 +22,41 @@ namespace Catalogue.Controllers
         /// <returns>PartialView with a list of employees</returns>
         public ActionResult EmployeeSearch(string name, int? positionId, int? departmentId, int? administrationId, int? divisionId)
         {
-            ViewBag.Position = db.Positions.Find(positionId);
-            ViewBag.Department = db.Departments.Find(departmentId);
+            name = name.Trim();
+
+            if (name.Length <= 0)
+                return RedirectToAction("NotFoundResult");
 
             int maxNumberOfWordsInFullName = 3;
-
-            Stack<string> parts = new Stack<string>();
-            string[] partsArray = name.Split(' ');
-
-            List<Employee> employeeMatches = new List<Employee>();
+            Stack<string> words = new Stack<string>();
             IQueryable<Employee> searchQuery = Enumerable.Empty<Employee>().AsQueryable();
 
-            if (!string.IsNullOrEmpty(name))
-            {
-                int wordsAmount = partsArray.Length < maxNumberOfWordsInFullName ? partsArray.Length : maxNumberOfWordsInFullName;
-                for (int i = 0; i < wordsAmount; i++)
-                    parts.Push(partsArray[i]);
-            }
+            string[] inputWords = name.Split(' ');
 
-            if (parts.Count == 1)
+            int wordsAmount = inputWords.Length < maxNumberOfWordsInFullName ? inputWords.Length : maxNumberOfWordsInFullName;
+            for (int i = 0; i < wordsAmount; i++)
+                words.Push(inputWords[i]);
+
+            if (words.Count <= 0)
+                return RedirectToAction("NotFoundResult");
+
+            if (words.Count == 1)
             {
-                string part_1 = parts.Pop();
+                string part_1 = words.Pop();
                 searchQuery = BuildSearchQuery(part_1);
             }
-            else if (parts.Count == 2)
+            else if (words.Count == 2)
             {
-                string part_1 = parts.Pop(), part_2 = parts.Pop();
+                string part_1 = words.Pop(), part_2 = words.Pop();
                 searchQuery = BuildSearchQuery(part_1, part_2);
             }
-            else if (parts.Count == 3)
+            else if (words.Count == 3)
             {
-                string part_1 = parts.Pop(), part_2 = parts.Pop(), part_3 = parts.Pop();
+                string part_1 = words.Pop(), part_2 = words.Pop(), part_3 = words.Pop();
                 searchQuery = BuildSearchQuery(part_1, part_2, part_3);
             }
-            else if (parts.Count <= 0)
-            {
-                ViewBag.Error = Errors.notFound;
-                return PartialView("~/Views/Home/Error.cshtml");
-            }
-
+            
+            // search query with filters
             if (positionId != null)
                 searchQuery = searchQuery.Where(e => e.PositionId == positionId);
 
@@ -72,24 +68,39 @@ namespace Catalogue.Controllers
                 List<int> departmentIds = GetDepartmentIds("administration", administrationId);
                 searchQuery = searchQuery.Where(e => departmentIds.Contains(e.DepartmentId));
             }
-                
 
             if (divisionId != null)
             {
                 List<int> departmentIds = GetDepartmentIds("division", divisionId);
                 searchQuery = searchQuery.Where(e => departmentIds.Contains(e.DepartmentId));
             }
-                
 
-            employeeMatches = AddIncludes(searchQuery);
+            List<Employee> employeeMatches = AddIncludes(searchQuery);
 
             if (employeeMatches.Count <= 0)
+                return RedirectToAction("NotFoundResult");
+
+            string view = "";
+            if (User.IsInRole("admin"))
             {
-                ViewBag.Error = Errors.notFound;
-                return PartialView("~/Views/Home/Error.cshtml");
+                view = "~/Views/Search/AdminEmployeeSearch.cshtml";
+            }
+            else
+            {
+                view = "~/Views/Search/EmployeeSearch.cshtml";
             }
 
-            return PartialView(employeeMatches);
+            return PartialView(view, employeeMatches);
+        }
+
+        /// <summary>
+        /// Forms not found partial view
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult NotFoundResult ()
+        {
+            ViewBag.Error = Errors.notFound;
+            return PartialView("~/Views/Home/Error.cshtml");
         }
 
         /// <summary>
@@ -104,7 +115,8 @@ namespace Catalogue.Controllers
             string view = "~/Views/Search/";
             string[] words = title.ToLower().Split(' ');
 
-            if (title.Length <= 0)
+            // returns not found if input string is empty
+            if (title.Trim().Length <= 0)
             {
                 ViewBag.Error = Errors.notFound;
                 return PartialView("~/Views/Search/Error.cshtml");
@@ -113,57 +125,46 @@ namespace Catalogue.Controllers
             if (type == "department")
             {
                 List<Department> departments = BuildDepartmentSearchQuery(words).ToList();
-                if (departments.Count <= 0)
-                {
-                    ViewBag.Error = Errors.notFound;
-                    view += "Error.cshtml";
-                } else
-                {
-                    ViewBag.Departments = departments;
-                    view += "Departments.cshtml";
-                }
+                BindSearchResults(departments, ref view, "Departments.cshtml");
             }
             else if (type == "administration")
             {
                 List<Administration> administrations = BuildAdministartionSearchQuery(words).ToList();
-                if (administrations.Count <= 0)
-                {
-                    ViewBag.Error = Errors.notFound;
-                    view += "Error.cshtml";
-                } else
-                {
-                    ViewBag.Administrations = administrations;
-                    view += "Administrations.cshtml";
-                }
+                BindSearchResults(administrations, ref view, "Administrations.cshtml");
             }
             else if (type == "position")
             {
                 List<Position> positions = BuildPositionSearchQuery(words).ToList();
-                if (positions.Count <= 0)
-                {
-                    ViewBag.Error = Errors.notFound;
-                    view += "Error.cshtml";
-                } else
-                {
-                    ViewBag.Positions = positions;
-                    view += "Positions.cshtml";
-                }
+                BindSearchResults(positions, ref view, "Positions.cshtml");
             }
             else if (type == "division")
             {
                 List<Division> divisions = BuildDivisionSearchQuery(words).ToList();
-                if (divisions.Count <= 0)
-                {
-                    ViewBag.Error = Errors.notFound;
-                    view += "Error.cshtml";
-                } else
-                {
-                    ViewBag.Divisions = divisions;
-                    view += "Divisions.cshtml";
-                }
+                BindSearchResults(divisions, ref view, "Divisions.cshtml");
             }
 
             return PartialView(view);
+        }
+
+        /// <summary>
+        /// Binds entity search results and entity view
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="items"></param>
+        /// <param name="view"></param>
+        /// <param name="entityView"></param>
+        private void BindSearchResults<T> (List<T> items, ref string view, string entityView)
+        {
+            if (items.Count <= 0)
+            {
+                ViewBag.Error = Errors.notFound;
+                view += "Error.cshtml";
+            }
+            else
+            {
+                ViewBag.Items = items;
+                view += entityView;
+            }
         }
 
         /// <summary>
@@ -211,7 +212,7 @@ namespace Catalogue.Controllers
         /// </summary>
         /// <param name="part_1"></param>
         /// <returns>query</returns>
-        private IQueryable<Employee> BuildSearchQuery (string part_1)
+        private IQueryable<Employee> BuildSearchQuery(string part_1)
         {
             IQueryable<Employee> query = db.Employees
                 .Where(n => n.EmployeeFullName.Contains(part_1));
