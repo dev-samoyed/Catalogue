@@ -5,7 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using Catalogue.Models.Tables;
-using System.Net;
+using PagedList.Mvc;
+using PagedList;
 
 using Catalogue.Controllers.Utils;
 
@@ -144,6 +145,92 @@ namespace Catalogue.Controllers
             }
 
             return PartialView(view);
+        }
+        
+        public ActionResult EmployeeFilter (string name, int? page, int? positionId, int? departmentId, int? administrationId, int? divisionId)
+        {
+            IQueryable<Employee> employees = Enumerable.Empty<Employee>().AsQueryable();
+
+            List<Position> positions = db.Positions.ToList();
+            ViewBag.Positions = positions;
+
+            List<Department> departments = db.Departments.ToList();
+            ViewBag.Departments = departments;
+
+            List<Administration> admins = db.Administrations.ToList();
+            ViewBag.Admins = admins;
+
+            List<Division> divisions = db.Divisions.ToList();
+            ViewBag.Divisions = divisions;
+
+            name = name.Trim();
+            if (name.Length <= 0)
+            {
+                employees = db.Employees;
+                employees = FilterAdditions(employees, positionId, departmentId, administrationId, divisionId);
+            }
+            else
+            {
+                int maxNumberOfWordsInFullName = 3;
+                Stack<string> words = new Stack<string>();
+
+                string[] inputWords = name.Split(' ');
+
+                int wordsAmount = inputWords.Length < maxNumberOfWordsInFullName ? inputWords.Length : maxNumberOfWordsInFullName;
+                for (int i = 0; i < wordsAmount; i++)
+                    words.Push(inputWords[i]);
+
+                if (words.Count <= 0)
+                    return RedirectToAction("NotFoundResult");
+
+                if (words.Count == 1)
+                {
+                    string part_1 = words.Pop();
+                    employees = BuildSearchQuery(part_1);
+                }
+                else if (words.Count == 2)
+                {
+                    string part_1 = words.Pop(), part_2 = words.Pop();
+                    employees = BuildSearchQuery(part_1, part_2);
+                }
+                else if (words.Count == 3)
+                {
+                    string part_1 = words.Pop(), part_2 = words.Pop(), part_3 = words.Pop();
+                    employees = BuildSearchQuery(part_1, part_2, part_3);
+                }
+
+                employees = FilterAdditions(employees, positionId, departmentId, administrationId, divisionId);
+            }
+
+            List<Employee> employeeMatches = AddIncludes(employees);
+
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+
+            return PartialView(employeeMatches.ToPagedList(pageNumber, pageSize));
+        }
+
+        private IQueryable<Employee> FilterAdditions (IQueryable<Employee> query, int? positionId, int? departmentId, int? administrationId, int? divisionId)
+        {
+            if (positionId != null)
+                query = query.Where(e => e.PositionId == positionId);
+
+            if (departmentId != null)
+                query = query.Where(e => e.DepartmentId == departmentId);
+
+            if (administrationId != null)
+            {
+                List<int> departmentIds = GetDepartmentIds("administration", administrationId);
+                query = query.Where(e => departmentIds.Contains(e.DepartmentId));
+            }
+
+            if (divisionId != null)
+            {
+                List<int> departmentIds = GetDepartmentIds("division", divisionId);
+                query = query.Where(e => departmentIds.Contains(e.DepartmentId));
+            }
+
+            return query;
         }
 
         /// <summary>

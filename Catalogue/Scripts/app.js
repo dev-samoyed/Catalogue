@@ -73,3 +73,6 @@ function check () {
     });
 }
 
+function removeBlock() {
+    $("#toRemove").remove();
+}

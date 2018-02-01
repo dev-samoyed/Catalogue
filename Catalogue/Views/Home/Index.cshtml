@@ -1,4 +1,7 @@
-﻿@{
+﻿@model PagedList.IPagedList<Catalogue.Models.Tables.Employee>
+@using PagedList.Mvc;
+
+@{
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -8,14 +11,11 @@
         <div class="col-md-12">
             <div class="card">
 
-                @using (Ajax.BeginForm("EmployeeSearch", "Search", null,
-                new AjaxOptions
-                {
-                    UpdateTargetId = "employee-list",
+                @using (Ajax.BeginForm("EmployeeFilter", "Search", null, new AjaxOptions {
+                    UpdateTargetId = "results",
                     LoadingElementId = "loading",
-                    OnSuccess = "hideAccordion()"
-                },
-                new { @class = "ajax-form" }))
+                    OnSuccess = "removeBlock()"
+                }, new { @class = "ajax-form" }))
                 {
                     @Html.AntiForgeryToken()
                 <div class="header">
@@ -76,40 +76,35 @@
                 </div><!-- /input-group -->
                 }
                 <div id="loading" style="display:none"><p>Идет поиск</p></div>
+                <hr>
+                <div id="results"></div>
 
-
-                    <hr>
-
-                    <div id="results"></div>
-                    <div id="employee-list"></div>
-
-                    <div class="content" id="accordion">
-                        @foreach (var administration in ViewBag.Administrations)
-                        {
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#adm_@administration.AdministrationId">@administration.AdministrationName</a>
-                            </h4>
-                            </div>
-                            <div id="adm_@administration.AdministrationId" class="panel-collapse collapse">
-                            @foreach (var department in administration.Departments)
+                <div id="toRemove" class="content">
+                    <table class="table table-hover table-responsive table-condensed">
+                        <caption>Список сотрудников</caption>
+                        <thead>
+                            <tr>
+                                <th>ФИО</th>
+                                <th>Отдел</th>
+                                <th>Должность</th>
+                                <th>Кабинет</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (Catalogue.Models.Tables.Employee item in Model)
                             {
-                                string name = department.DepartmentName;
-                                @Ajax.ActionLink(name, "AjaxDepartmentEmployees", "Home",
-                                    new { DepartmentId = department.DepartmentId },
-                                    new AjaxOptions {
-                                        UpdateTargetId = "employee-list",
-                                        LoadingElementId = "loading",
-                                        OnSuccess = "hideAccordion()"
-                                    },
-                                    new { @class = "col-item" })
+                                <tr>
+                                    <td>@Html.DisplayFor(model => item.EmployeeFullName)</td>
+                                    <td>@Html.DisplayFor(model => item.Department.DepartmentName)</td>
+                                    <td>@Html.DisplayFor(model => item.Position.PositionName)</td>
+                                    <td>@Html.DisplayFor(model => item.EmployeeRoom)</td>
+                                </tr>
                             }
-                            </div>
-                        </div>
-                        }
-                    </div>
-
+                        </tbody>
+                    </table>
+                    Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                </div>
             </div>
         </div>
     </div>

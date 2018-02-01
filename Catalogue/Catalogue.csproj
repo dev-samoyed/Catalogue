@@ -521,6 +521,7 @@
     <Content Include="Views\Search\AdminEmployeeSearch.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\Forbidden.cshtml" />
+    <Content Include="Views\Search\EmployeeFilter.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -5,7 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using Catalogue.Models.Tables;
-using System.Net;
+using PagedList.Mvc;
+using PagedList;
 
 using Catalogue.Controllers.Utils;
 using System.Web.UI;
@@ -17,10 +18,13 @@ namespace Catalogue.Controllers
         CatalogueContext db = new CatalogueContext();
 
         [OutputCache(Duration = 30, Location = OutputCacheLocation.Downstream)]
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            IQueryable<Administration> administrations = db.Administrations.Include(e => e.Departments);
-            ViewBag.Administrations = administrations;
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+
+            IPagedList<Employee> employees = db.Employees.OrderBy(e => e.EmployeeFullName).Include(d => d.Department).ToPagedList(pageNumber, pageSize);
+            //ViewBag.Administrations = administrations;
 
             List<Position> positions = db.Positions.ToList();
             ViewBag.Positions = positions;
@@ -34,7 +38,7 @@ namespace Catalogue.Controllers
             List<Division> divisions = db.Divisions.ToList();
             ViewBag.Divisions = divisions;
 
-            return View();
+            return View(employees);
         }
 
         /// <summary>

@@ -16,7 +16,7 @@ namespace Catalogue.Models.Tables
 
         [Display(Name = "Кабинет")]
         [Required(ErrorMessage = "Заполните поле!")]
-        public string EployeeRoom { get; set; }
+        public string EmployeeRoom { get; set; }
 
         [Display(Name = "Адрес")]
         public string EmployeeAddress { get; set; }
