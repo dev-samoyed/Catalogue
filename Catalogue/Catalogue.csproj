@@ -521,6 +521,10 @@
     <Content Include="Views\Search\AdminEmployeeSearch.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\Forbidden.cshtml" />
+    <Content Include="Views\Administration\AjaxPositionList.cshtml" />
+    <Content Include="Views\Department\AjaxPositionList.cshtml" />
+    <Content Include="Views\Employee\AjaxPositionList.cshtml" />
+    <Content Include="Views\Position\AjaxPositionList.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
