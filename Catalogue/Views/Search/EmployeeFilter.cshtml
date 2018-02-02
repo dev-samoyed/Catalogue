@@ -4,8 +4,8 @@
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-            <div id="accordion" class="content">
-                <table class="table table-hover table-responsive table-condensed">
+            <div id="result" class="content">
+                <table class="table table-hover table-responsive table-condensed" id="listTable">
                     <caption>Список сотрудников</caption>
                     <thead>
                         <tr>
@@ -27,12 +27,19 @@
                         }
                     </tbody>
                 </table>
-                Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
-                @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+
+                <div id="contentPager">
+                    @Html.PagedListPager(
+                        Model,
+                        page => Url.Action("EmployeeFilter", new { page }))
+
+                    Старница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
+                </div>
             </div>
         </div>
     </div>
 </div>
-
-
-
+@Scripts.Render("~/Scripts/pagination.js")
+<script>
+    pagination();
+</script>

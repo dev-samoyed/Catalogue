@@ -147,6 +147,7 @@ namespace Catalogue.Controllers
             return PartialView(view);
         }
         
+        [HttpPost]
         public ActionResult EmployeeFilter (string name, int? page, int? positionId, int? departmentId, int? administrationId, int? divisionId)
         {
             IQueryable<Employee> employees = Enumerable.Empty<Employee>().AsQueryable();
@@ -231,6 +232,13 @@ namespace Catalogue.Controllers
             }
 
             return query;
+        }
+
+        public ActionResult EmployeeAjaxPagination (int? page)
+        {
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return PartialView(db.Employees.Include(e => e.Department).Include(p => p.Position).OrderBy(i => i.EmployeeFullName).ToPagedList(pageNumber, pageSize));
         }
 
         /// <summary>
