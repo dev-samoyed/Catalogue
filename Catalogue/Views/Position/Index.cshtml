@@ -32,7 +32,7 @@
                     <input type="hidden" name="type" value="position" />
                     <div class="header">
                         <div class="row">
-                            <div class="col-md-11">
+                            <div class="col-md-10">
                                 <input type="text" class="form-control" name="title" placeholder="Введите название должности">
                             </div>
                             <div class="col-md-1">
@@ -66,9 +66,11 @@
                                     @Html.DisplayFor(modelItem => item.PositionName)
                                 </td>
                                 <td>
-                                    <a class="btn btn-default" name="editButton" id="editButton" href="@Url.Action("Edit","Position", new {id = item.PositionId})">Редактировать</a> |
-                                    <a class="btn btn-default" name="detailsButton" id="detailsButton" href="@Url.Action("Details","Position", new {id = item.PositionId})">Просмотреть</a> |
-                                    <a class="btn btn-default" name="deleteButton" id="deleteButton" href="@Url.Action("Delete","Position", new {id = item.PositionId})">Удалить</a>
+                                    <div class="btn-group">
+                                        <a class="btn btn-default" name="editButton" id="editButton" href="@Url.Action("Edit","Position", new {id = item.PositionId})" title="Редактировать" data-toggle="tooltip" data-placement="top"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                        <a class="btn btn-default" name="detailsButton" id="detailsButton" href="@Url.Action("Details","Position", new {id = item.PositionId})"><i class="fa fa-eye" aria-hidden="true" title="Просмотреть" data-toggle="tooltip" data-placement="top"></i></a>
+                                        <a class="btn btn-default" name="deleteButton" id="deleteButton" href="@Url.Action("Delete","Position", new {id = item.PositionId})"><i class="fa fa-trash" aria-hidden="true" title="Удалить" data-toggle="tooltip" data-placement="top"></i></a>
+                                    </div>
                                 </td>
                             </tr>
                         }

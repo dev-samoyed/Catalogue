@@ -32,7 +32,7 @@
                     <input type="hidden" name="type" value="division" />
                     <div class="header">
                         <div class="row">
-                            <div class="col-md-11">
+                            <div class="col-md-10">
                                 <input type="text" class="form-control" name="title" placeholder="Введите название административного деления">
                             </div>
                             <div class="col-md-1">
@@ -66,10 +66,12 @@
                                     @Html.DisplayFor(modelItem => item.DivisionName)
                                 </td>
                                 <td>
-                                    <a class="btn btn-default" name="editButton" id="editButton" href="@Url.Action("Edit","Division", new {id = item.DivisionId})">Редактировать</a> |
-                                    <a class="btn btn-default" name="detailsButton" id="detailsButton" href="@Url.Action("Details","Division", new {id = item.DivisionId})">Просмотреть</a> |
-                                    <a class="btn btn-default" name="deleteButton" id="deleteButton" href="@Url.Action("Delete","Division", new {id = item.DivisionId})">Удалить</a>
-                                </td>
+                                    <div class="btn-group">
+                                        <a class="btn btn-default" name="editButton" id="editButton" href="@Url.Action("Edit","Division", new {id = item.DivisionId})"><i class="fa fa-pencil" aria-hidden="true" title="Редактировать" data-toggle="tooltip" data-placement="top"></i></a>
+                                        <a class="btn btn-default" name="detailsButton" id="detailsButton" href="@Url.Action("Details","Division", new {id = item.DivisionId})"><i class="fa fa-eye" aria-hidden="true" title="Просмотреть" data-toggle="tooltip" data-placement="top"></i></a>
+                                        <a class="btn btn-default" name="deleteButton" id="deleteButton" href="@Url.Action("Delete","Division", new {id = item.DivisionId})"><i class="fa fa-trash" aria-hidden="true" title="Удалить" data-toggle="tooltip" data-placement="top"></i></a>
+                                    </div>
+                               </td>
                             </tr>
                         }
                     </table>

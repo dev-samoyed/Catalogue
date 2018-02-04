@@ -27,24 +27,53 @@
  </head>
  <body>
      <div class="wrapper">
-         <div class="sidebar" data-color="black" data-image="@Url.Content("~/Content/assets/img/sidebar.jpg")">
-             <div class="sidebar-wrapper">
-                 <div class="logo">
-                     <a href="@Url.Action("Index", "Home")" class="simple-text">
-                         Справочник НСК/ГВЦ
-                     </a>
+         @if (Request.IsAuthenticated)
+                {
+                 <div class="sidebar" data-color="black" data-image="@Url.Content("~/Content/assets/img/sidebar.jpg")">
+                     <div class="sidebar-wrapper">
+                         <div class="logo">
+                             <a href="@Url.Action("Index", "Home")" class="simple-text">
+                                 Справочник НСК/ГВЦ
+                             </a>
+                         </div>
+                         <ul class="nav">
+                             <li class="active">
+                                 <a href="@Url.Action("Index", "Home")">
+                                     <i class="pe-7s-search"></i>
+                                     <p>Поиск</p>
+                                 </a>
+                             </li>
+                             <li class="active">
+                                 <a href="@Url.Action("Index", "Main")">
+                                     <i class="pe-7s-home"></i>
+                                     <p>Панель администратора</p>
+                                 </a>
+                             </li>
+                         </ul>
+                     </div>
                  </div>
-                 <ul class="nav">
-                     <li class="active">
-                         <a href="@Url.Action("Index", "Home")">
-                             <i class="pe-7s-search"></i>
-                             <p>Поиск</p>
-                         </a>
-                     </li>
-                 </ul>
-             </div>
-         </div>
 
+            }
+            else
+            {
+                 <div class="sidebar" data-color="black" data-image="@Url.Content("~/Content/assets/img/sidebar.jpg")">
+                     <div class="sidebar-wrapper">
+                         <div class="logo">
+                             <a href="@Url.Action("Index", "Home")" class="simple-text">
+                                 Справочник НСК/ГВЦ
+                             </a>
+                         </div>
+                         <ul class="nav">
+                             <li class="active">
+                                 <a href="@Url.Action("Index", "Home")">
+                                     <i class="pe-7s-search"></i>
+                                     <p>Поиск</p>
+                                 </a>
+                             </li>
+                         </ul>
+                     </div>
+                 </div>
+            }
          <div class="main-panel">
              <nav class="navbar navbar-default navbar-fixed">
                  <div class="container-fluid">
@@ -72,10 +101,10 @@
                  <div class="container-fluid">
 
                      @if (DateTime.Now.Year == 2018)
-                    {
-                     <p class="copyright pull-right">&copy; @DateTime.Now.Year Отдел программирования</p> }
-                else
-                {<p class="copyright pull-right">&copy; 2018 - @DateTime.Now.Year Отдел программирования</p>}
+                {
+                 <p class="copyright pull-right">&copy; @DateTime.Now.Year Отдел программирования</p> }
+        else
+        {<p class="copyright pull-right">&copy; 2018 - @DateTime.Now.Year Отдел программирования</p>}
 
                  </div>
 
@@ -103,6 +132,6 @@
 
 
      @RenderSection("scripts", required: false)
- </body>
+</body>
    
    </html>
