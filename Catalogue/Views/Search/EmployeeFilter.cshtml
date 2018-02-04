@@ -3,38 +3,45 @@
 
 <div class="row">
     <div class="col-md-12">
-        <div class="card">
+        <div>
             <div id="result" class="content">
-                <table class="table table-hover table-responsive table-condensed" id="listTable">
-                    <caption>Список сотрудников</caption>
-                    <thead>
-                        <tr>
-                            <th>ФИО</th>
-                            <th>Отдел</th>
-                            <th>Должность</th>
-                            <th>Кабинет</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (Catalogue.Models.Tables.Employee item in Model)
-                        {
+                @if (Model.Count <= 0)
+                {
+                    <p>Нет результатов</p>
+                }
+                else
+                {
+                    <table class="table table-hover table-responsive table-condensed" id="listTable">
+                        <caption>Список сотрудников</caption>
+                        <thead>
                             <tr>
-                                <td>@Html.DisplayFor(model => item.EmployeeFullName)</td>
-                                <td>@Html.DisplayFor(model => item.Department.DepartmentName)</td>
-                                <td>@Html.DisplayFor(model => item.Position.PositionName)</td>
-                                <td>@Html.DisplayFor(model => item.EmployeeRoom)</td>
+                                <th>ФИО</th>
+                                <th>Отдел</th>
+                                <th>Должность</th>
+                                <th>Кабинет</th>
                             </tr>
-                        }
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @foreach (Catalogue.Models.Tables.Employee item in Model)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(model => item.EmployeeFullName)</td>
+                                    <td>@Html.DisplayFor(model => item.Department.DepartmentName)</td>
+                                    <td>@Html.DisplayFor(model => item.Position.PositionName)</td>
+                                    <td>@Html.DisplayFor(model => item.EmployeeRoom)</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
 
-                <div id="contentPager">
-                    @Html.PagedListPager(
+                    <div id="contentPager">
+                        @Html.PagedListPager(
                         Model,
                         page => Url.Action("EmployeeFilter", new { page }))
 
-                    Старница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
-                </div>
+                        Старница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
+                    </div>
+                }
             </div>
         </div>
     </div>

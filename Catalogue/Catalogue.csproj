@@ -211,6 +211,7 @@
     <Compile Include="Controllers\CRUD\MainController.cs" />
     <Compile Include="Controllers\CRUD\PositionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\Utils\ErrorController.cs" />
     <Compile Include="Controllers\Utils\Errors.cs" />
@@ -436,6 +437,7 @@
     <Content Include="Scripts\js\settings.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\pagination.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
