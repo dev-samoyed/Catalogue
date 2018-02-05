@@ -10,7 +10,9 @@ $('.collapse').on('shown.bs.collapse', function () {
     $(target).addClass('collapse-open');
 });
 
-
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
 function hideAccordion() {
     $("#accordion").hide();
 }
