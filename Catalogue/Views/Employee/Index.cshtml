@@ -141,14 +141,9 @@
                         {
                             <tr>
                                 <td>
-                                    @if (item.EmployeePhoto == null)
-                                    { <img src="~/Content/assets/img/default-avatar.png" width="100" height="100" /> }
-                                    else
-                                    { 
                                         <span data-link="@Url.Content($"~/images/{item.EmployeePhoto}")" class="lightbox">
                                             <img src="~/images/@item.EmployeePhoto" class="tumb" />
                                         </span>
-                                    }
                                 </td>
                                 <td class="td-title">
                                     @Html.DisplayFor(modelItem => item.Department.DepartmentName)

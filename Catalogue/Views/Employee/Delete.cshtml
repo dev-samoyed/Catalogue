@@ -22,11 +22,7 @@
                                 @Html.DisplayNameFor(model => model.EmployeePhoto)
                             </dt>
                             <dd>
-                                @if (Model.EmployeePhoto == null)
-                                { <img src="~/Content/assets/img/default-avatar.png" width="100" height="100" /> }
-                                else
-                                {  <img src="~/images/@Model.EmployeePhoto" width="100" height="100" />}
-
+                                 <img src="~/images/@Model.EmployeePhoto" width="100" height="100" />
                             </dd>
                             <dt>
                                 @Html.DisplayNameFor(model => model.Department.DepartmentName)
