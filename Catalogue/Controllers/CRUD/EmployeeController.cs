@@ -9,6 +9,7 @@ using System.Data.Entity;
 using PagedList;
 using System.IO;
 using Catalogue.Models;
+using System.Data.Entity.Validation;
 
 namespace Catalogue.Controllers.CRUD
 {
@@ -98,11 +99,12 @@ namespace Catalogue.Controllers.CRUD
             }
         }
 
+        [HttpGet]
         // GET: Employee/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return HttpNotFound();
             Employee employee = db.Employees.Find(id);
             if (employee == null)
                 return HttpNotFound();

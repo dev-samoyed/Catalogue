@@ -78,10 +78,20 @@ namespace Catalogue.Controllers
 
             List<Employee> employeeMatches = AddIncludes(employees);
 
+
             int pageSize = 3;
             int pageNumber = (page ?? 1);
 
             return PartialView(employeeMatches.ToPagedList(pageNumber, pageSize));
+
+        /// <summary>
+        /// Forms not found partial view
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult NotFoundResult ()
+        {
+            return PartialView("~/Views/Error/NotFound.cshtml");
+
         }
 
         // Forms a partial view with a list of found entities
@@ -94,8 +104,8 @@ namespace Catalogue.Controllers
             // returns not found if input string is empty
             if (title.Trim().Length <= 0)
             {
-                ViewBag.Error = Errors.notFound;
-                return PartialView("~/Views/Search/Error.cshtml");
+                return PartialView("~/Views/Error/NotFound.cshtml");
+
             }
 
             if (type == "department")
@@ -192,8 +202,7 @@ namespace Catalogue.Controllers
         {
             if (items.Count <= 0)
             {
-                ViewBag.Error = Errors.notFound;
-                view += "Error.cshtml";
+                view += "NotFound.cshtml";
             }
             else
             {

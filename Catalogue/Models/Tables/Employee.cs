@@ -1,8 +1,10 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Data.Entity.Validation;
 
 namespace Catalogue.Models.Tables
 {
@@ -36,7 +38,7 @@ namespace Catalogue.Models.Tables
         public string EmployeeSkype { get; set; }
 
         [Display(Name = "Фото сотрудника")]
-        [RegularExpression(@"([a-zA-Z0-9\s_\\.\-:])+(.png|.jpg|.jpeg)$", ErrorMessage = "Формат файла должен быть .jpg, .png, .jpeg, .bmp")]
+        [RegularExpression(@"([a-zA-Z0-9\s_\\.\-:])+(.png|.jpg|.jpeg)$", ErrorMessage = "Формат файла должен быть .jpg, .png, .jpeg")]       
         public string EmployeePhoto { get; set; }
 
         /// <summary>
