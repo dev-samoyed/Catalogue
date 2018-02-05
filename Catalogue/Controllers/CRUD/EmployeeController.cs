@@ -9,6 +9,7 @@ using System.Data.Entity;
 using PagedList;
 using System.IO;
 using Catalogue.Models;
+using System.Data.Entity.Validation;
 
 namespace Catalogue.Controllers.CRUD
 {
@@ -74,8 +75,7 @@ namespace Catalogue.Controllers.CRUD
                 if (ModelState.IsValid)
                 {
                     if (productImg != null)
-                    {                       
-                       
+                    {                                              
                         var fileName = Path.GetFileName(productImg.FileName);
 
                         fileName =  DateTime.Now.ToString("yyyyMMddHHmmssfff") + fileName;
@@ -99,11 +99,12 @@ namespace Catalogue.Controllers.CRUD
             }
         }
 
+        [HttpGet]
         // GET: Employee/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return HttpNotFound();
             Employee employee = db.Employees.Find(id);
             if (employee == null)
                 return HttpNotFound();
@@ -119,28 +120,35 @@ namespace Catalogue.Controllers.CRUD
         [HttpPost]
         public ActionResult Edit(int id, Employee collection, HttpPostedFileBase productImg, string photo)
         {
-            if (ModelState.IsValid)
-            {
-                if (productImg == null)
+                if (ModelState.IsValid)
                 {
-                    collection.EmployeePhoto = photo;                 
-                }
-                else if (productImg != null)
-                {
-                    var fileName = Path.GetFileName(productImg.FileName);
+                    if (productImg == null)
+                    {
+                        collection.EmployeePhoto = photo;
+                    }
+                    else if (productImg != null)
+                    {
+                        string fullPath = Request.MapPath("~/images/" + photo);
+                        if (System.IO.File.Exists(fullPath))
+                        {
+                            System.IO.File.Delete(fullPath);
+                        }
 
-                    var directoryToSave = Server.MapPath(Url.Content("~/images"));
+                        var fileName = Path.GetFileName(productImg.FileName);
 
-                    var pathToSave = Path.Combine(directoryToSave, fileName);
-                    productImg.SaveAs(pathToSave);
-                    collection.EmployeePhoto = fileName;
+                        fileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + fileName;
+
+                        var directoryToSave = Server.MapPath(Url.Content("~/images"));
+
+                        var pathToSave = Path.Combine(directoryToSave, fileName);
+                        productImg.SaveAs(pathToSave);
+                        collection.EmployeePhoto = fileName;
+                    }
                 }
-            }
-            db.Entry(collection).State = EntityState.Modified;
-            db.SaveChanges();
-            return RedirectToAction("Index");
+                db.Entry(collection).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
         }
-
         // GET: Employee/Delete/5
         public ActionResult Delete(int? id)
         {

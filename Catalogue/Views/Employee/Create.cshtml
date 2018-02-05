@@ -29,10 +29,10 @@
                             </div>
 
                             <div class="form-group">
-                                @Html.LabelFor(model => model.EployeeRoom, htmlAttributes: new { @class = "control-label col-md-2" })
+                                @Html.LabelFor(model => model.EmployeeRoom, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.EditorFor(model => model.EployeeRoom, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.EployeeRoom, "", new { @class = "text-danger" })
+                                    @Html.EditorFor(model => model.EmployeeRoom, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.EmployeeRoom, "", new { @class = "text-danger" })
                                 </div>
                             </div>
 
@@ -119,7 +119,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.EmployeePhoto, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="editor-field">
-                                    <input type="file" name="productImg" />
+                                    <input type="file" name="productImg" accept="image/x-png,image/gif,image/jpeg"/>
                                     @Html.ValidationMessageFor(model => model.EmployeePhoto, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -143,7 +143,3 @@
         </div>
     </div>
 </div>
-
-
-
-
