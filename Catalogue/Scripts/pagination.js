@@ -1,5 +1,6 @@
 ﻿function pagination() {
     $(document).ready(function () {
+        $("#results_2").hide();
         $(document).on("click", "#contentPager a[href]", post_request);
         $("#position-select-list").on("change", post_request_without_page);
         $("#department-select-list").on("change", post_request_without_page);
@@ -10,7 +11,7 @@
 
 function post_request_without_page() {
 
-    $("#result").hide();
+    $("#results_1").hide();
 
     var name = $("#name").val();
 
@@ -31,8 +32,20 @@ function post_request_without_page() {
         },
         cache: false,
         success: function (result) {
-            $("#results").html(result);
-            $("#results").show();
+            var results_1 = $("#results_1");
+            var results_2 = $("#results_2");
+
+            if (results_1.is("visible")) {
+                results_1.hide();
+
+                results_2.show();
+                results_2.html(result);
+            } else {
+                results_2.hide();
+
+                results_1.show();
+                results_1.html(result);
+            }
         }
     });
     return false;
@@ -66,8 +79,8 @@ function post_request() {
         },
         cache: false,
         success: function (result) {
-            $("#results").html(result);
-            $("#results").show();
+            $("#results_1").show();
+            $("#results_1").html(result);
         }
     });
     return false;
