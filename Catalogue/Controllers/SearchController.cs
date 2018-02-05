@@ -16,11 +16,7 @@ namespace Catalogue.Controllers
     {
         CatalogueContext db = new CatalogueContext();
 
-        /// <summary>
-        /// Forms a partial view with a list of found employees
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns>PartialView with a list of employees</returns>
+        // Forms a partial view with a list of found employees
         public ActionResult EmployeeSearch(string name, int? positionId, int? departmentId, int? administrationId, int? divisionId)
         {
             name = name.Trim();
@@ -56,25 +52,8 @@ namespace Catalogue.Controllers
                 string part_1 = words.Pop(), part_2 = words.Pop(), part_3 = words.Pop();
                 searchQuery = BuildSearchQuery(part_1, part_2, part_3);
             }
-            
-            // search query with filters
-            if (positionId != null)
-                searchQuery = searchQuery.Where(e => e.PositionId == positionId);
 
-            if (departmentId != null)
-                searchQuery = searchQuery.Where(e => e.DepartmentId == departmentId);
-
-            if (administrationId != null)
-            {
-                List<int> departmentIds = GetDepartmentIds("administration", administrationId);
-                searchQuery = searchQuery.Where(e => departmentIds.Contains(e.DepartmentId));
-            }
-
-            if (divisionId != null)
-            {
-                List<int> departmentIds = GetDepartmentIds("division", divisionId);
-                searchQuery = searchQuery.Where(e => departmentIds.Contains(e.DepartmentId));
-            }
+            searchQuery = FilterAdditions(searchQuery, positionId, departmentId, administrationId, divisionId);
 
             List<Employee> employeeMatches = AddIncludes(searchQuery);
 
@@ -94,59 +73,6 @@ namespace Catalogue.Controllers
             return PartialView(view, employeeMatches);
         }
 
-        /// <summary>
-        /// Forms not found partial view
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult NotFoundResult ()
-        {
-            ViewBag.Error = Errors.notFound;
-            return PartialView("~/Views/Home/Error.cshtml");
-        }
-
-        /// <summary>
-        /// Forms a partial view with a list of found entities
-        /// </summary>
-        /// <param name="title"></param>
-        /// <param name="type"></param>
-        /// <returns></returns>
-        [Authorize(Roles = "admin")]
-        public ActionResult AdminSearch (string title, string type)
-        {
-            string view = "~/Views/Search/";
-            string[] words = title.ToLower().Split(' ');
-
-            // returns not found if input string is empty
-            if (title.Trim().Length <= 0)
-            {
-                ViewBag.Error = Errors.notFound;
-                return PartialView("~/Views/Search/Error.cshtml");
-            }
-
-            if (type == "department")
-            {
-                List<Department> departments = BuildDepartmentSearchQuery(words).ToList();
-                BindSearchResults(departments, ref view, "Departments.cshtml");
-            }
-            else if (type == "administration")
-            {
-                List<Administration> administrations = BuildAdministartionSearchQuery(words).ToList();
-                BindSearchResults(administrations, ref view, "Administrations.cshtml");
-            }
-            else if (type == "position")
-            {
-                List<Position> positions = BuildPositionSearchQuery(words).ToList();
-                BindSearchResults(positions, ref view, "Positions.cshtml");
-            }
-            else if (type == "division")
-            {
-                List<Division> divisions = BuildDivisionSearchQuery(words).ToList();
-                BindSearchResults(divisions, ref view, "Divisions.cshtml");
-            }
-
-            return PartialView(view);
-        }
-        
         [HttpPost]
         public ActionResult EmployeeFilter (string name, int? page, int? positionId, int? departmentId, int? administrationId, int? divisionId)
         {
@@ -211,7 +137,61 @@ namespace Catalogue.Controllers
             return PartialView(employeeMatches.ToPagedList(pageNumber, pageSize));
         }
 
-        private IQueryable<Employee> FilterAdditions (IQueryable<Employee> query, int? positionId, int? departmentId, int? administrationId, int? divisionId)
+        // Forms a partial view with a list of found entities
+        [Authorize(Roles = "admin")]
+        public ActionResult AdminSearch(string title, string type)
+        {
+            string view = "~/Views/Search/";
+            string[] words = title.ToLower().Split(' ');
+
+            // returns not found if input string is empty
+            if (title.Trim().Length <= 0)
+            {
+                ViewBag.Error = Errors.notFound;
+                return PartialView("~/Views/Search/Error.cshtml");
+            }
+
+            if (type == "department")
+            {
+                List<Department> departments = BuildDepartmentSearchQuery(words).ToList();
+                BindSearchResults(departments, ref view, "Departments.cshtml");
+            }
+            else if (type == "administration")
+            {
+                List<Administration> administrations = BuildAdministartionSearchQuery(words).ToList();
+                BindSearchResults(administrations, ref view, "Administrations.cshtml");
+            }
+            else if (type == "position")
+            {
+                List<Position> positions = BuildPositionSearchQuery(words).ToList();
+                BindSearchResults(positions, ref view, "Positions.cshtml");
+            }
+            else if (type == "division")
+            {
+                List<Division> divisions = BuildDivisionSearchQuery(words).ToList();
+                BindSearchResults(divisions, ref view, "Divisions.cshtml");
+            }
+
+            return PartialView(view);
+        }
+
+        // ??
+        public ActionResult EmployeeAjaxPagination (int? page)
+        {
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return PartialView(db.Employees.Include(e => e.Department).Include(p => p.Position).OrderBy(i => i.EmployeeFullName).ToPagedList(pageNumber, pageSize));
+        }
+
+        // Forms 'not found' partial view
+        public ActionResult NotFoundResult()
+        {
+            ViewBag.Error = Errors.notFound;
+            return PartialView("~/Views/Home/Error.cshtml");
+        }
+
+        // Adds filters to the search query
+        private IQueryable<Employee> FilterAdditions(IQueryable<Employee> query, int? positionId, int? departmentId, int? administrationId, int? divisionId)
         {
             if (positionId != null)
                 query = query.Where(e => e.PositionId == positionId);
@@ -234,20 +214,7 @@ namespace Catalogue.Controllers
             return query;
         }
 
-        public ActionResult EmployeeAjaxPagination (int? page)
-        {
-            int pageSize = 3;
-            int pageNumber = (page ?? 1);
-            return PartialView(db.Employees.Include(e => e.Department).Include(p => p.Position).OrderBy(i => i.EmployeeFullName).ToPagedList(pageNumber, pageSize));
-        }
-
-        /// <summary>
-        /// Binds entity search results and entity view
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="items"></param>
-        /// <param name="view"></param>
-        /// <param name="entityView"></param>
+        // Binds entity search results and entity view
         private void BindSearchResults<T> (List<T> items, ref string view, string entityView)
         {
             if (items.Count <= 0)
@@ -262,11 +229,7 @@ namespace Catalogue.Controllers
             }
         }
 
-        /// <summary>
-        /// Builds a search query that matches all words of the array 'words'
-        /// </summary>
-        /// <param name="words"></param>
-        /// <returns>IEnumerable query</returns>
+        // Builds a search query that matches all words of the array 'words'
         private IEnumerable<Department> BuildDepartmentSearchQuery (params string[] words)
         {
             IEnumerable<Department> query = db.Departments
@@ -302,11 +265,7 @@ namespace Catalogue.Controllers
             return query;
         }
 
-        /// <summary>
-        /// Forms a search query for employees by one param
-        /// </summary>
-        /// <param name="part_1"></param>
-        /// <returns>query</returns>
+        // Forms a search query for employees by one param
         private IQueryable<Employee> BuildSearchQuery(string part_1)
         {
             IQueryable<Employee> query = db.Employees
@@ -315,12 +274,7 @@ namespace Catalogue.Controllers
             return query;
         }
 
-        /// <summary>
-        /// Forms a search query for employees by two params
-        /// </summary>
-        /// <param name="part_1"></param>
-        /// <param name="part_2"></param>
-        /// <returns>query</returns>
+        // Forms a search query for employees by two params
         private IQueryable<Employee> BuildSearchQuery(string part_1, string part_2)
         {
             IQueryable<Employee> query = db.Employees
@@ -330,13 +284,7 @@ namespace Catalogue.Controllers
             return query;
         }
 
-        /// <summary>
-        /// Forms a search query for employees by three params
-        /// </summary>
-        /// <param name="part_1"></param>
-        /// <param name="part_2"></param>
-        /// <param name="part_3"></param>
-        /// <returns>query</returns>
+        // Forms a search query for employees by three params
         private IQueryable<Employee> BuildSearchQuery(string part_1, string part_2, string part_3)
         {
             IQueryable<Employee> query = db.Employees
@@ -347,11 +295,7 @@ namespace Catalogue.Controllers
             return query;
         }
 
-        /// <summary>
-        /// Adds relationships Position and Department to the (Employee) query
-        /// </summary>
-        /// <param name="query"></param>
-        /// <returns>list of employees</returns>
+        // Adds relationships Position and Department to the (Employee) query
         private List<Employee> AddIncludes(IQueryable<Employee> query)
         {
             List<Employee> employeeMatches = query
@@ -363,35 +307,40 @@ namespace Catalogue.Controllers
             return employeeMatches;
         }
 
-        /// <summary>
-        /// Returns a list of the ids of deparments related to a particular administration/division
-        /// </summary>
-        /// <param name="type"></param>
-        /// <param name="id"></param>
-        /// <returns>list of ids</returns>
+        // Returns a list of the ids of deparments related to a particular administration/division
         private List<int> GetDepartmentIds(string type, int? id)
         {
             List<int> departmentIds = new List<int>();
+
             if (type == "administration")
-            {
-                departmentIds = db.Departments
-                    .Where(d => d.AdministrationId == id)
-                    .Select(i => i.DepartmentId)
-                    .ToList();
-            }
+                departmentIds = GetDepartmentIdsByAdministration(id);
             else if (type == "division")
-            {
-                List<int> administrationIds = db.Administrations
-                    .Where(a => a.DivisionId == id)
-                    .Select(i => i.AdministrationId)
-                    .ToList();
-                departmentIds = db.Departments
-                    .Where(d => administrationIds.Contains(d.AdministrationId))
-                    .Select(i => i.DepartmentId)
-                    .ToList();
-            }
+                departmentIds = GetDepartmentIdsByDivision(id);
 
             return departmentIds;
+        }
+
+        // Returns a list of the ids of departments related to a administration
+        private List<int> GetDepartmentIdsByAdministration (int? administrationId)
+        {
+            return db.Departments
+                .Where(d => d.AdministrationId == administrationId)
+                .Select(i => i.DepartmentId)
+                .ToList();
+        }
+
+        // Returns a list of the ids of departments related to a division
+        private List<int> GetDepartmentIdsByDivision (int? divisionId)
+        {
+            List<int> administrationIds = db.Administrations
+                .Where(d => d.DivisionId == divisionId)
+                .Select(i => i.AdministrationId)
+                .ToList();
+
+            return db.Departments
+                .Where(d => administrationIds.Contains(d.AdministrationId))
+                .Select(i => i.DepartmentId)
+                .ToList();
         }
     }
 }
