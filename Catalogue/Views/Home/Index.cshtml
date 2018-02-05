@@ -1,3 +1,6 @@
+@model PagedList.IPagedList<Catalogue.Models.Tables.Employee>
+@using PagedList.Mvc;
+
 @{
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,110 +11,102 @@
         <div class="col-md-12">
             <div class="card">
 
-                @using (Ajax.BeginForm("EmployeeSearch", "Search", null,
-                new AjaxOptions
+                @using (Ajax.BeginForm("EmployeeFilter", "Search", null, new AjaxOptions
                 {
-                    UpdateTargetId = "employee-list",
+                    UpdateTargetId = "results",
                     LoadingElementId = "loading",
-                    OnSuccess = "hideAccordion()"
-                },
-                new { @class = "ajax-form" }))
+                    OnSuccess = "removeBlock()"
+                }, new { @class = "ajax-form" }))
                 {
                     @Html.AntiForgeryToken()
-                <div class="header">
+                    <div class="header">
 
-                    <h3 id="title">Поиск</h3>
-                    <div class="row">
-                        <div class="col-md-11">
-                            <input type="text" class="form-control" name="name" placeholder="впишите имя сотрудника">
+                        <h3 id="title">Поиск</h3>
+                        <div class="row">
+                            <div class="col-md-11">
+                                <input type="text" id="name" class="form-control" name="name" placeholder="впишите имя сотрудника">
+                            </div>
+                            <div class="col-md-1">
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-default"><span class="fa fa-search"></span> Искать</button>
+                                </span>
+                            </div>
                         </div>
-                        <div class="col-md-1">
-                            <span class="input-group-btn">
-                                <button type="submit" class="btn btn-default"><span class="fa fa-search"></span> Искать</button>
-                            </span>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="control-label" for="position-select-list">Выберите должность (опционально)</label>
+                                <select class="form-control" id="position-select-list" name="positionId">
+                                    <option selected value="">Должность</option>
+                                    @foreach (Catalogue.Models.Tables.Position position in ViewBag.Positions)
+                                    {
+                                        <option value="@position.PositionId">@position.PositionName</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="control-label" for="department-select-list">Выберите отдел (опционально)</label>
+                                <select id="department-select-list" class="form-control" name="departmentId">
+                                    <option selected value="">Отдел</option>
+                                    @foreach (Catalogue.Models.Tables.Department department in ViewBag.Departments)
+                                    {
+                                        <option value="@department.DepartmentId">@department.DepartmentName</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="control-label" for="administration-select-list">Выберите орган управления (опционально)</label>
+                                <select id="administration-select-list" class="form-control" name="administrationId">
+                                    <option selected value="">Орган управления</option>
+                                    @foreach (Catalogue.Models.Tables.Administration administration in ViewBag.Admins)
+                                    {
+                                        <option value="@administration.AdministrationId">@administration.AdministrationName</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="control-label" for="division-select-list">Выберите регион (опционально)</label>
+                                <select id="division-select-list" class="form-control" name="divisionId">
+                                    <option selected value="">Регион</option>
+                                    @foreach (Catalogue.Models.Tables.Division division in ViewBag.Divisions)
+                                    {
+                                        <option value="@division.DivisionId">@division.DivisionName</option>
+                                    }
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <label class="control-label" for="position-select-list">Выберите должность (опционально)</label>
-                            <select class="form-control" id="position-select-list" name="positionId">
-                                <option selected value="">Должность</option>
-                                @foreach (Catalogue.Models.Tables.Position position in ViewBag.Positions)
-                                {
-                                    <option value="@position.PositionId">@position.PositionName</option>
-                                }
-                            </select>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="control-label" for="department-select-list">Выберите отдел (опционально)</label>
-                            <select id="department-select-list" class="form-control" name="departmentId">
-                                <option selected value="">Отдел</option>
-                                @foreach (Catalogue.Models.Tables.Department department in ViewBag.Departments)
-                                {
-                                    <option value="@department.DepartmentId">@department.DepartmentName</option>
-                                }
-                            </select>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="control-label" for="administration-select-list">Выберите орган управления (опционально)</label>
-                            <select id="administration-select-list" class="form-control" name="administrationId">
-                                <option selected value="">Орган управления</option>
-                                @foreach (Catalogue.Models.Tables.Administration administration in ViewBag.Admins)
-                                {
-                                    <option value="@administration.AdministrationId">@administration.AdministrationName</option>
-                                }
-                            </select>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="control-label" for="division-select-list">Выберите регион (опционально)</label>
-                            <select id="division-select-list" class="form-control" name="divisionId">
-                                <option selected value="">Регион</option>
-                                @foreach (Catalogue.Models.Tables.Division division in ViewBag.Divisions)
-                                {
-                                    <option value="@division.DivisionId">@division.DivisionName</option>
-                                }
-                            </select>
-                        </div>
-                    </div>
-                </div><!-- /input-group -->
+                    </div><!-- /input-group -->
                 }
                 <div id="loading" style="display:none"><p>Идет поиск</p></div>
+                <hr>
+                <div id="results"></div>
 
-
-                    <hr>
-
-                    <div id="results"></div>
-                    <div id="employee-list"></div>
-
-                    <div class="content" id="accordion">
-                        @foreach (var administration in ViewBag.Administrations)
-                        {
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#adm_@administration.AdministrationId">@administration.AdministrationName</a>
-                            </h4>
-                            </div>
-                            <div id="adm_@administration.AdministrationId" class="panel-collapse collapse">
-                            @foreach (var department in administration.Departments)
+                <div id="toRemove" class="content">
+                    <table class="table table-hover table-responsive table-condensed">
+                        <caption>Список сотрудников</caption>
+                        <thead>
+                            <tr>
+                                <th>ФИО</th>
+                                <th>Отдел</th>
+                                <th>Должность</th>
+                                <th>Кабинет</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (Catalogue.Models.Tables.Employee item in Model)
                             {
-                                string name = department.DepartmentName;
-                                @Ajax.ActionLink(name, "AjaxDepartmentEmployees", "Home",
-                                    new { DepartmentId = department.DepartmentId },
-                                    new AjaxOptions {
-                                        UpdateTargetId = "employee-list",
-                                        LoadingElementId = "loading",
-                                        OnSuccess = "hideAccordion()"
-                                    },
-                                    new { @class = "col-item" })
+                                <tr>
+                                    <td>@Html.DisplayFor(model => item.EmployeeFullName)</td>
+                                    <td>@Html.DisplayFor(model => item.Department.DepartmentName)</td>
+                                    <td>@Html.DisplayFor(model => item.Position.PositionName)</td>
+                                    <td>@Html.DisplayFor(model => item.EmployeeRoom)</td>
+                                </tr>
                             }
-                            </div>
-                        </div>
-                        }
-                    </div>
-
+                        </tbody>
+                    </table>
+                    Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                </div>
             </div>
         </div>
     </div>
 </div>
-

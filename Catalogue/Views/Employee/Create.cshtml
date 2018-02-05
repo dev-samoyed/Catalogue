@@ -133,9 +133,8 @@
 
                                 <div class="form-group">
                                     <div class="col-md-offset-2 col-md-10">
-                                        <input type="file" name="productImg" id="imageBrowes" class="btn btn-default" />
+                                        <input type="file" name="productImg" id="imageBrowes" class="btn btn-default" accept="image/x-png,image/gif,image/jpeg"/>
                                         <input type="button" value="Сброс" id="imageBrowes" onclick="ClearPreview()" class="btn btn-default" />
-                                        @*<input type="file" name="productImg" accept="image/x-png,image/gif,image/jpeg"/>*@
                                         @Html.ValidationMessageFor(model => model.EmployeePhoto, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
@@ -146,6 +145,14 @@
                                     <input type="submit" value="Добавить" class="btn btn-default" /> |
                                     <a class="btn btn-default" name="backButton" id="backButton" href="@Url.Action("Index","Employee")">Назад</a>
                                 </div>
+                                @if (ViewBag.Message != null)
+                                {
+                                    <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            };
+                                    </script>
+                                }
                             </div>
                         </div>
                     }
