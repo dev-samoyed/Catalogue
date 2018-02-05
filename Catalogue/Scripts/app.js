@@ -106,3 +106,6 @@ function checkDismissed () {
     });
 }
 
+function removeBlock() {
+    $("#toRemove").remove();
+}
