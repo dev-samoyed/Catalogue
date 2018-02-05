@@ -31,10 +31,10 @@
                         </div>
 
                         <div class="form-group">
-                            @Html.LabelFor(model => model.EployeeRoom, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.EmployeeRoom, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
-                                @Html.EditorFor(model => model.EployeeRoom, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.EployeeRoom, "", new { @class = "text-danger" })
+                                @Html.EditorFor(model => model.EmployeeRoom, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.EmployeeRoom, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
@@ -120,11 +120,24 @@
 
                         <div class="form-group">
                             @Html.LabelFor(model => model.EmployeePhoto, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="editor-field">                            
-                                    <img src="~/images/@Model.EmployeePhoto" width="100" height="100" />
-                                    @Html.ValidationMessageFor(model => model.EmployeePhoto, "", new { @class = "text-danger" })           
-                                    <input type="file" name="productImg" accept="image/x-png,image/gif,image/jpeg"/>
+
+                            @if (Model.EmployeePhoto == null)
+                            {
+                                <img src="~/Content/assets/img/default-avatar.png" width="100" height="100" />
+                                @Html.ValidationMessageFor(model => model.EmployeePhoto, "", new { @class = "text-danger" })
+                            }
+                            else
+                            {
+                                <img src="~/images/@Model.EmployeePhoto" width="100" height="100"/>
+                                @Html.ValidationMessageFor(model => model.EmployeePhoto, "", new { @class = "text-danger" })
+                            }
+
+                            <div id="imgPreview">
+                                <img class="img-responsive" id="targetImg" width="100" height="100" />
                             </div>
+
+                            <input type="file" name="productImg" id="imageBrowes" />
+                            <input type="button" value="Сброс" id="imageBrowes" onclick="ClearPreview()" />
                             <input type="hidden" name="photo" value="@Model.EmployeePhoto" />
                         </div>
 
@@ -132,6 +145,7 @@
                             <div class="col-md-offset-2 col-md-10">
                                 <input type="submit" value="Сохранить" class="btn btn-default" /> |
                                 <a class="btn btn-default" name="backButton" id="backButton" href="@Url.Action("Index","Employee")">Назад</a>
+                                
                             </div>
                         </div>
                     </div>
@@ -140,8 +154,12 @@
                 @Scripts.Render("~/bundles/jqueryval")
                 @Scripts.Render("~/Scripts/app.js")
                     <script>
-                        check();
+                        checkDismissed();
                     </script>
+
+                    <script>
+                        checkPhotoPreview();
+                    </script>         
                 </div>
             </div>
         </div>

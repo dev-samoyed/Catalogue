@@ -46,8 +46,8 @@ namespace Catalogue.Controllers
         {
             if (DepartmentId == null)
             {
-                ViewBag.Error = Errors.notFound;
-                return PartialView("~/Views/Home/Error.cshtml");
+                return PartialView("~/Views/Error/NotFound.cshtml");
+
             }
 
             IQueryable<Employee> query = db.Employees
@@ -67,8 +67,7 @@ namespace Catalogue.Controllers
         {
             if (id == null)
             {
-                ViewBag.Error = Errors.notFound;
-                return PartialView("~/Views/Home/Error.cshtml");
+                return PartialView("~/Views/Error/NotFound.cshtml");
             }
 
             Employee employee = db.Employees

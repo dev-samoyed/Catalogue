@@ -99,8 +99,7 @@ namespace Catalogue.Controllers
         /// <returns></returns>
         public ActionResult NotFoundResult ()
         {
-            ViewBag.Error = Errors.notFound;
-            return PartialView("~/Views/Home/Error.cshtml");
+            return PartialView("~/Views/Error/NotFound.cshtml");
         }
 
         /// <summary>
@@ -118,8 +117,8 @@ namespace Catalogue.Controllers
             // returns not found if input string is empty
             if (title.Trim().Length <= 0)
             {
-                ViewBag.Error = Errors.notFound;
-                return PartialView("~/Views/Search/Error.cshtml");
+                return PartialView("~/Views/Error/NotFound.cshtml");
+
             }
 
             if (type == "department")
@@ -157,8 +156,7 @@ namespace Catalogue.Controllers
         {
             if (items.Count <= 0)
             {
-                ViewBag.Error = Errors.notFound;
-                view += "Error.cshtml";
+                view += "NotFound.cshtml";
             }
             else
             {
