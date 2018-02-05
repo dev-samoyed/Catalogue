@@ -10,7 +10,7 @@
 
 function post_request_without_page() {
 
-    $("#result").html("Загрузка...");
+    $("#result").hide();
 
     var name = $("#name").val();
 
@@ -31,7 +31,8 @@ function post_request_without_page() {
         },
         cache: false,
         success: function (result) {
-            $('#result').html(result);
+            $("#results").html(result);
+            $("#results").show();
         }
     });
     return false;
@@ -39,7 +40,7 @@ function post_request_without_page() {
 
 function post_request() {
 
-    $("#result").html("Загрузка...");
+    $("#result").hide();
 
     var name = $("#name").val();
 
@@ -65,7 +66,8 @@ function post_request() {
         },
         cache: false,
         success: function (result) {
-            $('#result').html(result);
+            $("#results").html(result);
+            $("#results").show();
         }
     });
     return false;

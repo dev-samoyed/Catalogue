@@ -48,7 +48,7 @@ namespace Catalogue.Controllers
 
         // Builds the ajax employee search query with pagination
         [HttpPost]
-        public ActionResult EmployeeFilter (string name, int? page, int? positionId, int? departmentId, int? administrationId, int? divisionId)
+        public ActionResult EmployeeFilter(string name, int? page, int? positionId, int? departmentId, int? administrationId, int? divisionId)
         {
             IQueryable<Employee> employees = Enumerable.Empty<Employee>().AsQueryable();
 
@@ -83,11 +83,9 @@ namespace Catalogue.Controllers
             int pageNumber = (page ?? 1);
 
             return PartialView(employeeMatches.ToPagedList(pageNumber, pageSize));
+        }
 
-        /// <summary>
-        /// Forms not found partial view
-        /// </summary>
-        /// <returns></returns>
+        // Forms not found partial view
         public ActionResult NotFoundResult ()
         {
             return PartialView("~/Views/Error/NotFound.cshtml");
@@ -130,13 +128,6 @@ namespace Catalogue.Controllers
             }
 
             return PartialView(view);
-        }
-
-        // Forms 'not found' partial view
-        public ActionResult NotFoundResult()
-        {
-            ViewBag.Error = Errors.notFound;
-            return PartialView("~/Views/Home/Error.cshtml");
         }
 
         // Builds the main employee search query
