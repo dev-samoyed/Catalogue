@@ -70,33 +70,28 @@ namespace Catalogue.Controllers.CRUD
         [HttpPost]
         public ActionResult Create(Employee collection, HttpPostedFileBase productImg)
         {
-            try
+            if (ModelState.IsValid)
             {
-                if (ModelState.IsValid)
+                if (productImg == null)
                 {
-                    if (productImg != null)
-                    {                                              
-                        var fileName = Path.GetFileName(productImg.FileName);
-
-                        fileName =  DateTime.Now.ToString("yyyyMMddHHmmssfff") + fileName;
-
-                        var directoryToSave = Server.MapPath(Url.Content("~/images"));
-
-                        var pathToSave = Path.Combine(directoryToSave, fileName);
-                        productImg.SaveAs(pathToSave);
-                        collection.EmployeePhoto = fileName;
-                    }
-                    db.Employees.Add(collection);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
+                    collection.EmployeePhoto = "default-avatar.png";
                 }
+                else
+                {
+                    var fileName = Path.GetFileName(productImg.FileName);
 
-                return View(collection);  
+                    fileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + fileName;
+
+                    var directoryToSave = Server.MapPath(Url.Content("~/images"));
+
+                    var pathToSave = Path.Combine(directoryToSave, fileName);
+                    productImg.SaveAs(pathToSave);
+                    collection.EmployeePhoto = fileName;
+                }
             }
-            catch
-            {
-                return View();
-            }
+            db.Employees.Add(collection);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
@@ -129,7 +124,7 @@ namespace Catalogue.Controllers.CRUD
                     else if (productImg != null)
                     {
                         string fullPath = Request.MapPath("~/images/" + photo);
-                        if (System.IO.File.Exists(fullPath))
+                        if (System.IO.File.Exists(fullPath) && photo != "default-avatar.png")
                         {
                             System.IO.File.Delete(fullPath);
                         }
@@ -160,7 +155,7 @@ namespace Catalogue.Controllers.CRUD
 
         // POST: Employee/Delete/5
         [HttpPost]
-        public ActionResult Delete(int? id, Employee collection, string photoName)
+        public ActionResult Delete(int? id, string photoName)
         {
             Employee employee = new Employee();
             try
@@ -172,7 +167,7 @@ namespace Catalogue.Controllers.CRUD
                     return HttpNotFound();
 
                 string fullPath = Request.MapPath("~/images/" + photoName);
-                if (System.IO.File.Exists(fullPath))
+                if (System.IO.File.Exists(fullPath) && photoName != "default-avatar.png")
                 {
                     System.IO.File.Delete(fullPath);
                 }
