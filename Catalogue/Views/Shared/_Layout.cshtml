@@ -1,110 +1,110 @@
 ﻿<!doctype html>
-<html>
-<head>
+ <html>
+ <head>
 
-    <meta charset="utf-8" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="icon" type="image/png" href="@Url.Content("~/favicon.png")">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>@ViewBag.Title - Справочник</title>
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Bootstrap core CSS     -->
-    @Styles.Render("~/Content/bootstrap.min.css")
+     <meta charset="utf-8" />
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+     <link rel="icon" type="image/png" href="@Url.Content("~/favicon.png")">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+     <title>@ViewBag.Title - Справочник</title>
+     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+     <!-- Bootstrap core CSS     -->
+     @Styles.Render("~/Content/bootstrap.min.css")
 
-    @Styles.Render("~/Content/app.css")
-    <!--  Light Bootstrap Table core CSS    -->
-    @Styles.Render("~/Content/assets/css/light-bootstrap-dashboard.css")
+     @Styles.Render("~/Content/app.css")
+     <!--  Light Bootstrap Table core CSS    -->
+     @Styles.Render("~/Content/assets/css/light-bootstrap-dashboard.css")
 
 
-    <!--  CSS for Purpose, don't include it in your project     -->
-    @Styles.Render("~/Content/assets/css/demo.css")
+     <!--  CSS for Purpose, don't include it in your project     -->
+     @Styles.Render("~/Content/assets/css/demo.css")
 
-    <!--     Fonts and icons     -->
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-    @Styles.Render("~/Content/assets/css/pe-icon-7-stroke.css")
-</head>
-<body>
-    <div class="wrapper">
-        @if (Request.IsAuthenticated)
-        {
-            <div class="sidebar" data-color="black" data-image="@Url.Content("~/Content/assets/img/sidebar.jpg")">
-                <div class="sidebar-wrapper">
-                    <div class="logo">
-                        <a href="@Url.Action("Index", "Home")" class="simple-text">
-                            Справочник НСК/ГВЦ
-                        </a>
-                    </div>
-                    <ul class="nav">
-                        <li class="active">
-                            <a href="@Url.Action("Index", "Home")">
-                                <i class="pe-7s-search"></i>
-                                <p>Поиск</p>
-                            </a>
-                        </li>
-                        <li class="active">
-                            <a href="@Url.Action("Index", "Main")">
-                                <i class="pe-7s-home"></i>
-                                <p>Панель администратора</p>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+     <!--     Fonts and icons     -->
+     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+     @Styles.Render("~/Content/assets/css/pe-icon-7-stroke.css")
+ </head>
+ <body>
+     <div class="wrapper">
+         @if (Request.IsAuthenticated)
+                {
+                 <div class="sidebar" data-color="black" data-image="@Url.Content("~/Content/assets/img/sidebar.jpg")">
+                     <div class="sidebar-wrapper">
+                         <div class="logo">
+                             <a href="@Url.Action("Index", "Home")" class="simple-text">
+                                 Справочник НСК/ГВЦ
+                             </a>
+                         </div>
+                         <ul class="nav">
+                             <li class="active">
+                                 <a href="@Url.Action("Index", "Home")">
+                                     <i class="pe-7s-search"></i>
+                                     <p>Поиск</p>
+                                 </a>
+                             </li>
+                             <li class="active">
+                                 <a href="@Url.Action("Index", "Main")">
+                                     <i class="pe-7s-home"></i>
+                                     <p>Панель администратора</p>
+                                 </a>
+                             </li>
+                         </ul>
+                     </div>
+                 </div>
 
-        }
+            }
+            else
+            {
+                 <div class="sidebar" data-color="black" data-image="@Url.Content("~/Content/assets/img/sidebar.jpg")">
+                     <div class="sidebar-wrapper">
+                         <div class="logo">
+                             <a href="@Url.Action("Index", "Home")" class="simple-text">
+                                 Справочник НСК/ГВЦ
+                             </a>
+                         </div>
+                         <ul class="nav">
+                             <li class="active">
+                                 <a href="@Url.Action("Index", "Home")">
+                                     <i class="pe-7s-search"></i>
+                                     <p>Поиск</p>
+                                 </a>
+                             </li>
+                         </ul>
+                     </div>
+                 </div>
+            }
+         <div class="main-panel">
+             <nav class="navbar navbar-default navbar-fixed">
+                 <div class="container-fluid">
+                     <div class="navbar-header">
+                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                             <span class="sr-only">Toggle navigation</span>
+                             <span class="icon-bar"></span>
+                             <span class="icon-bar"></span>
+                             <span class="icon-bar"></span>
+                         </button>
+                         @Html.ActionLink("Справочник НСК/ГВЦ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                     </div>
+                     <div class="collapse navbar-collapse">
+
+                         @Html.Partial("_LoginPartial")
+                     </div>
+                 </div>
+             </nav>
+
+             <div class="content">
+                 @RenderBody()
+             </div>
+
+             <footer class="footer">
+                 <div class="container-fluid">
+
+                     @if (DateTime.Now.Year == 2018)
+                {
+                 <p class="copyright pull-right">&copy; @DateTime.Now.Year Отдел программирования</p> }
         else
-        {
-            <div class="sidebar" data-color="black" data-image="@Url.Content("~/Content/assets/img/sidebar.jpg")">
-                <div class="sidebar-wrapper">
-                    <div class="logo">
-                        <a href="@Url.Action("Index", "Home")" class="simple-text">
-                            Справочник НСК/ГВЦ
-                        </a>
-                    </div>
-                    <ul class="nav">
-                        <li class="active">
-                            <a href="@Url.Action("Index", "Home")">
-                                <i class="pe-7s-search"></i>
-                                <p>Поиск</p>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        }
-        <div class="main-panel">
-            <nav class="navbar navbar-default navbar-fixed">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        @Html.ActionLink("Справочник НСК/ГВЦ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                    </div>
-                    <div class="collapse navbar-collapse">
-
-                        @Html.Partial("_LoginPartial")
-                    </div>
-                </div>
-            </nav>
-
-            <div class="content">
-                @RenderBody()
-            </div>
-
-            <footer class="footer">
-                <div class="container-fluid">
-
-                    @if (DateTime.Now.Year == 2018)
-                    {
-                        <p class="copyright pull-right">&copy; @DateTime.Now.Year Отдел программирования</p> }
-                    else
-                    {<p class="copyright pull-right">&copy; 2018 - @DateTime.Now.Year Отдел программирования</p>}
+        {<p class="copyright pull-right">&copy; 2018 - @DateTime.Now.Year Отдел программирования</p>}
 
 
                 </div>
@@ -131,7 +131,15 @@
     <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
     <script src="@Url.Content("~/Content/assets/js/demo.js")"></script>
 
+<<<<<<< HEAD
     @RenderSection("scripts", required: false)
 </body>
 
 </html>
+=======
+     @RenderSection("scripts", required: false)
+</body>
+   
+   </html>
+
+>>>>>>> 94f65e0732bbcda8d2e83b2377428d0f795b980d
