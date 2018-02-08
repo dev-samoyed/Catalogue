@@ -115,14 +115,12 @@
                                 </div>
                             </div>
 
-
                             <div class="form-group">
                                 <div class="row">
                                     @Html.LabelFor(model => model.EmployeePhoto, htmlAttributes: new { @class = "control-label col-md-2" })
 
                                         <img src="~/Content/assets/img/default-avatar.png" class="img-responsive col-md-1" style="width:110px; height:110px;" />
                                         @Html.ValidationMessageFor(model => model.EmployeePhoto, "", new { @class = "text-danger" })
-
 
                                     <div id="imgPreview" class="col-md-4" style="display:none;">
                                         <i class="fa fa-arrow-right fa-3x" style="float: left; position: inherit; margin-top: 8%; padding-right: 9%;"></i>
@@ -141,25 +139,17 @@
 
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Добавить" class="btn btn-default" /> |
+                                    <input type="submit" value="Добавить" class="btn btn-default"/> |
                                     <a class="btn btn-default" name="backButton" id="backButton" href="@Url.Action("Index","Employee")">Назад</a>
                                 </div>
                             </div>
                         </div>
                     }
 
-                    @if (ViewBag.Message != null)
-                    {
-                        <script type="text/javascript">
-                             window.onload = function () {
-                            alert("@ViewBag.Message");
-                         };
-                        </script>
-                    }
-
                     @Scripts.Render("~/bundles/jquery")
                     @Scripts.Render("~/bundles/jqueryval")
                     @Scripts.Render("~/Scripts/app.js")
+              
                     <script>
                         checkDismissed();
                     </script>
