@@ -247,6 +247,7 @@
     <Content Include="Content\assets\css\light-bootstrap-dashboard.css" />
     <Content Include="Content\assets\css\pe-icon-7-stroke.css" />
     <Content Include="Content\assets\fonts\Pe-icon-7-stroke.svg" />
+    <Content Include="Content\assets\img\5.png" />
     <Content Include="Content\assets\img\default-avatar.png" />
     <Content Include="Content\assets\img\full-screen-image-3.jpg" />
     <Content Include="Content\assets\img\loading-bubbles.svg" />
