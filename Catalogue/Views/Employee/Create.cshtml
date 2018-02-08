@@ -11,12 +11,11 @@
             <div class="card">
                 <div class="header">
                     <h2>Добавление сотрудника</h2>
-                </div>
+                </div>               
                 <div class="content">
                     @using (Html.BeginForm("Create", "Employee", FormMethod.Post, new { enctype = "multipart/form-data" }))
                     {
                         @Html.AntiForgeryToken()
-
                         <div class="form-horizontal">
                             <hr />
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -74,8 +73,8 @@
                                     @Html.EditorFor(model => model.EmployeeSkype, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.EmployeeSkype, "", new { @class = "text-danger" })
                                 </div>
-                            </div>
-                        
+                            </div>                           
+
                             <div class="form-group">
                                 @Html.LabelFor(model => model.PositionId, "Должность", htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
@@ -111,7 +110,7 @@
                                 @Html.LabelFor(model => model.Dismissed, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
                                         <div class="checkbox-inline custom-checkbox">                                        
-                                             @Html.CheckBoxFor(model => model.Dismissed, new { @class = "custom-checkbox",@id="checkBox"})
+                                             @Html.CheckBoxFor(model => model.Dismissed, new { @class = "custom-checkbox" ,@id = "checkBox"})
                                         </div>
                                 </div>
                             </div>
@@ -145,22 +144,24 @@
                                     <input type="submit" value="Добавить" class="btn btn-default" /> |
                                     <a class="btn btn-default" name="backButton" id="backButton" href="@Url.Action("Index","Employee")">Назад</a>
                                 </div>
-                                @if (ViewBag.Message != null)
-                                {
-                                    <script type="text/javascript">
-            window.onload = function () {
-                alert("@ViewBag.Message");
-            };
-                                    </script>
-                                }
                             </div>
                         </div>
                     }
+
+                    @if (ViewBag.Message != null)
+                    {
+                        <script type="text/javascript">
+                             window.onload = function () {
+                            alert("@ViewBag.Message");
+                         };
+                        </script>
+                    }
+
                     @Scripts.Render("~/bundles/jquery")
                     @Scripts.Render("~/bundles/jqueryval")
                     @Scripts.Render("~/Scripts/app.js")
                     <script>
-                        check();
+                        checkDismissed();
                     </script>
                     <script>
                         checkPhotoPreview();

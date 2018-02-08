@@ -73,14 +73,12 @@ namespace Catalogue.Controllers.CRUD
             if (ModelState.IsValid)
             {
                 int iFileSize = productImg.ContentLength;
-                if (iFileSize > 2000000)  // 1MB
+                if (iFileSize > 2000000)  // 2MB
                 {
-                    // File exceeds the file maximum size
                     ViewBag.Message = "Hello";
                     return View();
                 }
-
-                if (productImg == null)
+                else if (productImg == null)
                 {
                     collection.EmployeePhoto = "default-avatar.png";
                 }
@@ -125,12 +123,12 @@ namespace Catalogue.Controllers.CRUD
         {
                 if (ModelState.IsValid)
                 {
-                 int iFileSize = productImg.ContentLength;
-                 if (iFileSize > 2000000)  // 1MB
-                 {
-                    // File exceeds the file maximum size
-                    return HttpNotFound();
-                 }
+                 //int iFileSize = productImg.ContentLength;
+                 //if (iFileSize > 2000000)  // 2MB
+                 //{
+                 //   // File exceeds the file maximum size
+                 //   return HttpNotFound();
+                 //}
 
                 if (productImg == null)
                     {
