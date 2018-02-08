@@ -1,6 +1,5 @@
 ﻿function pagination() {
     $(document).ready(function () {
-        $("#results_2").hide();
         $(document).on("click", "#contentPager a[href]", post_request);
         $("#position-select-list").on("change", post_request_without_page);
         $("#department-select-list").on("change", post_request_without_page);
@@ -11,15 +10,13 @@
 
 function post_request_without_page() {
 
-    $("#results_1").hide();
-
     var name = $("#name").val();
-
     var positionId = $("#position-select-list").val();
     var departmentId = $("#department-select-list").val();
     var administrationId = $("#administration-select-list").val();
     var divisionId = $("#division-select-list").val();
 
+    $("#results_1").hide();
     $.ajax({
         url: "/crud/Search/EmployeeFilter",
         type: 'POST',
@@ -32,28 +29,17 @@ function post_request_without_page() {
         },
         cache: false,
         success: function (result) {
-            var results_1 = $("#results_1");
-            var results_2 = $("#results_2");
-
-            if (results_1.is("visible")) {
-                results_1.hide();
-
-                results_2.show();
-                results_2.html(result);
-            } else {
-                results_2.hide();
-
-                results_1.show();
-                results_1.html(result);
-            }
+            $("#results_1").empty();
+            $("#results_1").append(result);
+        },
+        complete: function () {
+            $("#results_1").show();
         }
     });
     return false;
 }
 
 function post_request() {
-
-    $("#result").hide();
 
     var name = $("#name").val();
 
@@ -66,6 +52,7 @@ function post_request() {
     var url = parts[0];
     var page = parts[1].split("=")[1];
 
+    $("#results_1").hide();
     $.ajax({
         url: url,
         type: 'POST',
@@ -79,8 +66,11 @@ function post_request() {
         },
         cache: false,
         success: function (result) {
+            $("#results_1").empty();
+            $("#results_1").append(result);
+        },
+        complete: function () {
             $("#results_1").show();
-            $("#results_1").html(result);
         }
     });
     return false;
