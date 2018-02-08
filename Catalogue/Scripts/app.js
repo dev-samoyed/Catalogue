@@ -65,11 +65,10 @@ function checkPhotoPreview(){
           
                 $("#targetImg").attr('src', _file.target.result);
                 $("#imgPreview").show();
-                
                
                 if (size > 2000000) {
                     ClearPreview();
-                    alert(" KB.");
+                    alert("Размер файла не должен превышать 2 MB!");
                 } 
             }
         }
@@ -123,4 +122,3 @@ function removeBlock() {
 $(function () {
     $('[data-toggle="tooltip"]').tooltip()
 })
-
