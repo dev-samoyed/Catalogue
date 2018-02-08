@@ -55,15 +55,21 @@ function checkPhotoPreview(){
 
         var reader = new FileReader;
         var image = new Image;
+        var size = ~~(file.size);
 
         reader.readAsDataURL(file);
         reader.onload = function (_file) {
 
             image.src = _file.target.result;
             image.onload = function () {
-
+          
                 $("#targetImg").attr('src', _file.target.result);
                 $("#imgPreview").show();
+               
+                if (size > 2000000) {
+                    ClearPreview();
+                    alert("Размер файла не должен превышать 2 MB!");
+                } 
             }
         }
     }

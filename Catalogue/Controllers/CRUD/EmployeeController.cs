@@ -72,27 +72,32 @@ namespace Catalogue.Controllers.CRUD
         {
             if (ModelState.IsValid)
             {
-                int iFileSize = productImg.ContentLength;
-                if (iFileSize > 2000000)  // 2MB
-                {
-                    ViewBag.Message = "Hello";
-                    return View();
-                }
-                else if (productImg == null)
+            
+
+                if (productImg == null)
                 {
                     collection.EmployeePhoto = "default-avatar.png";
                 }
                 else
                 {
-                    var fileName = Path.GetFileName(productImg.FileName);
+                    //int iFileSize = productImg.ContentLength;
+                    //if (iFileSize > 2000000)  // 2MB
+                    //{
+                    //    ViewBag.Message = "Hello";
+                    //    return Redirect(Request.UrlReferrer.ToString());
+                    //}
+                    //else
+                    //{
+                        var fileName = Path.GetFileName(productImg.FileName);
 
-                    fileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + fileName;
+                        fileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + fileName;
 
-                    var directoryToSave = Server.MapPath(Url.Content("~/images"));
+                        var directoryToSave = Server.MapPath(Url.Content("~/images"));
 
-                    var pathToSave = Path.Combine(directoryToSave, fileName);
-                    productImg.SaveAs(pathToSave);
-                    collection.EmployeePhoto = fileName;
+                        var pathToSave = Path.Combine(directoryToSave, fileName);
+                        productImg.SaveAs(pathToSave);
+                        collection.EmployeePhoto = fileName;
+                    //}                    
                 }
             }
             db.Employees.Add(collection);
