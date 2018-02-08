@@ -1,9 +1,6 @@
-
-
-
-
 /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
 @font-face {
   font-family: Poppins-Regular;
@@ -142,11 +139,19 @@ iframe {
 
 .txt2 {
   font-family: Poppins-Regular;
-  font-size: 13px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: black;
+  padding-bottom: 20px;
+}
+.txt3 {
+  font-family: Poppins-Regular;
+  font-size: 14px;
   line-height: 1.5;
   color: #666666;
+  width: 71%;
+  margin-top: 3%;
 }
-
 
 /*//////////////////////////////////////////////////////////////////
 [ login ]*/
@@ -169,7 +174,8 @@ iframe {
     align-items: center;
     padding: 15px;
     background-color: #e7e7e7;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='199' viewBox='0 0 100 199'%3E%3Cg fill='%23a696c1' fill-opacity='0.25'%3E%3Cpath d='M0 199V0h1v1.99L100 199h-1.12L1 4.22V199H0zM100 2h-.12l-1-2H100v2z'%3E%3C/path%3E%3C/g%3E%3C/svg%3E");
+    /*background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='199' viewBox='0 0 100 199'%3E%3Cg fill='%23a696c1' fill-opacity='0.25'%3E%3Cpath d='M0 199V0h1v1.99L100 199h-1.12L1 4.22V199H0zM100 2h-.12l-1-2H100v2z'%3E%3C/path%3E%3C/g%3E%3C/svg%3E");*/
+    background-image: url("../assets/img/5.png");
     background-repeat: repeat;
     background-size: auto;
     
@@ -177,9 +183,9 @@ iframe {
 
 
 .wrap-login100 {
-    width: 30%;
-    background: #0000001c;
-    border-radius: 10px;
+    width: 370px;
+    height: 470px;
+    background: #ffffffab;
     overflow: hidden;
     display: -webkit-box;
     display: -webkit-flex;
@@ -188,20 +194,29 @@ iframe {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: 4% 4% 2% 8%;
+    padding: 36px 40px 36px 40px !important;
+
+  margin: 2em auto;
+  padding: 1em;
+  box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.35);
     /*margin-bottom: 7%;*/
+}
+
+.text-align {
+    text-align: left;
 }
 
 /*------------------------------------------------------------------
 [  ]*/
 .login100-pic {
-  width: 316px;
+    height: 80px;
+    width: 80px;
+    margin-left: -8px;
 }
 
 .login100-pic img {
   max-width: 100%;
 }
-
 
 /*------------------------------------------------------------------
 [  ]*/
@@ -209,13 +224,28 @@ iframe {
   width: 290px;
 }
 .remember {
-    font-family: Montserrat-Bold;
+    font-family: 'Roboto', sans-serif;
     color: black;
     display: inline-block;
     margin-bottom: .5rem;
+    font-size: .9rem;
+    cursor: pointer;
+}
+.checkbox {
+    text-align: left;
+    width: 150px;
+}
+.font {
+    font-family: 'Roboto', sans-serif;
+}
+h3.font {
+    font-size: 1.4rem;
+}
+span.font {
+    font-weight:lighter;
 }
 .login100-form-title {
-    font-family: Montserrat-Bold;
+    font-family: Poppins-Regular;
     font-size: 24px;
     color: black;
     line-height: 1.2;
@@ -235,15 +265,14 @@ iframe {
 }
 
 .input100 {
-    font-family: Montserrat-Bold;
+    font-family: 'Roboto', sans-serif;
     font-size: 15px;
     line-height: 1.5;
     color: #666666;
     display: block;
     width: 100%;
-    background: #e6e6e6;
-    height: 50px;
-    border-radius: 25px;
+    background: #e2e2e23d;
+    height: 40px;
     padding: 0 30px 0 68px;
 }
 
@@ -253,14 +282,13 @@ iframe {
 .focus-input100 {
   display: block;
   position: absolute;
-  border-radius: 25px;
   bottom: 0;
   left: 0;
   z-index: -1;
   width: 100%;
   height: 100%;
   box-shadow: 0px 0px 0px 0px;
-  color: rgba(87,184,70, 0.8);
+  color: #5897fb;
 }
 
 .input100:focus + .focus-input100 {
@@ -308,7 +336,7 @@ iframe {
 }
 
 .input100:focus + .focus-input100 + .symbol-input100 {
-  color: #57b846;
+  color: #49a1c6;
   padding-left: 28px;
 }
 
@@ -323,19 +351,23 @@ iframe {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding-top: 20px;
+  padding-top: 40px;
+
+}
+
+.login100-form-btn:hover {
+    background-color: #4481e0;
 }
 
 .login100-form-btn {
-    font-family: Montserrat-Bold;
-    font-size: 15px;
+    font-size: 14px;
     line-height: 1.5;
-    color: #fff;
-    text-transform: uppercase;
-    width: 100%;
-    height: 50px;
-    border-radius: 25px;
-    background-color: #57b846;
+    color: #fff; 
+    /*text-transform: uppercase;*/
+    width: 30%;
+    height: 36px;
+    border-radius: 2px;
+    background-color: #5897fb;
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
@@ -344,24 +376,27 @@ iframe {
     justify-content: center;
     align-items: center;
     padding: 0 25px;
-    -webkit-transition: all 0.4s;
-    -o-transition: all 0.4s;
-    -moz-transition: all 0.4s;
-    transition: all 0.4s;
+    -webkit-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    transition: all 0.2s;
+    margin:auto;
+    box-shadow: 0px 3px 8px -1px rgba(0, 0, 0, 0.25);
+    font-family: 'Roboto', sans-serif;
 }
-.login100-form-btn:hover {
-   background-color: green;
+.login100-form-btn:focus {
+   background-color: #3660a2;
+   box-shadow: 0px 1px 4px 2px rgba(0, 0, 0, 0.25);
 }
 #login100-form-btn {
-    font-family: Montserrat-Bold;
-    font-size: 15px;
+    font-size: 14px;
     line-height: 1.5;
-    color: white;
-    text-transform: uppercase;
-    width: 100%;
-    height: 50px;
-    border-radius: 25px;
-    background-color: gray;
+    color: #868383;
+    /*text-transform: uppercase;*/
+    width: 30%;
+    height: 36px;
+    border-radius: 2px;
+    background-color: #f3f3f3;
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
@@ -370,23 +405,26 @@ iframe {
     justify-content: center;
     align-items: center;
     padding: 0 25px;
-    -webkit-transition: all 0.4s;
+    -webkit-transition: all 0.2s;
     -o-transition: all 0.4s;
-    -moz-transition: all 0.4s;
-    transition: all 0.4s;
+    -moz-transition: all 0.2s;
+    transition: all 0.2s;
+    margin:auto;
+    box-shadow: 0px 3px 8px -1px rgba(0, 0, 0, 0.25);
+    font-family: 'Roboto', sans-serif;
+    border: none;
 }
 
     #login100-form-btn:hover {
-        background-color: darkslategray;
+        background-color: #ececec /*#eaeaea*/;
     }
-
-
-
+    #login100-form-btn:focus {
+        background-color:#e4e4e4;
+        box-shadow: 0px 1px 4px 2px rgba(0, 0, 0, 0.25);
+    }
 
 /*------------------------------------------------------------------
 [ Responsive ]*/
-
-
 
 @media (max-width: 992px) {
   .wrap-login100 {
