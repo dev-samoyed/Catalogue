@@ -107,14 +107,15 @@ namespace Catalogue.Controllers.CRUD
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             Administration administration = db.Administrations.Find(id);
-            if (administration == null)
-                return HttpNotFound();
-            return View(administration);
+            if (administration != null)
+                return PartialView("Delete", administration);
+            return View("Index");
         }
 
         // POST: Administration/Delete/5
         [HttpPost]
         [Authorize(Roles = "admin")]
+        [ActionName("Delete")]
         public ActionResult Delete(int? id, Administration collection)
         {
             Administration administration = new Administration();

@@ -101,16 +101,17 @@ namespace Catalogue.Controllers.CRUD
         public ActionResult Delete(int? id)
         {
             if (id == null)
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            Division division = db.Divisions.Find(id);
-            if (division == null)
                 return HttpNotFound();
-            return View(division);
+            Division division = db.Divisions.Find(id);
+            if (division != null)
+                return PartialView("Delete", division);
+            return View("Index");
         }
 
         // POST: Position/Delete/5
         [HttpPost]
         [Authorize(Roles = "admin")]
+        [ActionName("Delete")]
         public ActionResult Delete(int? id, Division collection)
         {
             Division division = new Division();

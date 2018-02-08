@@ -100,16 +100,17 @@ namespace Catalogue.Controllers.CRUD
         public ActionResult Delete(int? id)
         {
             if (id == null)
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            Position position = db.Positions.Find(id);
-            if (position == null)
                 return HttpNotFound();
-            return View(position);
+            Position position = db.Positions.Find(id);
+            if (position != null)
+                return PartialView("Delete", position);
+            return View("Index");
         }
 
         // POST: Position/Delete/5
         [HttpPost]
         [Authorize(Roles = "admin")]
+        [ActionName("Delete")]
         public ActionResult Delete(int? id, Position collection)
         {
             Position position = new Position();

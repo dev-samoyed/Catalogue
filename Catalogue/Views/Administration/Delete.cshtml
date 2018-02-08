@@ -1,104 +1,21 @@
 ﻿@model Catalogue.Models.Tables.Administration
 
-@{
-    ViewBag.Title = "Удаление органа управления";
-    Layout = "~/Views/Shared/_AminPanel.cshtml";
-}
-
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="header">
-                    <h2>Удаление административного органа управления</h2>
-                    <br/>
-                    <h3>Вы действительно хотите удалить запись?</h3>
-                </div>
-                <div class="content">
-                    <div>
-                        <hr />
-                        <dl class="dl-horizontal">
-                            <dt>
-                                @Html.DisplayNameFor(model => model.AdministrationName)
-                            </dt>
-
-                            <dd>
-                                @Html.DisplayFor(model => model.Division.DivisionName)
-                            </dd>
-
-                            <dt>
-                                @Html.DisplayNameFor(model => model.Division.DivisionName)
-                            </dt>
-
-                            <dd>
-                                @Html.DisplayFor(model => model.AdministrationName)
-                            </dd>
-
-                            <dt>
-                                @Html.DisplayNameFor(model => model.AdministrationPost)
-                            </dt>
-
-                            <dd>
-                                @Html.DisplayFor(model => model.AdministrationPost)
-                            </dd>
-
-                            <dt>
-                                @Html.DisplayNameFor(model => model.AdministrationAddress)
-                            </dt>
-
-                            <dd>
-                                @Html.DisplayFor(model => model.AdministrationAddress)
-                            </dd>
-
-                            <dt>
-                                @Html.DisplayNameFor(model => model.AdministrationFax)
-                            </dt>
-
-                            <dd>
-                                @Html.DisplayFor(model => model.AdministrationFax)
-                            </dd>
-
-                            <dt>
-                                @Html.DisplayNameFor(model => model.AdministrationEMail)
-                            </dt>
-
-                            <dd>
-                                @Html.DisplayFor(model => model.AdministrationEMail)
-                            </dd>
-
-                            <dt>
-                                @Html.DisplayNameFor(model => model.AdministrationSkype)
-                            </dt>
-
-                            <dd>
-                                @Html.DisplayFor(model => model.AdministrationSkype)
-                            </dd>
-
-                            <dt>
-                                @Html.DisplayNameFor(model => model.AdministrationCode)
-                            </dt>
-
-                            <dd>
-                                @Html.DisplayFor(model => model.AdministrationCode)
-                            </dd>
-
-                        </dl>
-
-                        @using (Html.BeginForm())
-                        {
-                            @Html.AntiForgeryToken()
-
-                            <div class="form-actions no-color">
-                                <input onclick="myFunction()" type="submit" value="Удалить" class="btn btn-default" /> |
-                                <a class="btn btn-default" name="backButton" id="backButton" href ="@Url.Action("Index","Administration")">Назад</a>                           
-                            </div>
-                        }
-                    </div>
-                </div>
-            </div>
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Удаление</h4>
+    </div>
+    <div class="modal-body">
+        <div class="dl-horizontal">
+            Вы точно хотите удалить:<span><b>  @Html.DisplayFor(model => model.Administration.AdministrationName)</b></span>
         </div>
     </div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+            <input type="submit" value="Удалить" class="btn btn-danger" />
+        </div>
+    }
 </div>
-
-
-
