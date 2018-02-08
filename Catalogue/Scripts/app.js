@@ -116,4 +116,3 @@ function removeBlock() {
 $(function () {
     $('[data-toggle="tooltip"]').tooltip()
 })
-

@@ -259,6 +259,7 @@
     <Content Include="Content\assets\js\demo.js" />
     <Content Include="Content\assets\js\jquery.3.2.1.min.js" />
     <Content Include="Content\assets\js\light-bootstrap-dashboard.js" />
+    <Content Include="Content\assets\js\sweetalert2.min.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -498,7 +499,6 @@
     <Content Include="Views\Department\Details.cshtml" />
     <Content Include="Views\Department\Create.cshtml" />
     <Content Include="Views\Department\Edit.cshtml" />
-    <Content Include="Views\Department\Delete.cshtml" />
     <Content Include="Views\Department\Index.cshtml" />
     <Content Include="Views\Position\Index.cshtml" />
     <Content Include="Views\Position\Details.cshtml" />
@@ -556,6 +556,7 @@
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="Views\Search\EmployeeFilter.cshtml" />
+    <Content Include="Views\Department\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

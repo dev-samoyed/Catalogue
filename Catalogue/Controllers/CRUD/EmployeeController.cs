@@ -148,13 +148,16 @@ namespace Catalogue.Controllers.CRUD
         public ActionResult Delete(int? id)
         {
             if (id == null)
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return HttpNotFound();
             Employee employee = db.Employees.Include(p => p.Position).Include(d => d.Department).SingleOrDefault(e => e.EmployeeId == id);
-            return View(employee);
+            if (employee != null)
+                return PartialView("Delete", employee);
+            return View("Index");
         }
 
         // POST: Employee/Delete/5
         [HttpPost]
+        [ActionName("Delete")]
         public ActionResult Delete(int? id, string photoName)
         {
             Employee employee = new Employee();
