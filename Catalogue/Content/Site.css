@@ -69,3 +69,26 @@ div.loading {
     margin: 0 auto;
     overflow: inherit;
 }
+.modal-backdrop.in {
+    opacity: 0;
+}
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    background-color: #000;
+}
+.modal.in .modal-dialog {
+    -webkit-transform: translate(0,0);
+    -ms-transform: translate(0,0);
+    -o-transform: translate(0,0);
+    transform: translate(0,0);
+    width: 30%;
+}
+.modal.fade .modal-dialog {
+
+    width: 30%;
+}

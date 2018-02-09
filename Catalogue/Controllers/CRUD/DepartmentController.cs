@@ -52,7 +52,7 @@ namespace Catalogue.Controllers.CRUD
         public ActionResult Create(Department collection)
         {
             try
-            {               
+            {
                 db.Departments.Add(collection);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -76,7 +76,6 @@ namespace Catalogue.Controllers.CRUD
             ViewBag.AdministrationList = administrationList;
             return View(department);
         }
-
         // POST: Department/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, Department collection)
@@ -96,14 +95,19 @@ namespace Catalogue.Controllers.CRUD
         // GET: Department/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            Department administration = db.Departments.Include(e => e.Administration).SingleOrDefault(d => d.DepartmentId == id);
-            return View(administration);
+            //if (id == null)
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //Department administration = db.Departments.Include(e => e.Administration).SingleOrDefault(d => d.DepartmentId == id);
+            //return View(administration);
+            Department department = db.Departments.Find(id);
+            if (department != null)
+                return PartialView("Delete", department);
+            return View("Index");
         }
 
         // POST: Department/Delete/5
         [HttpPost]
+        [ActionName("Delete")]
         public ActionResult Delete(int? id, Department collection)
         {
             Department department = new Department();

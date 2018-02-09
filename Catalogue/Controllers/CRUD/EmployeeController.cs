@@ -72,21 +72,32 @@ namespace Catalogue.Controllers.CRUD
         {
             if (ModelState.IsValid)
             {
+            
+
                 if (productImg == null)
                 {
                     collection.EmployeePhoto = "default-avatar.png";
                 }
                 else
                 {
-                    var fileName = Path.GetFileName(productImg.FileName);
+                    //int iFileSize = productImg.ContentLength;
+                    //if (iFileSize > 2000000)  // 2MB
+                    //{
+                    //    ViewBag.Message = "Hello";
+                    //    return Redirect(Request.UrlReferrer.ToString());
+                    //}
+                    //else
+                    //{
+                        var fileName = Path.GetFileName(productImg.FileName);
 
-                    fileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + fileName;
+                        fileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + fileName;
 
-                    var directoryToSave = Server.MapPath(Url.Content("~/images"));
+                        var directoryToSave = Server.MapPath(Url.Content("~/images"));
 
-                    var pathToSave = Path.Combine(directoryToSave, fileName);
-                    productImg.SaveAs(pathToSave);
-                    collection.EmployeePhoto = fileName;
+                        var pathToSave = Path.Combine(directoryToSave, fileName);
+                        productImg.SaveAs(pathToSave);
+                        collection.EmployeePhoto = fileName;
+                    //}                    
                 }
             }
             db.Employees.Add(collection);
@@ -117,7 +128,14 @@ namespace Catalogue.Controllers.CRUD
         {
                 if (ModelState.IsValid)
                 {
-                    if (productImg == null)
+                 //int iFileSize = productImg.ContentLength;
+                 //if (iFileSize > 2000000)  // 2MB
+                 //{
+                 //   // File exceeds the file maximum size
+                 //   return HttpNotFound();
+                 //}
+
+                if (productImg == null)
                     {
                         collection.EmployeePhoto = photo;
                     }
@@ -148,13 +166,16 @@ namespace Catalogue.Controllers.CRUD
         public ActionResult Delete(int? id)
         {
             if (id == null)
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return HttpNotFound();
             Employee employee = db.Employees.Include(p => p.Position).Include(d => d.Department).SingleOrDefault(e => e.EmployeeId == id);
-            return View(employee);
+            if (employee != null)
+                return PartialView("Delete", employee);
+            return View("Index");
         }
 
         // POST: Employee/Delete/5
         [HttpPost]
+        [ActionName("Delete")]
         public ActionResult Delete(int? id, string photoName)
         {
             Employee employee = new Employee();

@@ -46,21 +46,7 @@ demo = {
             ]
         };
 
-        var optionsSales = {
-            lineSmooth: false,
-            low: 0,
-            high: 800,
-            showArea: true,
-            height: "245px",
-            axisX: {
-                showGrid: false,
-            },
-            lineSmooth: Chartist.Interpolation.simple({
-                divisor: 3
-            }),
-            showLine: false,
-            showPoint: false,
-        };
+        
 
         var responsiveSales = [
             ['screen and (max-width: 640px)', {
@@ -140,22 +126,7 @@ demo = {
             ]
         };
 
-        var optionsSales = {
-            lineSmooth: false,
-            low: 0,
-            high: 800,
-            showArea: true,
-            height: "245px",
-            axisX: {
-                showGrid: false,
-            },
-            lineSmooth: Chartist.Interpolation.simple({
-                divisor: 3
-            }),
-            showLine: false,
-            showPoint: false,
-        };
-
+       
         var responsiveSales = [
             ['screen and (max-width: 640px)', {
                 axisX: {
@@ -243,6 +214,8 @@ demo = {
         marker.setMap(map);
     },
 
+    
+    
 
 
 
