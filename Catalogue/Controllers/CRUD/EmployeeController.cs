@@ -10,6 +10,7 @@ using PagedList;
 using System.IO;
 using Catalogue.Models;
 using System.Data.Entity.Validation;
+using System.Web.Helpers;
 
 namespace Catalogue.Controllers.CRUD
 {
@@ -80,24 +81,16 @@ namespace Catalogue.Controllers.CRUD
                 }
                 else
                 {
-                    //int iFileSize = productImg.ContentLength;
-                    //if (iFileSize > 2000000)  // 2MB
-                    //{
-                    //    ViewBag.Message = "Hello";
-                    //    return Redirect(Request.UrlReferrer.ToString());
-                    //}
-                    //else
-                    //{
-                        var fileName = Path.GetFileName(productImg.FileName);
+                    var fileName = Path.GetFileName(productImg.FileName);
+                    
+                    fileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + fileName;
 
-                        fileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + fileName;
+                    var directoryToSave = Server.MapPath(Url.Content("~/images"));
 
-                        var directoryToSave = Server.MapPath(Url.Content("~/images"));
+                    var pathToSave = Path.Combine(directoryToSave, fileName);
 
-                        var pathToSave = Path.Combine(directoryToSave, fileName);
-                        productImg.SaveAs(pathToSave);
-                        collection.EmployeePhoto = fileName;
-                    //}                    
+                    productImg.SaveAs(pathToSave);
+                    collection.EmployeePhoto = fileName;
                 }
             }
             db.Employees.Add(collection);
