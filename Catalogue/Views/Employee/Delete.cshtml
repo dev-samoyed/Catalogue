@@ -12,6 +12,7 @@
     </div>
     @using (Html.BeginForm())
     {
+        <input type="hidden" name="photoName" value="@Model.EmployeePhoto" />
         @Html.AntiForgeryToken()
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
