@@ -9,14 +9,13 @@
 }
 
 function post_request_without_page() {
-
     var name = $("#name").val();
     var positionId = $("#position-select-list").val();
     var departmentId = $("#department-select-list").val();
     var administrationId = $("#administration-select-list").val();
     var divisionId = $("#division-select-list").val();
 
-    $("#results_1").hide();
+    $("#loading").show();
     $.ajax({
         url: "/crud/Search/EmployeeFilter",
         type: 'POST',
@@ -29,18 +28,17 @@ function post_request_without_page() {
         },
         cache: false,
         success: function (result) {
-            $("#results_1").empty();
-            $("#results_1").append(result);
+            $("#loading").hide();
+            $("#results").html(result);
         },
-        complete: function () {
-            $("#results_1").show();
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            $("#results").html("Ошибка. Обновите страницу");
         }
     });
     return false;
 }
 
 function post_request() {
-
     var name = $("#name").val();
 
     var positionId = $("#position-select-list").val();
@@ -52,7 +50,7 @@ function post_request() {
     var url = parts[0];
     var page = parts[1].split("=")[1];
 
-    $("#results_1").hide();
+    $("#loading").show();
     $.ajax({
         url: url,
         type: 'POST',
@@ -66,11 +64,11 @@ function post_request() {
         },
         cache: false,
         success: function (result) {
-            $("#results_1").empty();
-            $("#results_1").append(result);
+            $("#loading").hide();
+            $("#results").html(result);
         },
-        complete: function () {
-            $("#results_1").show();
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            $("#results").html("Ошибка. Обновите страницу");
         }
     });
     return false;
