@@ -66,15 +66,11 @@ namespace Catalogue.Controllers
 
             name = name.Trim();
             if (name.Length <= 0)
-            {
                 employees = db.Employees;
-                employees = FilterAdditions(employees, positionId, departmentId, administrationId, divisionId);
-            }
             else
-            {
                 employees = BuildEmployeeSearchQueryByName(name);
-                employees = FilterAdditions(employees, positionId, departmentId, administrationId, divisionId);
-            }
+
+            employees = FilterAdditions(employees, positionId, departmentId, administrationId, divisionId);
 
             List<Employee> employeeMatches = AddIncludes(employees);
 
@@ -103,7 +99,6 @@ namespace Catalogue.Controllers
             if (title.Trim().Length <= 0)
             {
                 return PartialView("~/Views/Error/NotFound.cshtml");
-
             }
 
             if (type == "department")
