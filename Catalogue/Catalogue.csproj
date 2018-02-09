@@ -558,6 +558,7 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="Views\Search\EmployeeFilter.cshtml" />
     <Content Include="Views\Department\Delete.cshtml" />
+    <Content Include="Views\Error\NotFoundError.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

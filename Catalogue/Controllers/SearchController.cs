@@ -35,13 +35,9 @@ namespace Catalogue.Controllers
 
             string view = "";
             if (User.IsInRole("admin"))
-            {
                 view = "~/Views/Search/AdminEmployeeSearch.cshtml";
-            }
             else
-            {
                 view = "~/Views/Search/EmployeeSearch.cshtml";
-            }
 
             return PartialView(view, employeeMatches);
         }
@@ -51,18 +47,6 @@ namespace Catalogue.Controllers
         public ActionResult EmployeeFilter(string name, int? page, int? positionId, int? departmentId, int? administrationId, int? divisionId)
         {
             IQueryable<Employee> employees = Enumerable.Empty<Employee>().AsQueryable();
-
-            List<Position> positions = db.Positions.ToList();
-            ViewBag.Positions = positions;
-
-            List<Department> departments = db.Departments.ToList();
-            ViewBag.Departments = departments;
-
-            List<Administration> admins = db.Administrations.ToList();
-            ViewBag.Admins = admins;
-
-            List<Division> divisions = db.Divisions.ToList();
-            ViewBag.Divisions = divisions;
 
             name = name.Trim();
             if (name.Length <= 0)
@@ -84,8 +68,7 @@ namespace Catalogue.Controllers
         // Forms not found partial view
         public ActionResult NotFoundResult ()
         {
-            return PartialView("~/Views/Error/NotFound.cshtml");
-
+            return PartialView("~/Views/Error/NotFoundError.cshtml");
         }
 
         // Forms a partial view with a list of found entities
@@ -97,9 +80,7 @@ namespace Catalogue.Controllers
 
             // returns not found if input string is empty
             if (title.Trim().Length <= 0)
-            {
-                return PartialView("~/Views/Error/NotFound.cshtml");
-            }
+                return RedirectToAction("NotFoundResult");
 
             if (type == "department")
             {
