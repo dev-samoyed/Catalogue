@@ -18,6 +18,7 @@ namespace Catalogue.Controllers.CRUD
     {
         CatalogueContext db = new CatalogueContext();
 
+        // Ajax pagination PartialView Employee 
         public ActionResult AjaxPositionList(int? page)
         {
             int pageSize = 10;
@@ -72,9 +73,7 @@ namespace Catalogue.Controllers.CRUD
         public ActionResult Create(Employee collection, HttpPostedFileBase productImg)
         {
             if (ModelState.IsValid)
-            {
-            
-
+            {          
                 if (productImg == null)
                 {
                     collection.EmployeePhoto = "default-avatar.png";
@@ -119,42 +118,36 @@ namespace Catalogue.Controllers.CRUD
         [HttpPost]
         public ActionResult Edit(int id, Employee collection, HttpPostedFileBase productImg, string photo)
         {
-                if (ModelState.IsValid)
-                {
-                 //int iFileSize = productImg.ContentLength;
-                 //if (iFileSize > 2000000)  // 2MB
-                 //{
-                 //   // File exceeds the file maximum size
-                 //   return HttpNotFound();
-                 //}
-
+            if (ModelState.IsValid)
+            {
                 if (productImg == null)
-                    {
-                        collection.EmployeePhoto = photo;
-                    }
-                    else if (productImg != null)
-                    {
-                        string fullPath = Request.MapPath("~/images/" + photo);
-                        if (System.IO.File.Exists(fullPath) && photo != "default-avatar.png")
-                        {
-                            System.IO.File.Delete(fullPath);
-                        }
-
-                        var fileName = Path.GetFileName(productImg.FileName);
-
-                        fileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + fileName;
-
-                        var directoryToSave = Server.MapPath(Url.Content("~/images"));
-
-                        var pathToSave = Path.Combine(directoryToSave, fileName);
-                        productImg.SaveAs(pathToSave);
-                        collection.EmployeePhoto = fileName;
-                    }
+                {
+                    collection.EmployeePhoto = photo;
                 }
-                db.Entry(collection).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                else if (productImg != null)
+                {
+                    string fullPath = Request.MapPath("~/images/" + photo);
+                    if (System.IO.File.Exists(fullPath) && photo != "default-avatar.png")
+                    {
+                        System.IO.File.Delete(fullPath);
+                    }
+
+                    var fileName = Path.GetFileName(productImg.FileName);
+
+                    fileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + fileName;
+
+                    var directoryToSave = Server.MapPath(Url.Content("~/images"));
+
+                    var pathToSave = Path.Combine(directoryToSave, fileName);
+                    productImg.SaveAs(pathToSave);
+                    collection.EmployeePhoto = fileName;
+                }
+            }
+            db.Entry(collection).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
+
         // GET: Employee/Delete/5
         public ActionResult Delete(int? id)
         {

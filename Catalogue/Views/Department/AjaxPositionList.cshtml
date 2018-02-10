@@ -4,9 +4,11 @@
 
 <table class="table" id="listTable">
     <tr>
+        <!-- Field DepartmentName -->
         <th>
             @Html.DisplayNameFor(model => model.First().DepartmentName)
         </th>
+        <!-- Field ComboBox AdministrationName -->
         <th>
             @Html.DisplayNameFor(model => model.First().Administration.AdministrationName)
         </th>
@@ -15,13 +17,15 @@
 
 @foreach (var item in Model) {
     <tr>
+        <!-- Field DepartmentName -->
         <td class="td-title">
             @Html.DisplayFor(modelItem => item.DepartmentName)
         </td>
+        <!-- Field ComboBox AdministrationName -->
         <td class="td-title">
             @Html.DisplayFor(modelItem => item.Administration.AdministrationName)
         </td>
-        
+        <!-- Buttons Edit, Details, Delete -->
         <td>
             <a class="btn btn-default" name="editButton" id="editButton" href="@Url.Action("Edit","Department", new {id = item.DepartmentId})">Редактировать</a> |
             <a class="btn btn-default" name="detailsButton" id="detailsButton" href="@Url.Action("Details","Department", new {id = item.DepartmentId})">Просмотреть</a> |
@@ -31,6 +35,7 @@
 }
 
 </table>
+<!-- Pagination -->
         @Html.PagedListPager(Model, page => Url.Action("AjaxPositionList", new { page }),
          PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "result"}))
         Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount

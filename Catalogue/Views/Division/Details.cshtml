@@ -16,16 +16,17 @@
                     <div>
                         <hr />
                         <dl class="dl-horizontal">
+                            <!-- Field DivisionName -->
                             <dt>
                                 @Html.DisplayNameFor(model => model.DivisionName)
                             </dt>
-
                             <dd>
                                 @Html.DisplayFor(model => model.DivisionName)
                             </dd>
 
                         </dl>
                     </div>
+                    <!-- Buttons Edit and Back -->
                     <p>
                         <a class="btn btn-default" name="editButton" id="editButton" href="@Url.Action("Edit","Division", new {id = Model.DivisionId})">Редактировать</a> |
                         <a class="btn btn-default" name="backButton" id="backButton" href="@Url.Action("Index","Division")">Назад</a>
