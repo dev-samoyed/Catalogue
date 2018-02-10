@@ -24,7 +24,6 @@ namespace Catalogue.Controllers
             int pageNumber = (page ?? 1);
 
             IPagedList<Employee> employees = db.Employees.OrderBy(e => e.EmployeeFullName).Include(d => d.Department).ToPagedList(pageNumber, pageSize);
-            //ViewBag.Administrations = administrations;
 
             List<Position> positions = db.Positions.ToList();
             ViewBag.Positions = positions;
@@ -40,64 +39,5 @@ namespace Catalogue.Controllers
 
             return View(employees);
         }
-
-        /// <summary>
-        /// Shows list of employees of the department
-        /// </summary>
-        /// <param name="DepartmentId"></param>
-        /// <returns>list of employees</returns>
-        public ActionResult AjaxDepartmentEmployees (int? DepartmentId)
-        {
-            if (DepartmentId == null)
-            {
-                return PartialView("~/Views/Error/NotFound.cshtml");
-
-            }
-
-            IQueryable<Employee> query = db.Employees
-                .Where(e => e.DepartmentId == DepartmentId);
-
-            List<Employee> employees = AddIncludes(query);
-
-            return PartialView(employees);
-        }
-
-        /// <summary>
-        /// Shows employee's info by id
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns>employee's info</returns>
-        public ActionResult AjaxShowEmployee (int? id)
-        {
-            if (id == null)
-            {
-                return PartialView("~/Views/Error/NotFound.cshtml");
-            }
-
-            Employee employee = db.Employees
-                .Include(p => p.Position)
-                .Include(d => d.Department)
-                .SingleOrDefault(e => e.EmployeeId == id);
-
-            return PartialView(employee);
-        }
-
-        private List<Employee> AddIncludes(IQueryable<Employee> query)
-        {
-            List<Employee> employeeMatches = query
-                .OrderBy(c => c.EmployeeFullName)
-                .Include(p => p.Position)
-                .Include(d => d.Department)
-                .ToList();
-
-            return employeeMatches;
-        }
-
-        public string Test ()
-        {
-            bool result = User.IsInRole("admin");
-            return result ? "admin" : "user";
-        }
-
     }
 }

@@ -62,6 +62,13 @@
     cursor: pointer;
 }
 
+div.loading {
+    width: 60px;
+    height: 60px;
+    padding: 20px 0 0 0;
+    margin: 0 auto;
+    overflow: inherit;
+}
 .modal-backdrop.in {
     opacity: 0;
 }

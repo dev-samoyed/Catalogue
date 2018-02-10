@@ -55,15 +55,21 @@ function checkPhotoPreview(){
 
         var reader = new FileReader;
         var image = new Image;
+        var size = ~~(file.size);
 
         reader.readAsDataURL(file);
         reader.onload = function (_file) {
 
             image.src = _file.target.result;
             image.onload = function () {
-
+          
                 $("#targetImg").attr('src', _file.target.result);
                 $("#imgPreview").show();
+               
+                if (size > 2000000) {
+                    ClearPreview();
+                } 
+           
             }
         }
     }
@@ -72,7 +78,28 @@ function checkPhotoPreview(){
 function ClearPreview () {
     $("#imageBrowes").val('');
     $("#imgPreview").hide();
+    $("#myModal").on("show", function() {    // wire up the OK button to dismiss the modal when shown
+        $("#myModal a.btn").on("click", function(e) {
+            console.log("button pressed");   // just as an example...
+            $("#myModal").modal('hide');     // dismiss the dialog
+        });
+    });
+    $("#myModal").on("hide", function() {    // remove the event listeners when the dialog is dismissed
+        $("#myModal a.btn").off("click");
+    });
+    
+    $("#myModal").on("hidden", function() {  // remove the actual elements from the DOM when fully hidden
+        $("#myModal").remove();
+    });
+    
+    $("#myModal").modal({                    // wire up the actual modal functionality and show the dialog
+        "backdrop"  : "static",
+        "keyboard"  : true,
+        "show"      : true                     // ensure the modal is shown immediately
+    });
+   
 }
+
 
 function checkDismissed () {
     $("#dateDis").on('change', function () {
