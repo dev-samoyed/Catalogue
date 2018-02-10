@@ -4,6 +4,7 @@
 
 <table class="table" id="listTable">
     <tr>
+        <!-- Field DivisionName -->
         <th>
             @Html.DisplayNameFor(model => model.First().DivisionName)
         </th>
@@ -13,9 +14,11 @@
     @foreach (var item in Model)
     {
         <tr>
+            <!-- Field DivisionName -->
             <td class="td-title">
                 @Html.DisplayFor(modelItem => item.DivisionName)
             </td>
+            <!-- Buttons Edit, Details, Delete -->
             <td>
                 <a class="btn btn-default" name="editButton" id="editButton" href="@Url.Action("Edit","Division", new {id = item.DivisionId})">Редактировать</a> |
                 <a class="btn btn-default" name="detailsButton" id="detailsButton" href="@Url.Action("Details","Division", new {id = item.DivisionId})">Просмотреть</a> |
@@ -24,7 +27,7 @@
         </tr>
     }
 </table>
-
+<!-- Pagination -->
         @Html.PagedListPager(Model, page => Url.Action("AjaxPositionList", new { page }),
             PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "result" }))
         Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount

@@ -16,72 +16,66 @@
                     <div>
                         <hr />
                         <dl class="dl-horizontal">
+                            <!-- Field DivisionName -->
                             <dt>
                                 @Html.DisplayNameFor(model => model.Division.DivisionName)
                             </dt>
-
                             <dd>
                                 @Html.DisplayFor(model => model.Division.DivisionName)
                             </dd>
-
+                            <!-- Field AdministrationName -->
                             <dt>
                                 @Html.DisplayNameFor(model => model.AdministrationName)
                             </dt>
-
                             <dd>
                                 @Html.DisplayFor(model => model.AdministrationName)
                             </dd>                          
-
+                            <!-- Field AdministrationPost -->
                             <dt>
                                 @Html.DisplayNameFor(model => model.AdministrationPost)
                             </dt>
-
                             <dd>
                                 @Html.DisplayFor(model => model.AdministrationPost)
                             </dd>
-
+                            <!-- Field AdministrationAddress -->
                             <dt>
                                 @Html.DisplayNameFor(model => model.AdministrationAddress)
                             </dt>
-
                             <dd>
                                 @Html.DisplayFor(model => model.AdministrationAddress)
                             </dd>
-
+                            <!-- Field AdministrationFax -->
                             <dt>
                                 @Html.DisplayNameFor(model => model.AdministrationFax)
                             </dt>
-
                             <dd>
                                 @Html.DisplayFor(model => model.AdministrationFax)
                             </dd>
-
+                            <!-- Field AdministrationEMail -->
                             <dt>
                                 @Html.DisplayNameFor(model => model.AdministrationEMail)
                             </dt>
-
                             <dd>
                                 @Html.DisplayFor(model => model.AdministrationEMail)
                             </dd>
-
+                            <!-- Field AdministrationSkype -->
                             <dt>
                                 @Html.DisplayNameFor(model => model.AdministrationSkype)
                             </dt>
-
                             <dd>
                                 @Html.DisplayFor(model => model.AdministrationSkype)
                             </dd>
-
+                            <!-- Field AdministrationCode -->
                             <dt>
                                 @Html.DisplayNameFor(model => model.AdministrationCode)
                             </dt>
-
                             <dd>
                                 @Html.DisplayFor(model => model.AdministrationCode)
                             </dd>
 
                         </dl>
                     </div>
+                    <!-- Buttons Edit and Back -->
                     <p>
                         <a class="btn btn-default" name="editButton" id="editButton" href="@Url.Action("Edit","Administration", new {id = Model.AdministrationId})">Редактировать</a> |
                         <a class="btn btn-default" name="backButton" id="backButton" href="@Url.Action("Index","Administration")">Назад</a>
