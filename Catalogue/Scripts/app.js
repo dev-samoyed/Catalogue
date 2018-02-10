@@ -56,6 +56,7 @@ function toPrevMain(from = "") {
             var reader = new FileReader;
             var image = new Image;
             var size = ~~(file.size);
+            var type = file.type;
 
             reader.readAsDataURL(file);
             reader.onload = function (_file) {
@@ -66,10 +67,18 @@ function toPrevMain(from = "") {
                     $("#targetImg").attr('src', _file.target.result);
                     $("#imgPreview").show();
                
+                    if (type != 'image/jpg' || type != 'image/png' || type != 'image/jpeg') {
+                        ClearPreview();
+
+                        $('#myModal').modal('show');
+                       // $('#MessageError').text('Необходимо выбрать фотографию с расширением JPeG или PNG!');   
+                        $('#MessageError').text(type);      
+                    } 
                     if (size > 2000000) {
                         ClearPreview();
 
                         $('#myModal').modal('show');
+                        $('#MessageError').text('Размер изображения не должно превышать 2 МБ!');                      
                     } 
                 }
             }
