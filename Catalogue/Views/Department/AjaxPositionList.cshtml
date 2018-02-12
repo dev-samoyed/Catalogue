@@ -2,17 +2,19 @@
 @using PagedList;
 @using PagedList.Mvc;
 
-<table class="table" id="listTable">
+<table class="table table-striped" id="listTable">
     <tr>
         <!-- Field DepartmentName -->
-        <th>
+        <th class="col-md-5">
             @Html.DisplayNameFor(model => model.First().DepartmentName)
         </th>
         <!-- Field ComboBox AdministrationName -->
-        <th>
+        <th class="col-md-5">
             @Html.DisplayNameFor(model => model.First().Administration.AdministrationName)
         </th>
-        <th></th>
+        <th style="text-align:center;">
+            Действия
+        </th>
     </tr>
 
 @foreach (var item in Model) {

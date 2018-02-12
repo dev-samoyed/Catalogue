@@ -60,7 +60,10 @@
                      <div class="sidebar-wrapper">
                          <div class="logo">
                              <a href="@Url.Action("Index", "Home")" class="simple-text">
-                                 Справочник НСК/ГВЦ
+                                 <div class="login100-pic js-tilt" data-tilt>
+                                     <img src="@Url.Content("~/Content/assets/img/img-01.png")" alt="IMG">
+                                 </div>
+                                  Справочник НСК/ГВЦ
                              </a>
                          </div>
                          <ul class="nav">
@@ -84,7 +87,7 @@
                              <span class="icon-bar"></span>
                              <span class="icon-bar"></span>
                          </button>
-                         @Html.ActionLink("Справочник НСК/ГВЦ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                         @Html.ActionLink("Национальный статистический комитет Главный вычислительный центры Кыргызской Республики", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
                      </div>
                      <div class="collapse navbar-collapse">
 
@@ -136,9 +139,4 @@
 </body>
 
 </html>
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 64e2d55395864f56ab2a3d48341a8675b2742c68
 

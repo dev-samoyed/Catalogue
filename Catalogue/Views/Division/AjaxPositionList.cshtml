@@ -2,13 +2,15 @@
 @using PagedList;
 @using PagedList.Mvc;
 
-<table class="table" id="listTable">
+<table class="table table-striped" id="listTable">
     <tr>
         <!-- Field DivisionName -->
-        <th>
+        <th class="col-md-10">
             @Html.DisplayNameFor(model => model.First().DivisionName)
         </th>
-        <th></th>
+        <th style="text-align:center;">
+            Действия
+        </th>
     </tr>
 
     @foreach (var item in Model)

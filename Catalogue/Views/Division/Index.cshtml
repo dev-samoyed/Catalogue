@@ -51,12 +51,14 @@
                 <div id="results"></div>
 
                 <div class="content" id="accordion">
-                    <table class="table" id="listTable" style="table-layout: fixed; width: 100%">
+                    <table class="table table-striped" id="listTable" style="table-layout: fixed; width: 100%">
                         <tr>
-                            <th>
+                            <th class="col-md-10">
                                 @Html.DisplayNameFor(model => model.First().DivisionName)
                             </th>
-                            <th></th>
+                            <th style="text-align:center;">
+                                Действия
+                            </th>
                         </tr>
 
                         @foreach (var item in Model)

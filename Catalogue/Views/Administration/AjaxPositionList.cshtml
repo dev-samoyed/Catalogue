@@ -2,7 +2,7 @@
 @using PagedList;
 @using PagedList.Mvc;
 
-<table class="table" id="listTable">
+<table class="table table-striped" id="listTable">
     <tr>
         <!-- Field ComboBox DivisionName with Validation -->
         <th>
@@ -35,6 +35,9 @@
         <!-- Field AdministrationCode with Validation -->
         <th>
             @Html.DisplayNameFor(model => model.First().AdministrationCode)
+        </th>
+        <th>
+            Действия
         </th>
     </tr>
 
