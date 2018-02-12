@@ -16,32 +16,6 @@ namespace Catalogue.Controllers
     {
         CatalogueContext db = new CatalogueContext();
 
-        // Forms a partial view with a list of found employees
-        public ActionResult EmployeeSearch(string name, int? positionId, int? departmentId, int? administrationId, int? divisionId)
-        {
-            name = name.Trim();
-
-            if (name.Length <= 0)
-                return RedirectToAction("NotFoundResult");
-
-            IQueryable<Employee>  employees = BuildEmployeeSearchQueryByName(name);
-
-            employees = FilterAdditions(employees, positionId, departmentId, administrationId, divisionId);
-
-            List<Employee> employeeMatches = AddIncludes(employees);
-
-            if (employeeMatches.Count <= 0)
-                return RedirectToAction("NotFoundResult");
-
-            string view = "";
-            if (User.IsInRole("admin"))
-                view = "~/Views/Search/AdminEmployeeSearch.cshtml";
-            else
-                view = "~/Views/Search/EmployeeSearch.cshtml";
-
-            return PartialView(view, employeeMatches);
-        }
-
         // Builds the ajax employee search query with pagination
         [HttpPost]
         public ActionResult EmployeeFilter(string name, int? page, int? positionId, int? departmentId, int? administrationId, int? divisionId)
@@ -58,11 +32,16 @@ namespace Catalogue.Controllers
 
             List<Employee> employeeMatches = AddIncludes(employees);
 
+            string view = "";
+            if (User.IsInRole("admin"))
+                view = "~/Views/Search/AdminEmployeeFilter.cshtml";
+            else
+                view = "~/Views/Search/EmployeeFilter.cshtml";
 
             int pageSize = 3;
             int pageNumber = (page ?? 1);
 
-            return PartialView(employeeMatches.ToPagedList(pageNumber, pageSize));
+            return PartialView(view, employeeMatches.ToPagedList(pageNumber, pageSize));
         }
 
         // Forms not found partial view
