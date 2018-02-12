@@ -106,15 +106,6 @@
                                     @Html.EditorFor(model => model.DateDismissal,  new { htmlAttributes = new { @class = "date-picker", @id="dateDis" } })
                                 </div>
                             </div>
-                            <!-- CheckBox Dismissed with Validation -->
-                            <div class="form-group">
-                                @Html.LabelFor(model => model.Dismissed, htmlAttributes: new { @class = "control-label col-md-2" })
-                                <div class="col-md-10">
-                                        <div class="checkbox-inline custom-checkbox">                                        
-                                             @Html.CheckBoxFor(model => model.Dismissed, new { @class = "custom-checkbox" ,@id = "checkBox"})
-                                        </div>
-                                </div>
-                            </div>
                             <!-- Image EmployeePhoto and Preview -->
                             <div class="form-group">
                                 <div class="row">
@@ -165,9 +156,6 @@
                     @Scripts.Render("~/bundles/jqueryval")
                     @Scripts.Render("~/Scripts/app.js")
               
-                    <script>
-                        checkDismissed();
-                    </script>
                     <script type="text/javascript" charset="utf-8">
                         checkPhotoPreview();
                     </script>                        
