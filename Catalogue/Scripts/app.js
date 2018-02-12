@@ -1,4 +1,4 @@
-//on close collapse
+Ôªø//on close collapse
 $('.collapse').on('hidden.bs.collapse', function () {
   var target = '#'+$(this).attr('data-parent');
   $(target).removeClass('collapse-open');
@@ -58,28 +58,27 @@ function toPrevMain(from = "") {
             var size = ~~(file.size);
             var type = file.type;
 
-            reader.readAsDataURL(file);
-            reader.onload = function (_file) {
+            if (type != "image/jpeg" && type != "image/png" && type != "image/jpg") {
+                ClearPreview();
+                $('#myModal').modal('show');
+                $('#MessageError').text('–ù–µ–æ–±—Ö–æ–¥–∏–º–æ –≤—ã–±—Ä–∞—Ç—å —Ñ–æ—Ç–æ–≥—Ä–∞—Ñ–∏—é —Å —Ä–∞—Å—à–∏—Ä–µ–Ω–∏–µ–º JPeG –∏–ª–∏ PNG!');   
+            } 
+            else{
+                reader.readAsDataURL(file);
+                reader.onload = function (_file) {
 
-                image.src = _file.target.result;
-                image.onload = function () {
+                    image.src = _file.target.result;
+                    image.onload = function () {
           
-                    $("#targetImg").attr('src', _file.target.result);
-                    $("#imgPreview").show();
-               
-                    if (type != 'image/jpg' || type != 'image/png' || type != 'image/jpeg') {
-                        ClearPreview();
-
-                        $('#myModal').modal('show');
-                       // $('#MessageError').text('ÕÂÓ·ıÓ‰ËÏÓ ‚˚·‡Ú¸ ÙÓÚÓ„‡ÙË˛ Ò ‡Ò¯ËÂÌËÂÏ JPeG ËÎË PNG!');   
-                        $('#MessageError').text(type);      
-                    } 
-                    if (size > 2000000) {
-                        ClearPreview();
-
-                        $('#myModal').modal('show');
-                        $('#MessageError').text('–‡ÁÏÂ ËÁÓ·‡ÊÂÌËˇ ÌÂ ‰ÓÎÊÌÓ ÔÂ‚˚¯‡Ú¸ 2 Ã¡!');                      
-                    } 
+                        $("#targetImg").attr('src', _file.target.result);
+                        $("#imgPreview").show();
+                                 
+                        if (size > 2000000) {
+                            ClearPreview();
+                            $('#myModal').modal('show');
+                            $('#MessageError').text('–†–∞–∑–º–µ—Ä –∏–∑–æ–±—Ä–∞–∂–µ–Ω–∏—è –Ω–µ –¥–æ–ª–∂–Ω–æ –ø—Ä–µ–≤—ã—à–∞—Ç—å 2 –ú–ë!');                      
+                        } 
+                    }
                 }
             }
         }

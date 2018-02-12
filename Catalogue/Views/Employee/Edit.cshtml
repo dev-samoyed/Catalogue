@@ -132,7 +132,7 @@
                           
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
-                                    <input type="file" name="productImg" id="imageBrowes" class="btn btn-default" />
+                                    <input type="file" name="productImg" id="imageBrowes" class="btn btn-default" accept="image/x-png,image/gif,image/jpeg"/>
                                     <input type="button" value="Сброс" id="imageBrowes" onclick="ClearPreview()" class="btn btn-default" />
                                     <input type="hidden" name="photo" value="@Model.EmployeePhoto"/>                                   
                                 </div>
@@ -146,7 +146,7 @@
                                         <h5 class="modal-title" id="exampleModalLabel">Ошибка</h5>
                                     </div>
                                     <div class="modal-body">
-                                        Размер изображение не должно превышать 2 МБ!
+                                        <span id="MessageError"></span> 
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>

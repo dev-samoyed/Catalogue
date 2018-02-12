@@ -148,7 +148,10 @@ body,
 }
 
 body {
-    background: rgba(203, 203, 210, 0.15);
+    /*background: rgba(203, 203, 210, 0.15);*/
+        background-image: url("../img/5.png");
+    background-repeat: repeat;
+    background-size: auto;
 }
 
 a {

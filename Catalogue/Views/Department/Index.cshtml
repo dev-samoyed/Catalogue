@@ -53,15 +53,17 @@
 
                 <div class="content" id="accordion">
                     
-                    <table class="table" id="listTable">
+                    <table class="table table-striped" id="listTable">
                         <tr>
-                            <th>
+                            <th class="col-md-5">
                                 @Html.DisplayNameFor(model => model.First().DepartmentName)
                             </th>
-                            <th>
+                            <th class="col-md-5">
                                 @Html.DisplayNameFor(model => model.First().Administration.AdministrationName)
                             </th>
-                            <th></th>
+                            <th style="text-align:center;">
+                                Действия
+                            </th>
                         </tr>
 
                         @foreach (var item in Model)
