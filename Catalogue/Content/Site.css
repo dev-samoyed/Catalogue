@@ -9,7 +9,11 @@
    word-wrap:break-word;
     overflow-wrap:break-word;
 }
-
+.btn-group {
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 17%;
+}
 .custom-checkbox{
     position: relative !important;
     margin: -6px -10px 10px !important;

@@ -14,6 +14,7 @@ namespace Catalogue.Controllers.CRUD
     {
         CatalogueContext db = new CatalogueContext();
 
+        // Ajax pagination PartialView Administration 
         [Authorize(Roles = "admin")]
         public ActionResult AjaxPositionList(int? page)
         {

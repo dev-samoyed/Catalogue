@@ -2,92 +2,120 @@
 @using PagedList;
 @using PagedList.Mvc;
 
-<table class="table" id="listTable">
+<table class="table table-striped" id="listTable">
     <tr>
+        <!-- Image EmployeePhoto -->
         <th>
             @Html.DisplayNameFor(model => model.First().EmployeePhoto)
         </th>
+        <!-- Field DepartmentName -->
         <th>
             @Html.DisplayNameFor(model => model.First().Department.DepartmentName)
         </th>
+        <!-- Field PositionName -->
         <th>
             @Html.DisplayNameFor(model => model.First().Position.PositionName)
         </th>
+        <!-- Field EmployeeFullName -->
         <th>
             @Html.DisplayNameFor(model => model.First().EmployeeFullName)
         </th>
+        <!-- Field EmployeeRoom -->
         <th>
             @Html.DisplayNameFor(model => model.First().EmployeeRoom)
         </th>
+        <!-- Field EmployeeAddress -->
         <th>
             @Html.DisplayNameFor(model => model.First().EmployeeAddress)
         </th>
+        <!-- Field EmployeePhone -->
         <th>
             @Html.DisplayNameFor(model => model.First().EmployeePhone)
         </th>
+        <!-- Field EmployeePersonalPhone -->
         <th>
             @Html.DisplayNameFor(model => model.First().EmployeePersonalPhone)
         </th>
+        <!-- Field EmployeeEmail -->
         <th>
             @Html.DisplayNameFor(model => model.First().EmployeeEmail)
         </th>
+        <!-- Field EmployeeSkype -->
         <th>
             @Html.DisplayNameFor(model => model.First().EmployeeSkype)
         </th>
+        <!-- Field DateAdoption -->
         <th>
             @Html.DisplayNameFor(model => model.First().DateAdoption)
         </th>
+        <!-- Field DateDismissal -->
         <th>
             @Html.DisplayNameFor(model => model.First().DateDismissal)
         </th>
+        <!-- Field Dismissed -->
         <th>
             @Html.DisplayNameFor(model => model.First().Dismissed)
         </th>
-        <th></th>
+        <th>
+            Действия
+        </th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        <!-- Image EmployeePhoto -->
         <td>
             <img src="~/images/@item.EmployeePhoto" width="100" height="100" />
         </td>
-
+        <!-- Image DepartmentName -->
         <td class="td-title">
             @Html.DisplayFor(modelItem => item.Department.DepartmentName)
         </td>
+        <!-- Field PositionName -->
         <td class="td-title">
             @Html.DisplayFor(modelItem => item.Position.PositionName)
         </td>
+        <!-- Field EmployeeFullName -->
         <td class="td-title">
             @Html.DisplayFor(modelItem => item.EmployeeFullName)
         </td>
+        <!-- Field EmployeeRoom -->
         <td class="td-title">
             @Html.DisplayFor(modelItem => item.EmployeeRoom)
         </td>
+        <!-- Field EmployeeAddress -->
         <td class="td-title">
             @Html.DisplayFor(modelItem => item.EmployeeAddress)
         </td>
+        <!-- Field EmployeePhone -->
         <td class="td-title">
             @Html.DisplayFor(modelItem => item.EmployeePhone)
         </td>
+        <!-- Field EmployeePersonalPhone -->
         <td class="td-title">
             @Html.DisplayFor(modelItem => item.EmployeePersonalPhone)
         </td>
+        <!-- Field EmployeeEmail -->
         <td class="td-title">
             @Html.DisplayFor(modelItem => item.EmployeeEmail)
         </td>
+        <!-- Field EmployeeSkype -->
         <td class="td-title">
             @Html.DisplayFor(modelItem => item.EmployeeSkype)
         </td>
+        <!-- Field DateAdoption -->
         <td>
             @Html.DisplayFor(modelItem => item.DateAdoption)
         </td>
+        <!-- Field DateDismissal -->
         <td>
             @Html.DisplayFor(modelItem => item.DateDismissal)
         </td>
+        <!-- Field Dismissed -->
         <td>
             @Html.DisplayFor(modelItem => item.Dismissed)
         </td>
+        <!-- Buttons Edit, Details, Delete -->
         <td>
             <a class="btn btn-default" name="editButton" id="editButton" href="@Url.Action("Edit","Employee", new {id = item.EmployeeId})">Редактировать</a> |
             <a class="btn btn-default" name="detailsButton" id="detailsButton" href="@Url.Action("Details","Employee", new {id = item.EmployeeId})">Просмотреть</a> |
@@ -96,6 +124,7 @@
     </tr>
 }
 </table>
+<!-- Pagination -->
 @Html.PagedListPager(Model, page => Url.Action("AjaxPositionList", new { page }),
          PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMethod = "GET", UpdateTargetId = "result"}))
         Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount

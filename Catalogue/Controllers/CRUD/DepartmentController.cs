@@ -14,6 +14,7 @@ namespace Catalogue.Controllers.CRUD
     {
         CatalogueContext db = new CatalogueContext();
 
+        // Ajax pagination PartialView Department 
         public ActionResult AjaxPositionList(int? page)
         {
             int pageSize = 10;
@@ -76,6 +77,7 @@ namespace Catalogue.Controllers.CRUD
             ViewBag.AdministrationList = administrationList;
             return View(department);
         }
+
         // POST: Department/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, Department collection)

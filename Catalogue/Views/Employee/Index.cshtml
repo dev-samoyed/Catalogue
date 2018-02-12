@@ -93,7 +93,7 @@
                 <div id="employee-list"></div>
 
                 <div class="content" id="accordion">
-                    <table class="table" id="listTable">
+                    <table class="table table-striped" id="listTable">
                         <tr>
                             <th>
                                 @Html.DisplayNameFor(model => model.First().EmployeePhoto)
@@ -133,8 +133,10 @@
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.First().Dismissed)
-                            </th>                           
-                            <th></th>
+                            </th>      
+                            <th>
+                                Действия
+                            </th>                     
                         </tr>
 
                         @foreach (var item in Model)

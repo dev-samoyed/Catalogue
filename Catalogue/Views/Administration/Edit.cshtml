@@ -16,12 +16,11 @@
                     @using (Html.BeginForm())
                     {
                         @Html.AntiForgeryToken()
-
                         <div class="form-horizontal">
                             <hr />
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             @Html.HiddenFor(model => model.AdministrationId)
-
+                            <!-- Field ComboBox DivisionId with Validation -->
                             <div class="form-group">
                                 @Html.LabelFor(model => model.DivisionId, "Административное деление", htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
@@ -29,7 +28,7 @@
                                     @Html.ValidationMessageFor(model => model.DivisionId, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-
+                            <!-- Field ComboBox AdministrationName with Validation -->
                             <div class="form-group">
                                 @Html.LabelFor(model => model.AdministrationName, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
@@ -37,7 +36,7 @@
                                     @Html.ValidationMessageFor(model => model.AdministrationName, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-                                                     
+                            <!-- Field AdministrationPost with Validation -->                  
                             <div class="form-group">
                                 @Html.LabelFor(model => model.AdministrationPost, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
@@ -45,7 +44,7 @@
                                     @Html.ValidationMessageFor(model => model.AdministrationPost, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-
+                            <!-- Field AdministrationAddress with Validation -->
                             <div class="form-group">
                                 @Html.LabelFor(model => model.AdministrationAddress, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
@@ -53,7 +52,7 @@
                                     @Html.ValidationMessageFor(model => model.AdministrationAddress, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-
+                            <!-- Field AdministrationFax with Validation -->
                             <div class="form-group">
                                 @Html.LabelFor(model => model.AdministrationFax, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
@@ -61,7 +60,7 @@
                                     @Html.ValidationMessageFor(model => model.AdministrationFax, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-
+                            <!-- Field AdministrationEMail with Validation -->
                             <div class="form-group">
                                 @Html.LabelFor(model => model.AdministrationEMail, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
@@ -69,7 +68,7 @@
                                     @Html.ValidationMessageFor(model => model.AdministrationEMail, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-
+                            <!-- Field AdministrationSkype with Validation -->
                             <div class="form-group">
                                 @Html.LabelFor(model => model.AdministrationSkype, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
@@ -77,7 +76,7 @@
                                     @Html.ValidationMessageFor(model => model.AdministrationSkype, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-
+                            <!-- Field AdministrationCode with Validation -->
                             <div class="form-group">
                                 @Html.LabelFor(model => model.AdministrationCode, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
@@ -85,7 +84,7 @@
                                     @Html.ValidationMessageFor(model => model.AdministrationCode, "", new { @class = "text-danger" })
                                 </div>
                             </div>                          
-
+                            <!-- Buttons Save and Clear -->
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
                                     <input type="submit" value="Сохранить" class="btn btn-default" /> |

@@ -22,6 +22,7 @@
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         @Html.HiddenFor(model => model.EmployeeId)
 
+                        <!-- Field EmployeeFullName with Validation -->
                         <div class="form-group">
                             @Html.LabelFor(model => model.EmployeeFullName, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
@@ -29,7 +30,7 @@
                                 @Html.ValidationMessageFor(model => model.EmployeeFullName, "", new { @class = "text-danger" })
                             </div>
                         </div>
-
+                        <!-- Field EmployeeRoom with Validation -->
                         <div class="form-group">
                             @Html.LabelFor(model => model.EmployeeRoom, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
@@ -37,7 +38,7 @@
                                 @Html.ValidationMessageFor(model => model.EmployeeRoom, "", new { @class = "text-danger" })
                             </div>
                         </div>
-
+                        <!-- Field EmployeeAddress with Validation -->
                         <div class="form-group">
                             @Html.LabelFor(model => model.EmployeeAddress, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
@@ -45,7 +46,7 @@
                                 @Html.ValidationMessageFor(model => model.EmployeeAddress, "", new { @class = "text-danger" })
                             </div>
                         </div>
-
+                        <!-- Field EmployeePhone with Validation -->
                         <div class="form-group">
                             @Html.LabelFor(model => model.EmployeePhone, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
@@ -53,7 +54,7 @@
                                 @Html.ValidationMessageFor(model => model.EmployeePhone, "", new { @class = "text-danger" })
                             </div>
                         </div>
-
+                        <!-- Field EmployeePersonalPhone with Validation -->
                         <div class="form-group">
                             @Html.LabelFor(model => model.EmployeePersonalPhone, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
@@ -61,7 +62,7 @@
                                 @Html.ValidationMessageFor(model => model.EmployeePersonalPhone, "", new { @class = "text-danger" })
                             </div>
                         </div>
-
+                        <!-- Field EmployeeEmail with Validation -->
                         <div class="form-group">
                             @Html.LabelFor(model => model.EmployeeEmail, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
@@ -69,7 +70,7 @@
                                 @Html.ValidationMessageFor(model => model.EmployeeEmail, "", new { @class = "text-danger" })
                             </div>
                         </div>
-
+                        <!-- Field EmployeeSkype with Validation -->
                         <div class="form-group">
                             @Html.LabelFor(model => model.EmployeeSkype, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
@@ -77,7 +78,7 @@
                                 @Html.ValidationMessageFor(model => model.EmployeeSkype, "", new { @class = "text-danger" })
                             </div>
                         </div>
-
+                        <!-- Field ComboBox PositionId with Validation -->
                         <div class="form-group">
                             @Html.LabelFor(model => model.PositionId, "PositionId", htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
@@ -85,7 +86,7 @@
                                 @Html.ValidationMessageFor(model => model.PositionId, "", new { @class = "text-danger" })
                             </div>
                         </div>
-
+                        <!-- Field ComboBox DepartmentId with Validation -->
                         <div class="form-group">
                             @Html.LabelFor(model => model.DepartmentId, "DepartmentId", htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
@@ -93,7 +94,7 @@
                                 @Html.ValidationMessageFor(model => model.DepartmentId, "", new { @class = "text-danger" })
                             </div>
                         </div>
-
+                        <!-- Field DateAdoption with Validation -->
                         <div class="form-group">
                             @Html.LabelFor(model => model.DateAdoption, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
@@ -101,14 +102,14 @@
                                 @Html.ValidationMessageFor(model => model.DateAdoption, "", new { @class = "text-danger" })
                             </div>
                         </div>
-
+                        <!-- Field DateDismissal with Validation -->
                         <div class="form-group">
                             @Html.LabelFor(model => model.DateDismissal, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
                                 @Html.EditorFor(model => model.DateDismissal, new { htmlAttributes = new { @class = "date-picker", @id = "dateDis" } })
                             </div>
                         </div>
-
+                        <!-- CheckBox Dismissed with Validation -->
                         <div class="form-group">
                             @Html.LabelFor(model => model.Dismissed, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
@@ -117,14 +118,12 @@
                                 </div>
                             </div>
                         </div>
-
+                        <!-- Image EmployeePhoto and Preview -->
                         <div class="form-group">
                             <div class="row">
                                 @Html.LabelFor(model => model.EmployeePhoto, htmlAttributes: new { @class = "control-label col-md-2" })
-
                                     <img src="~/images/@Model.EmployeePhoto" class="img-responsive col-md-1" style="width:110px; height:110px;" />
-                                    @Html.ValidationMessageFor(model => model.EmployeePhoto, "", new { @class = "text-danger" })
-                                
+                                    @Html.ValidationMessageFor(model => model.EmployeePhoto, "", new { @class = "text-danger" })                          
                                 <div id="imgPreview" class="col-md-4" style="display:none;">
                                     <i class="fa fa-arrow-right fa-3x"  style="float: left; position: inherit; margin-top: 8%; padding-right: 9%;"></i>
                                     <img class="img-responsive" id="targetImg" style="width:100px; height:100px;"/>
@@ -133,13 +132,29 @@
                           
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
-                                    <input type="file" name="productImg" id="imageBrowes" class="btn btn-default" />
+                                    <input type="file" name="productImg" id="imageBrowes" class="btn btn-default" accept="image/x-png,image/gif,image/jpeg"/>
                                     <input type="button" value="Сброс" id="imageBrowes" onclick="ClearPreview()" class="btn btn-default" />
                                     <input type="hidden" name="photo" value="@Model.EmployeePhoto"/>                                   
                                 </div>
                             </div>
                         </div>
-
+                        <!-- Modal window for image size 2MB-->
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Ошибка</h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        <span id="MessageError"></span> 
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Buttons Save and Clear -->
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
                                 <input type="submit" value="Сохранить" class="btn btn-default" /> |

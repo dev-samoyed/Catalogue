@@ -20,6 +20,7 @@
                         <div class="form-horizontal">
                             <hr />
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <!-- Field DepartmentName with Validation -->
                             <div class="form-group">
                                 @Html.LabelFor(model => model.DepartmentName, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
@@ -27,7 +28,7 @@
                                     @Html.ValidationMessageFor(model => model.DepartmentName, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-
+                            <!-- Field ComboBox AdministrationId with Validation -->
                             <div class="form-group">
                                 @Html.LabelFor(model => model.AdministrationId, "Орган управления", htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
@@ -35,7 +36,7 @@
                                     @Html.ValidationMessageFor(model => model.AdministrationId, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-
+                            <!-- Buttons Add and Back -->
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
                                     <input type="submit" value="Добавить" class="btn btn-default" /> |
