@@ -4,39 +4,35 @@
 
 <table class="table table-striped" id="listTable">
     <tr>
-        <!-- Field ComboBox DivisionName with Validation -->
-        <th>
+        <!-- Field ComboBox DivisionName -->
+        <th class="col-md-2">
             @Html.DisplayNameFor(model => model.First().Division.DivisionName)
         </th>
-        <!-- Field AdministrationName with Validation -->
-        <th>
+        <!-- Field AdministrationName -->
+        <th class="col-md-2">
             @Html.DisplayNameFor(model => model.First().AdministrationName)
         </th>     
-        <!-- Field AdministrationPost with Validation -->
-        <th>
+        <!-- Field AdministrationPost -->
+        <th class="col-md-1">
             @Html.DisplayNameFor(model => model.First().AdministrationPost)
         </th>
-        <!-- Field AdministrationAddress with Validation -->
-        <th>
+        <!-- Field AdministrationAddress -->
+        <th class="col-md-2">
             @Html.DisplayNameFor(model => model.First().AdministrationAddress)
         </th>
-        <!-- Field AdministrationFax with Validation -->
-        <th>
+        <!-- Field AdministrationFax -->
+        <th class="col-md-1">
             @Html.DisplayNameFor(model => model.First().AdministrationFax)
         </th>
-        <!-- Field AdministrationEMail with Validation -->
-        <th>
+        <!-- Field AdministrationEMail -->
+        <th class="col-md-1">
             @Html.DisplayNameFor(model => model.First().AdministrationEMail)
         </th>
-        <!-- Field AdministrationSkype with Validation -->
-        <th>
+        <!-- Field AdministrationSkype -->
+        <th class="col-md-1">
             @Html.DisplayNameFor(model => model.First().AdministrationSkype)
         </th>
-        <!-- Field AdministrationCode with Validation -->
-        <th>
-            @Html.DisplayNameFor(model => model.First().AdministrationCode)
-        </th>
-        <th>
+        <th style="text-align: center;">
             Действия
         </th>
     </tr>
@@ -44,37 +40,33 @@
     @foreach (var item in Model)
     {
         <tr>
-            <!-- Field ComboBox DivisionName with Validation -->
+            <!-- Field ComboBox DivisionName -->
             <td class="td-title">
                 @Html.DisplayFor(modelItem => item.Division.DivisionName)
             </td>
-            <!-- Field AdministrationName with Validation -->
+            <!-- Field AdministrationName -->
             <td class="td-title">
                 @Html.DisplayFor(modelItem => item.AdministrationName)
             </td>
-            <!-- Field AdministrationPost with Validation -->
+            <!-- Field AdministrationPost -->
             <td class="td-title">
                 @Html.DisplayFor(modelItem => item.AdministrationPost)
             </td>
-            <!-- Field AdministrationAddress with Validation -->
+            <!-- Field AdministrationAddress -->
             <td class="td-title">
                 @Html.DisplayFor(modelItem => item.AdministrationAddress)
             </td>
-            <!-- Field AdministrationFax with Validation -->
+            <!-- Field AdministrationFax -->
             <td class="td-title">
                 @Html.DisplayFor(modelItem => item.AdministrationFax)
             </td>
-            <!-- Field AdministrationEMail with Validation -->
+            <!-- Field AdministrationEMail -->
             <td class="td-title">
                 @Html.DisplayFor(modelItem => item.AdministrationEMail)
             </td>
-            <!-- Field AdministrationSkype with Validation -->
+            <!-- Field AdministrationSkype -->
             <td class="td-title">
                 @Html.DisplayFor(modelItem => item.AdministrationSkype)
-            </td>
-            <!-- Field AdministrationCode with Validation -->
-            <td class="td-title">
-                @Html.DisplayFor(modelItem => item.AdministrationCode)
             </td>
             <!-- Buttons Edit, Details, Delete -->
             <td>

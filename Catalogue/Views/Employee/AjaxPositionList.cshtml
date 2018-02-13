@@ -5,58 +5,38 @@
 <table class="table table-striped" id="listTable">
     <tr>
         <!-- Image EmployeePhoto -->
-        <th>
+        <th class="col-md-1">
             @Html.DisplayNameFor(model => model.First().EmployeePhoto)
         </th>
         <!-- Field DepartmentName -->
-        <th>
+        <th class="col-md-2">
             @Html.DisplayNameFor(model => model.First().Department.DepartmentName)
         </th>
         <!-- Field PositionName -->
-        <th>
+        <th class="col-md-1">
             @Html.DisplayNameFor(model => model.First().Position.PositionName)
         </th>
         <!-- Field EmployeeFullName -->
-        <th>
+        <th class="col-md-2">
             @Html.DisplayNameFor(model => model.First().EmployeeFullName)
         </th>
         <!-- Field EmployeeRoom -->
-        <th>
+        <th class="col-md-1">
             @Html.DisplayNameFor(model => model.First().EmployeeRoom)
         </th>
-        <!-- Field EmployeeAddress -->
-        <th>
-            @Html.DisplayNameFor(model => model.First().EmployeeAddress)
-        </th>
         <!-- Field EmployeePhone -->
-        <th>
+        <th class="col-md-1">
             @Html.DisplayNameFor(model => model.First().EmployeePhone)
         </th>
-        <!-- Field EmployeePersonalPhone -->
-        <th>
-            @Html.DisplayNameFor(model => model.First().EmployeePersonalPhone)
-        </th>
-        <!-- Field EmployeeEmail -->
-        <th>
-            @Html.DisplayNameFor(model => model.First().EmployeeEmail)
-        </th>
-        <!-- Field EmployeeSkype -->
-        <th>
-            @Html.DisplayNameFor(model => model.First().EmployeeSkype)
-        </th>
         <!-- Field DateAdoption -->
-        <th>
+        <th class="col-md-1">
             @Html.DisplayNameFor(model => model.First().DateAdoption)
         </th>
         <!-- Field DateDismissal -->
-        <th>
+        <th class="col-md-1">
             @Html.DisplayNameFor(model => model.First().DateDismissal)
         </th>
-        <!-- Field Dismissed -->
-        <th>
-            @Html.DisplayNameFor(model => model.First().Dismissed)
-        </th>
-        <th>
+        <th style="text-align: center;">
             Действия
         </th>
     </tr>
@@ -83,25 +63,9 @@
         <td class="td-title">
             @Html.DisplayFor(modelItem => item.EmployeeRoom)
         </td>
-        <!-- Field EmployeeAddress -->
-        <td class="td-title">
-            @Html.DisplayFor(modelItem => item.EmployeeAddress)
-        </td>
         <!-- Field EmployeePhone -->
         <td class="td-title">
             @Html.DisplayFor(modelItem => item.EmployeePhone)
-        </td>
-        <!-- Field EmployeePersonalPhone -->
-        <td class="td-title">
-            @Html.DisplayFor(modelItem => item.EmployeePersonalPhone)
-        </td>
-        <!-- Field EmployeeEmail -->
-        <td class="td-title">
-            @Html.DisplayFor(modelItem => item.EmployeeEmail)
-        </td>
-        <!-- Field EmployeeSkype -->
-        <td class="td-title">
-            @Html.DisplayFor(modelItem => item.EmployeeSkype)
         </td>
         <!-- Field DateAdoption -->
         <td>
@@ -110,10 +74,6 @@
         <!-- Field DateDismissal -->
         <td>
             @Html.DisplayFor(modelItem => item.DateDismissal)
-        </td>
-        <!-- Field Dismissed -->
-        <td>
-            @Html.DisplayFor(modelItem => item.Dismissed)
         </td>
         <!-- Buttons Edit, Details, Delete -->
         <td>
