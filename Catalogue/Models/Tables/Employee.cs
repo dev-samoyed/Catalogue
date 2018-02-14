@@ -63,8 +63,5 @@ namespace Catalogue.Models.Tables
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<DateTime> DateDismissal { get; set; }
-
-        [Display(Name = "Уволен")]
-        public bool Dismissed { get; set; }
     }
 }

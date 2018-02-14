@@ -5,63 +5,44 @@
 <table class="table table-striped" id="listTable">
     <tr>
         <!-- Image EmployeePhoto -->
-        <th>
+        <th class="col-md-1">
             @Html.DisplayNameFor(model => model.First().EmployeePhoto)
         </th>
         <!-- Field DepartmentName -->
-        <th>
+        <th class="col-md-2">
             @Html.DisplayNameFor(model => model.First().Department.DepartmentName)
         </th>
         <!-- Field PositionName -->
-        <th>
+        <th class="col-md-1">
             @Html.DisplayNameFor(model => model.First().Position.PositionName)
         </th>
         <!-- Field EmployeeFullName -->
-        <th>
+        <th class="col-md-2">
             @Html.DisplayNameFor(model => model.First().EmployeeFullName)
         </th>
         <!-- Field EmployeeRoom -->
-        <th>
+        <th class="col-md-1">
             @Html.DisplayNameFor(model => model.First().EmployeeRoom)
         </th>
-        <!-- Field EmployeeAddress -->
-        <th>
-            @Html.DisplayNameFor(model => model.First().EmployeeAddress)
-        </th>
         <!-- Field EmployeePhone -->
-        <th>
+        <th class="col-md-1">
             @Html.DisplayNameFor(model => model.First().EmployeePhone)
         </th>
-        <!-- Field EmployeePersonalPhone -->
-        <th>
-            @Html.DisplayNameFor(model => model.First().EmployeePersonalPhone)
-        </th>
-        <!-- Field EmployeeEmail -->
-        <th>
-            @Html.DisplayNameFor(model => model.First().EmployeeEmail)
-        </th>
-        <!-- Field EmployeeSkype -->
-        <th>
-            @Html.DisplayNameFor(model => model.First().EmployeeSkype)
-        </th>
         <!-- Field DateAdoption -->
-        <th>
+        <th class="col-md-1">
             @Html.DisplayNameFor(model => model.First().DateAdoption)
         </th>
         <!-- Field DateDismissal -->
-        <th>
+        <th class="col-md-1">
             @Html.DisplayNameFor(model => model.First().DateDismissal)
         </th>
-        <!-- Field Dismissed -->
-        <th>
-            @Html.DisplayNameFor(model => model.First().Dismissed)
-        </th>
-        <th>
+        <th style="text-align: center;">
             Действия
         </th>
     </tr>
 
 @foreach (var item in Model) {
+    var myModal = "myModal" + item.EmployeeId;
     <tr>
         <!-- Image EmployeePhoto -->
         <td>
@@ -83,25 +64,9 @@
         <td class="td-title">
             @Html.DisplayFor(modelItem => item.EmployeeRoom)
         </td>
-        <!-- Field EmployeeAddress -->
-        <td class="td-title">
-            @Html.DisplayFor(modelItem => item.EmployeeAddress)
-        </td>
         <!-- Field EmployeePhone -->
         <td class="td-title">
             @Html.DisplayFor(modelItem => item.EmployeePhone)
-        </td>
-        <!-- Field EmployeePersonalPhone -->
-        <td class="td-title">
-            @Html.DisplayFor(modelItem => item.EmployeePersonalPhone)
-        </td>
-        <!-- Field EmployeeEmail -->
-        <td class="td-title">
-            @Html.DisplayFor(modelItem => item.EmployeeEmail)
-        </td>
-        <!-- Field EmployeeSkype -->
-        <td class="td-title">
-            @Html.DisplayFor(modelItem => item.EmployeeSkype)
         </td>
         <!-- Field DateAdoption -->
         <td>
@@ -111,15 +76,32 @@
         <td>
             @Html.DisplayFor(modelItem => item.DateDismissal)
         </td>
-        <!-- Field Dismissed -->
-        <td>
-            @Html.DisplayFor(modelItem => item.Dismissed)
-        </td>
         <!-- Buttons Edit, Details, Delete -->
         <td>
-            <a class="btn btn-default" name="editButton" id="editButton" href="@Url.Action("Edit","Employee", new {id = item.EmployeeId})">Редактировать</a> |
-            <a class="btn btn-default" name="detailsButton" id="detailsButton" href="@Url.Action("Details","Employee", new {id = item.EmployeeId})">Просмотреть</a> |
-            <a class="btn btn-default" name="deleteButton" id="deleteButton" href="@Url.Action("Delete","Employee", new {id = item.EmployeeId})">Удалить</a>
+            <div class="btn-group">
+                <a class="btn btn-default" name="editButton" id="editButton" href="@Url.Action("Edit","Employee", new {id = item.EmployeeId})"><i class="fa fa-pencil" aria-hidden="true" title="Редактировать" data-toggle="tooltip" data-placement="top"></i></a>
+                <a class="btn btn-default" name="detailsButton" id="detailsButton" href="@Url.Action("Details","Employee", new {id = item.EmployeeId})"><i class="fa fa-eye" aria-hidden="true" title="Просмотреть" data-toggle="tooltip" data-placement="top"></i></a>
+                <a class="btn btn-default" name="deleteButton" id="deleteButton" href="@Url.Action("Delete","Employee", new {id = item.EmployeeId})" data-toggle="modal" data-target="#@myModal"
+                   data-whatever="@item.EmployeeId"><i class="fa fa-trash" aria-hidden="true" title="Удалить" data-toggle="tooltip" data-placement="top"></i></a>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="@myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Удаление</h4>
+                        </div>
+                        <div class="modal-body">
+                            Вы точно хотите удалить: <span><b>@item.EmployeeFullName</b></span>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                            <input type="submit" value="Удалить" class="btn btn-danger" />
+                        </div>
+                    </div>
+                </div>
+            </div>
         </td>
     </tr>
 }

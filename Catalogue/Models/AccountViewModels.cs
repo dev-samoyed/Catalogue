@@ -8,6 +8,7 @@ namespace Catalogue.Models
         [Required]
         [Display(Name = "Адрес электронной почты")]
         [RegularExpression(".+\\@.+\\..+", ErrorMessage = "Вы ввели некорректный E-mail")]
+        [EmailAddress(ErrorMessage = "Неправильный Email")]
         public string Email { get; set; }
     }
 
@@ -51,12 +52,13 @@ namespace Catalogue.Models
     {
         [Required]
         [Display(Name = "Адрес электронной почты")]
-        [EmailAddress]
+        [EmailAddress(ErrorMessage = "Неправильный Email или пароль")]
         public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Пароль")]
+        [StringLength(18, ErrorMessage = "Пароль должен быть 6 знаков", MinimumLength = 6)]
         public string Password { get; set; }
 
         [Display(Name = "Запомнить меня")]
