@@ -17,40 +17,28 @@
                         <thead>
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.First().Department.DepartmentName)
+                                    Фото сотрудника
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.First().Position.PositionName)
+                                    Наименование отдела
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.First().EmployeeFullName)
+                                    Наименование должности
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.First().EmployeeRoom)
+                                    ФИО
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.First().EmployeeAddress)
+                                    Кабинет
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.First().EmployeePhone)
+                                    Телефон
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.First().EmployeePersonalPhone)
+                                    Дата принятия
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.First().EmployeeEmail)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.First().EmployeeSkype)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.First().DateAdoption)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.First().DateDismissal)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.First().Dismissed)
+                                    Дата увольнения
                                 </th>
                                 <th>
                                     Действия
@@ -62,44 +50,32 @@
                             {
                                 var myModal = "myModal" + item.EmployeeId;
                                 <tr>
-                                    <td class="td-title">
-                                        @Html.DisplayFor(modelItem => item.Department.DepartmentName)
+                                    <td>
+                                        <span data-link="@Url.Content($"~/images/{item.EmployeePhoto}")" class="lightbox">
+                                            <img src="~/images/@item.EmployeePhoto" class="tumb" />
+                                        </span>
                                     </td>
                                     <td class="td-title">
-                                        @Html.DisplayFor(modelItem => item.Position.PositionName)
+                                        @item.Department.DepartmentName
                                     </td>
                                     <td class="td-title">
-                                        @Html.DisplayFor(modelItem => item.EmployeeFullName)
+                                        @item.Position.PositionName
                                     </td>
                                     <td class="td-title">
-                                        @Html.DisplayFor(modelItem => item.EmployeeRoom)
+                                        @item.EmployeeFullName
                                     </td>
                                     <td class="td-title">
-                                        @Html.DisplayFor(modelItem => item.EmployeeAddress)
+                                        @item.EmployeeRoom
                                     </td>
                                     <td class="td-title">
-                                        @Html.DisplayFor(modelItem => item.EmployeePhone)
-                                    </td>
-                                    <td class="td-title">
-                                        @Html.DisplayFor(modelItem => item.EmployeePersonalPhone)
-                                    </td>
-                                    <td class="td-title">
-                                        @Html.DisplayFor(modelItem => item.EmployeeEmail)
-                                    </td>
-                                    <td class="td-title">
-                                        @Html.DisplayFor(modelItem => item.EmployeeSkype)
+                                        @item.EmployeePhone
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.DateAdoption)
+                                        @item.DateAdoption
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.DateDismissal)
+                                        @item.DateDismissal
                                     </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Dismissed)
-                                    </td>
-
-
                                     <td>
                                         <div class="btn-group">
                                             <a class="btn btn-default" name="editButton" id="editButton" href="@Url.Action("Edit","Employee", new {id = item.EmployeeId})"><i class="fa fa-pencil" aria-hidden="true" title="Редактировать" data-toggle="tooltip" data-placement="top"></i></a>
