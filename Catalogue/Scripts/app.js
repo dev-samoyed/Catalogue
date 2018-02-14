@@ -101,13 +101,6 @@ function toPrevMain(from = "") {
         $('#button').click(function(){
             $(this).attr('disabled', 'disabled');
             $('form').submit();
-            setTimeout(function () { $('#button').removeAttr('disabled'); }, 1000);
+            setTimeout(function () { $('#button').removeAttr('disabled'); }, 3000);
         });
     });
-
-    $(window).load(function () {
-        // Animate loader off screen
-        $(".se-pre-con").fadeOut(1000);
-        alert('gg');
-    });
-      

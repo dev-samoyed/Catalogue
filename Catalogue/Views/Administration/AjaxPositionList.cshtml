@@ -4,7 +4,6 @@
 
 <table class="table table-striped" id="listTable">
     <tr>
-<<<<<<< HEAD
         <!-- Field ComboBox DivisionName -->
         <th class="col-md-2">
             @Html.DisplayNameFor(model => model.First().Division.DivisionName)
@@ -12,7 +11,7 @@
         <!-- Field AdministrationName -->
         <th class="col-md-2">
             @Html.DisplayNameFor(model => model.First().AdministrationName)
-        </th>     
+        </th>
         <!-- Field AdministrationPost -->
         <th class="col-md-1">
             @Html.DisplayNameFor(model => model.First().AdministrationPost)
@@ -34,47 +33,13 @@
             @Html.DisplayNameFor(model => model.First().AdministrationSkype)
         </th>
         <th style="text-align: center;">
-=======
-        <!-- Field ComboBox DivisionName with Validation -->
-        <th class="col-md-2">
-            @Html.DisplayNameFor(model => model.First().Division.DivisionName)
-        </th>
-        <!-- Field AdministrationName with Validation -->
-        <th class="col-md-2">
-            @Html.DisplayNameFor(model => model.First().AdministrationName)
-        </th>     
-        <!-- Field AdministrationPost with Validation -->
-        <th class="col-md-1">
-            @Html.DisplayNameFor(model => model.First().AdministrationPost)
-        </th>
-        <!-- Field AdministrationAddress with Validation -->
-        <th class="col-md-2">
-            @Html.DisplayNameFor(model => model.First().AdministrationAddress)
-        </th>
-        <!-- Field AdministrationFax with Validation -->
-        <th class="col-md-1">
-            @Html.DisplayNameFor(model => model.First().AdministrationFax)
-        </th>
-        <!-- Field AdministrationEMail with Validation -->
-        <th class="col-md-1">
-            @Html.DisplayNameFor(model => model.First().AdministrationEMail)
-        </th>
-        <!-- Field AdministrationSkype with Validation -->
-        <th class="col-md-1">
-            @Html.DisplayNameFor(model => model.First().AdministrationSkype)
-        </th>
-        <!-- Field AdministrationCode with Validation -->
-        @*<th>
-            @Html.DisplayNameFor(model => model.First().AdministrationCode)
-        </th>*@
-        <th>
->>>>>>> ed3bac79747cf4c82c55b01b132e2502386cce30
             Действия
         </th>
     </tr>
 
     @foreach (var item in Model)
     {
+        var myModal = "myModal" + item.AdministrationId;
         <tr>
             <!-- Field ComboBox DivisionName -->
             <td class="td-title">
@@ -106,9 +71,30 @@
             </td>
             <!-- Buttons Edit, Details, Delete -->
             <td>
-                <a class="btn btn-default" name="editButton" id="editButton" href="@Url.Action("Edit","Administration", new {id = item.AdministrationId})">Редактировать</a> |
-                <a class="btn btn-default" name="detailsButton" id="detailsButton" href="@Url.Action("Details","Administration", new {id = item.AdministrationId})">Просмотреть</a> |
-                <a class="btn btn-default" name="deleteButton" id="deleteButton" href="@Url.Action("Delete","Administration", new {id = item.AdministrationId})">Удалить</a>
+                <div class="btn-group">
+                    <a class="btn btn-default" name="editButton" id="editButton" href="@Url.Action("Edit","Administration", new {id = item.AdministrationId})"><i class="fa fa-pencil" aria-hidden="true" title="Редактировать" data-toggle="tooltip" data-placement="top"></i></a>
+                    <a class="btn btn-default" name="detailsButton" id="detailsButton" href="@Url.Action("Details","Administration", new {id = item.AdministrationId})"><i class="fa fa-eye" aria-hidden="true" title="Просмотреть" data-toggle="tooltip" data-placement="top"></i></a>
+                    <a class="btn btn-default" name="deleteButton" id="deleteButton" href="@Url.Action("Delete","Administration", new {id = item.AdministrationId})" data-toggle="modal" data-target="#@myModal"
+                       data-whatever="@item.AdministrationId"><i class="fa fa-trash" aria-hidden="true" title="Удалить" data-toggle="tooltip" data-placement="top"></i></a>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="@myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog modal-sm" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Удаление</h4>
+                            </div>
+                            <div class="modal-body">
+                                Вы точно хотите удалить: <span><b>@item.AdministrationName</b></span>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                                <input type="submit" value="Удалить" class="btn btn-danger" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </td>
         </tr>
     }   
