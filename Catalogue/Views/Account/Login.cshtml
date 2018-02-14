@@ -54,7 +54,6 @@
 
                 <div class="wrap-input100 validate-input">
                     @Html.TextBoxFor(m => m.Email, new { @class = "input100", @required = "required", @type = "email", placeholder = "Введите Email" })
-                    @Html.ValidationMessageFor(m=>m.Email, "", new { @class = "input100", @required = "reqiured" })
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
                         <i class="fa fa-envelope" aria-hidden="true"></i>
@@ -63,7 +62,6 @@
 
                 <div class="wrap-input100 validate-input">
                     @Html.PasswordFor(m => m.Password, new { @class = "input100", @required = "required", placeholder = "Введите пароль" })
-                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "input100", @required = "reqiured" })
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
                         <i class="fa fa-lock" aria-hidden="true"></i>
