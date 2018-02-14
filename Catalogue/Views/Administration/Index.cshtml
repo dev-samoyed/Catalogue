@@ -53,29 +53,26 @@
                 <div class="content" id="accordion">
                     <table class="table table-striped" id="listTable" style="table-layout: auto; width: 100%">
                         <tr>
-                            <th>
+                            <th class="col-md-2">
                                 @Html.DisplayNameFor(model => model.First().Division.DivisionName)
                             </th>
-                            <th>
+                            <th class="col-md-2">
                                 @Html.DisplayNameFor(model => model.First().AdministrationName)
                             </th>                      
-                            <th>
+                            <th class="col-md-1">
                                 @Html.DisplayNameFor(model => model.First().AdministrationPost)
                             </th>
-                            <th>
+                            <th class="col-md-2">
                                 @Html.DisplayNameFor(model => model.First().AdministrationAddress)
                             </th>
-                            <th>
+                            <th class="col-md-1">
                                 @Html.DisplayNameFor(model => model.First().AdministrationFax)
                             </th>
-                            <th>
+                            <th class="col-md-1">
                                 @Html.DisplayNameFor(model => model.First().AdministrationEMail)
                             </th>
-                            <th>
+                            <th class="col-md-1">
                                 @Html.DisplayNameFor(model => model.First().AdministrationSkype)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.First().AdministrationCode)
                             </th>
                             <th style="text-align: center;">
                                 Действия
@@ -106,9 +103,6 @@
                                 </td>
                                 <td class="td-title">
                                     @Html.DisplayFor(modelItem => item.AdministrationSkype)
-                                </td>
-                                <td class="td-title">
-                                    @Html.DisplayFor(modelItem => item.AdministrationCode)
                                 </td>
                                 <td>   
                                     <div class="btn-group">
