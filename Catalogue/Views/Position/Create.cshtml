@@ -29,14 +29,15 @@
                             </div>
                         </div>
                         <!-- Buttons Add and Back -->
-                        <div class="form-group">
+                        <div class="form-group" >
                             <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Добавить" class="btn btn-default" /> |
+                                <input type="submit" value="Добавить" class="btn btn-default" id="button"/> |
                                 <a class="btn btn-default" name="backButton" id="backButton" href="@Url.Action("Index","Position")">Назад</a>
                             </div>
                         </div>
                     </div>
                    }
+                    @Scripts.Render("~/Scripts/app.js")
                 </div>
             </div>
         </div>
