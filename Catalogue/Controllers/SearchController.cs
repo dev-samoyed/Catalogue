@@ -51,7 +51,7 @@ namespace Catalogue.Controllers
         }
 
         // Forms a partial view with a list of found entities
-        //[Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin")]
         public ActionResult AdminSearch(string title, string type)
         {
             string view = "~/Views/Search/";
