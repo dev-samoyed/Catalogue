@@ -13,7 +13,7 @@ namespace Catalogue.Models.Tables
 
         [Required(ErrorMessage = "Заполните поле!")]
         [StringLength(100, ErrorMessage = "Длина строки не должна превышать 100 символов")]
-        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Ввод цифр запрещен")]
+        [RegularExpression(@"^[a-zA-ZА-Яа-я ]+$", ErrorMessage = "Ввод цифр запрещен")]
         [Display(Name = "Наименование отдела")]
         public string DepartmentName { get; set; }
 
