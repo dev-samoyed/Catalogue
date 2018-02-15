@@ -108,3 +108,6 @@ div.loading {
 
     width: 30%;
 }
+.modal-open {
+    padding-right: 0px !important;
+}

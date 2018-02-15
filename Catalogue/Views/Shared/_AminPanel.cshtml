@@ -29,7 +29,6 @@
 </head>
 <body>
     <div class="wrapper">
-        
         <div class="sidebar" data-color="black" data-image="@Url.Content("~/Content/assets/img/sidebar.jpg")">
             <div class="sidebar-wrapper">
                 <div class="logo">
@@ -125,14 +124,9 @@
 
     <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
     <script src="@Url.Content("~/Content/assets/js/demo.js")"></script>
-    
-    </body>
-
-    @Scripts.Render("~/Scripts/app.js")
-
-    <!--   Core JS Files   -->
+    <script src="@Url.Content("~/Scripts/pagination.js")"></script>
 
 
     @RenderSection("scripts", required: false)
-
+    </body>
 </html>

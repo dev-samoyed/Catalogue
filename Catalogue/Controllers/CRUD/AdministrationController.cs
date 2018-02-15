@@ -104,9 +104,7 @@ namespace Catalogue.Controllers.CRUD
         // GET: Administration/Delete/5
         [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
-        {
-            if (id == null)
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        {         
             Administration administration = db.Administrations.Find(id);
             if (administration != null)
                 return PartialView("Delete", administration);
