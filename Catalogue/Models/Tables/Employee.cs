@@ -13,28 +13,36 @@ namespace Catalogue.Models.Tables
         public int EmployeeId { get; set; }
 
         [Display(Name = "ФИО")]
+        [RegularExpression(@"^[a-zA-ZА-Яа-я ]+$", ErrorMessage = "Ввод цифр запрещен")]
+        [StringLength(100, ErrorMessage = "Длина строки не должна превышать 100 символов")]
         [Required(ErrorMessage = "Заполните поле!")]
         public string EmployeeFullName { get; set; }
 
         [Display(Name = "Кабинет")]
+        [StringLength(10, ErrorMessage = "Длина строки не должна превышать 10 символов")]
         [Required(ErrorMessage = "Заполните поле!")]
         public string EmployeeRoom { get; set; }
 
         [Display(Name = "Адрес")]
+        [StringLength(100, ErrorMessage = "Длина строки не должна превышать 100 символов")]
         public string EmployeeAddress { get; set; }
 
         [Display(Name = "Телефон")]
+        [StringLength(100, ErrorMessage = "Длина строки не должна превышать 100 символов")]
         [Required(ErrorMessage = "Заполните поле!")]
         public string EmployeePhone { get; set; }
 
         [Display(Name = "Мобильный телефон")]
+        [StringLength(100, ErrorMessage = "Длина строки не должна превышать 100 символов")]
         public string EmployeePersonalPhone { get; set; }
 
         [Display(Name = "E-mail")]
+        [StringLength(50, ErrorMessage = "Длина строки не должна превышать 50 символов")]
         [RegularExpression(".+\\@.+\\..+", ErrorMessage = "Вы ввели некорректный E-mail")]
         public string EmployeeEmail { get; set; }
 
         [Display(Name = "Skype")]
+        [StringLength(30, ErrorMessage = "Длина строки не должна превышать 30 символов")]
         public string EmployeeSkype { get; set; }
 
         [Display(Name = "Фото сотрудника")]
