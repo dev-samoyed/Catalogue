@@ -9,7 +9,7 @@ namespace Catalogue.Controllers.CRUD
     public class MainController : Controller
     {
         // GET: Main
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, manager")]
         public ActionResult Index()
         {
             return View();
