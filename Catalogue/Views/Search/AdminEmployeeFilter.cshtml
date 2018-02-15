@@ -13,7 +13,6 @@
                 else
                 {
                     <table class="table table-striped" id="list-table">
-                        <caption>Список сотрудников</caption>
                         <thead>
                             <tr>
                                 <th>
@@ -115,6 +114,7 @@
                         Старница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
                     </div>
                 }
+                <button class="btn btn-default" onclick="toPrevMain('admin')">Вернуться к списку</button>
             </div>
         </div>
     </div>

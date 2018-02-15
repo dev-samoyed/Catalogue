@@ -301,6 +301,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="images\icons\favicon.png" />
+    <Content Include="Scripts\admin_pagination.js" />
     <Content Include="Scripts\app.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

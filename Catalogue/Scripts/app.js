@@ -12,6 +12,13 @@ function hideEmployeeList() {
 function toPrevMain(from = "") {
     if (from == "list") {
         $("#employee-list").empty();
+    } else if (from == "admin") {
+        $("#name").val("");
+        $("#position-select-list").val("");
+        $("#department-select-list").val("");
+        $("#administration-select-list").val("");
+        $("#division-select-list").val("");
+        $("#results").empty();
     } else {
         $("#results").empty();
     }
