@@ -14,6 +14,7 @@ namespace Catalogue.Controllers.CRUD
         CatalogueContext db = new CatalogueContext();
 
         // Ajax pagination PartialView Position 
+        [Authorize(Roles = "admin, manager")]
         public ActionResult AjaxPositionList(int? page)
         {
             int pageSize = 10;
@@ -22,7 +23,7 @@ namespace Catalogue.Controllers.CRUD
         }
 
         // GET: Position
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, manager")]
         public ActionResult Index(int? page)
         {
             int pageSize = 10;
@@ -31,7 +32,7 @@ namespace Catalogue.Controllers.CRUD
         }
 
         // GET: Position/Details/5
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, manager")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -44,7 +45,7 @@ namespace Catalogue.Controllers.CRUD
 
         // GET: Position/Create
         [HttpGet]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, manager")]
         public ActionResult Create()
         {
             return View();
@@ -52,7 +53,7 @@ namespace Catalogue.Controllers.CRUD
 
         // POST: Position/Create
         [HttpPost]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, manager")]
         public ActionResult Create(Position collection)
         {
             try
@@ -69,7 +70,7 @@ namespace Catalogue.Controllers.CRUD
         }
 
         // GET: Position/Edit/5
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, manager")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -82,7 +83,7 @@ namespace Catalogue.Controllers.CRUD
 
         // POST: Position/Edit/5
         [HttpPost]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, manager")]
         public ActionResult Edit(int id, Position collection)
         {
             try
@@ -98,7 +99,7 @@ namespace Catalogue.Controllers.CRUD
         }
 
         // GET: Position/Delete/5
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, manager")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -111,7 +112,7 @@ namespace Catalogue.Controllers.CRUD
 
         // POST: Position/Delete/5
         [HttpPost]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, manager")]
         [ActionName("Delete")]
         public ActionResult Delete(int? id, Position collection)
         {

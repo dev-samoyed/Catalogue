@@ -27,8 +27,7 @@
  </head>
  <body>
      <div class="wrapper">
-         @if (Request.IsAuthenticated)
-                {
+        
                  <div class="sidebar" data-color="black" data-image="@Url.Content("~/Content/assets/img/sidebar.jpg")">
                      <div class="sidebar-wrapper">
                          <div class="logo">
@@ -43,40 +42,20 @@
                                      <p>Поиск</p>
                                  </a>
                              </li>
+                             @if (Request.IsAuthenticated)
+                             {
                              <li class="active">
                                  <a href="@Url.Action("Index", "Main")">
                                      <i class="pe-7s-home"></i>
                                      <p>Панель администратора</p>
                                  </a>
                              </li>
+                             }
                          </ul>
                      </div>
                  </div>
 
-            }
-            else
-            {
-                 <div class="sidebar" data-color="black" data-image="@Url.Content("~/Content/assets/img/sidebar.jpg")">
-                     <div class="sidebar-wrapper">
-                         <div class="logo">
-                             <a href="@Url.Action("Index", "Home")" class="simple-text">
-                                 <div class="login100-pic js-tilt" data-tilt>
-                                     <img src="@Url.Content("~/Content/assets/img/img-01.png")" alt="IMG">
-                                 </div>
-                                  Справочник НСК/ГВЦ
-                             </a>
-                         </div>
-                         <ul class="nav">
-                             <li class="active">
-                                 <a href="@Url.Action("Index", "Home")">
-                                     <i class="pe-7s-search"></i>
-                                     <p>Поиск</p>
-                                 </a>
-                             </li>
-                         </ul>
-                     </div>
-                 </div>
-            }
+            
          <div class="main-panel">
              <nav class="navbar navbar-default navbar-fixed">
                  <div class="container-fluid">
