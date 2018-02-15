@@ -232,17 +232,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\aspnet-Catalogue-20180108113947.mdf" />
-    <Content Include="App_Data\aspnet-Catalogue-20180108113947_log.ldf">
-      <DependentUpon>aspnet-Catalogue-20180108113947.mdf</DependentUpon>
-    </Content>
-    <Content Include="App_Data\Catalogue.Models.Tables.CatalogueContext.mdf" />
-    <Content Include="App_Data\Catalogue.Models.Tables.CatalogueContext_log.ldf">
-      <DependentUpon>Catalogue.Models.Tables.CatalogueContext.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\app.css" />
-    <Content Include="Content\assets\css\animate.min.css" />
-    <Content Include="Content\assets\css\bootstrap.min.css" />
     <Content Include="Content\assets\css\demo.css" />
     <Content Include="Content\assets\css\light-bootstrap-dashboard.css" />
     <Content Include="Content\assets\css\pe-icon-7-stroke.css" />
@@ -430,6 +420,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -513,10 +504,8 @@
     <Content Include="Views\Employee\Create.cshtml" />
     <Content Include="Views\Employee\Delete.cshtml" />
     <Content Include="Views\Home\DepartmentEmployees.cshtml" />
-    <Content Include="Views\Home\EmployeeSearch.cshtml" />
     <Content Include="Views\Home\NotFound.cshtml" />
     <Content Include="Views\Home\ShowEmployee.cshtml" />
-    <Content Include="Views\Home\Settings.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
     <Content Include="Views\Home\AjaxDepartmentEmployees.cshtml" />
     <Content Include="Views\Home\AjaxShowEmployee.cshtml" />
@@ -567,7 +556,9 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
