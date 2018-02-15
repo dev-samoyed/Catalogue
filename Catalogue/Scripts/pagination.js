@@ -33,6 +33,7 @@ function post_request_without_page() {
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             $("#results").html("Ошибка. Обновите страницу");
+            console.log(XMLHttpRequest);
         }
     });
     return false;
@@ -69,7 +70,18 @@ function post_request() {
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
             $("#results").html("Ошибка. Обновите страницу");
+            console.log(XMLHttpRequest);
         }
     });
     return false;
+}
+
+function check_input(text) {
+    $("#ajax-form").submit(function () {
+        var input = $("#xyz-search-input").val();
+        if (input == "") {
+            alert(text);
+            return false;
+        }
+    })
 }

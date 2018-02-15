@@ -21,31 +21,29 @@
                 </div>
                 <hr />
                 @using (Ajax.BeginForm("AdminSearch", "Search", null,
-        new AjaxOptions
-        {
-            UpdateTargetId = "results",
-            LoadingElementId = "loading",
-            OnSuccess = "hideAccordion()"
-        },
-        new { @class = "ajax-form" }))
+                new AjaxOptions
+                {
+                    UpdateTargetId = "results",
+                    LoadingElementId = "loading",
+                    OnSuccess = "hideAccordion()"
+                },
+                new { @class = "ajax-form", @id="ajax-form" }))
                 {
                     @Html.AntiForgeryToken()
                     <input type="hidden" name="type" value="department" />
                     <div class="header">
                         <div class="row">
                             <div class="col-md-10">
-                                <input type="text" class="form-control" name="title" placeholder="Введите название отдела">
+                                <input type="text" class="form-control" id="xyz-search-input" name="title" placeholder="Введите название отдела" required>
                             </div>
                             <div class="col-md-1">
                                 <span class="input-group-btn">
-                                    <button type="submit" class="btn btn-default"><span class="fa fa-search"></span> Искать</button>
+                                    <button type="submit" class="btn btn-default"><span class="fa fa-search"></span> Искать <span id="loading" class="loading" style="display:none"><svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" width="16px" height="16px" viewBox="0 0 128 128" xml:space="preserve"><g transform="rotate(352.65 64.0001 64.0001)"><linearGradient id="linear-gradient"><stop offset="0%" stop-color="#ffffff"></stop><stop offset="100%" stop-color="#454445"></stop></linearGradient><path d="M63.85 0A63.85 63.85 0 1 1 0 63.85 63.85 63.85 0 0 1 63.85 0zm.65 19.5a44 44 0 1 1-44 44 44 44 0 0 1 44-44z" fill="url(#linear-gradient)" fill-rule="evenodd"></path><animateTransform attributeName="transform" type="rotate" from="0 64 64" to="360 64 64" dur="1080ms" repeatCount="indefinite"></animateTransform></g></svg></span></button>
                                 </span>
                             </div>
                         </div>
                     </div><!-- /input-group -->
                 }
-                <div id="loading" style="display:none"><p>Идет поиск</p></div>
-
 
                 <hr>
 
@@ -118,3 +116,9 @@ PagedListRenderOptions.EnableUnobtrusiveAjaxReplacing(new AjaxOptions() { HttpMe
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        check_input("Введите название отдела");
+    </script>
+}
