@@ -1,16 +1,4 @@
-﻿//on close collapse
-$('.collapse').on('hidden.bs.collapse', function () {
-  var target = '#'+$(this).attr('data-parent');
-  $(target).removeClass('collapse-open');
-});
-
-//on open collapse
-$('.collapse').on('shown.bs.collapse', function () {
-    var target = '#'+$(this).attr('data-parent');
-    $(target).addClass('collapse-open');
-});
-
-$(function () {
+﻿$(function () {
     $('[data-toggle="tooltip"]').tooltip()
 })
 function hideAccordion() {
@@ -103,4 +91,8 @@ function toPrevMain(from = "") {
             $('form').submit();
             setTimeout(function () { $('#button').removeAttr('disabled'); }, 3000);
         });
+
+
     });
+
+

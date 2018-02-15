@@ -528,7 +528,7 @@
     <Content Include="Views\Manage\ManageLogins.cshtml" />
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
-    <Content Include="Views\Search\AdminEmployeeSearch.cshtml" />
+    <Content Include="Views\Search\AdminEmployeeFilter.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\Forbidden.cshtml" />
     <Content Include="Views\Administration\AjaxPositionList.cshtml" />
@@ -549,6 +549,7 @@
     <Content Include="Views\Search\EmployeeFilter.cshtml" />
     <Content Include="Views\Department\Delete.cshtml" />
     <Content Include="Views\Error\NotFoundError.cshtml" />
+    <Content Include="Views\Search\NotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

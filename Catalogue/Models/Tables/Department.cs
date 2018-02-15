@@ -12,7 +12,8 @@ namespace Catalogue.Models.Tables
         public int DepartmentId { get; set; }
 
         [Required(ErrorMessage = "Заполните поле!")]
-       // [StringLength(5, ErrorMessage = "Длина строки превышает 50 символов")]
+        [StringLength(100, ErrorMessage = "Длина строки не должна превышать 100 символов")]
+        [RegularExpression(@"^[a-zA-ZА-Яа-я ]+$", ErrorMessage = "Ввод цифр запрещен")]
         [Display(Name = "Наименование отдела")]
         public string DepartmentName { get; set; }
 
