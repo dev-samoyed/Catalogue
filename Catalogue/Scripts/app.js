@@ -14,8 +14,7 @@ function toPrevMain(from = "") {
         $("#employee-list").empty();
     } else {
         $("#results").empty();
-    }
-    
+    }  
     $("#accordion").show();
 }
 
@@ -85,12 +84,26 @@ function toPrevMain(from = "") {
         $('[data-toggle="tooltip"]').tooltip()
     })
 
-    $(document).ready(function(){
-        $('#button').click(function(){
-            $(this).attr('disabled', 'disabled');
-            $('form').submit();
-            setTimeout(function () { $('#button').removeAttr('disabled'); }, 3000);
+        $(document).ready(function(){
+            $('form').submit(function(e){
+                var form = $(this);
+                e.preventDefault();
+
+                if (!$(".validation-span").is(":empty")) {
+                    $("#se-pre-con").hide();
+                    console.log("not valid");
+                    return false;
+                } else {
+                    $('input, select').focus(function() {
+                        console.log("validation ok");
+                        this.blur();
+                        form.submit(); 
+                        return true;
+                    });
+                    
+                }
+                console.log("this");
+                //$("#se-pre-con").show();
+                       
+            });
         });
-
-    });
-

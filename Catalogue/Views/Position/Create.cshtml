@@ -4,7 +4,7 @@
     ViewBag.Title = "Добавление должности";
     Layout = "~/Views/Shared/_AminPanel.cshtml";
 }
-
+<div id="se-pre-con" style="display:none;"></div>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -25,7 +25,23 @@
                             @Html.LabelFor(model => model.PositionName, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
                                 @Html.EditorFor(model => model.PositionName, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.PositionName, "", new { @class = "text-danger" })
+                                @Html.ValidationMessageFor(model => model.PositionName, "", new { @class = "text-danger", @id = "validation-span" })
+                            </div>
+                        </div>
+                        <!-- Modal window for image size 2MB-->
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Ошибка</h5>
+                                    </div>
+                                    <div class="modal-body">
+                                        <span id="MessageError"></span>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <!-- Buttons Add and Back -->
@@ -37,7 +53,6 @@
                         </div>
                     </div>
                    }
-                    @Scripts.Render("~/Scripts/app.js")
                 </div>
             </div>
         </div>

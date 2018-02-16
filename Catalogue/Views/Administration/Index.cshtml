@@ -32,7 +32,7 @@
                     <input type="hidden" name="type" value="administration" />
                     <div class="header">
                         <div class="row">
-                            <div class="col-md-10">
+                            <div class="col-md-11">
                                 <input type="text" class="form-control" id="xyz-search-input" name="title" placeholder="Введите название органа управления" required>
                             </div>
                             <div class="col-md-1">
@@ -47,10 +47,10 @@
 
                 <hr>
 
-                <div id="results"></div>
+                <div id="results" class="content"></div>
 
                 <div class="content" id="accordion">
-                    <table class="table table-striped" id="listTable" style="table-layout: auto; width: 100%">
+                    <table class="table table-striped" id="listTable">
                         <tr>
                             <th class="col-md-2">
                                 @Html.DisplayNameFor(model => model.First().Division.DivisionName)
