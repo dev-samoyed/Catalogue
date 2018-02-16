@@ -559,6 +559,8 @@
     <Content Include="Views\Department\Delete.cshtml" />
     <Content Include="Views\Error\NotFoundError.cshtml" />
     <Content Include="Views\Search\NotFound.cshtml" />
+    <Content Include="Views\Search\ManagerEmployeeFilter.cshtml" />
+    <Content Include="Views\Search\EmployeeDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
