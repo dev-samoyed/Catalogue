@@ -19,7 +19,7 @@ namespace Catalogue.Controllers.CRUD
         CatalogueContext db = new CatalogueContext();
 
         // Ajax pagination PartialView Employee 
-        [Authorize(Roles = "admin, manager")]
+        [Authorize(Roles = "admin")]
         public ActionResult AjaxPositionList(int? page)
         {
             int pageSize = 10;
@@ -28,7 +28,7 @@ namespace Catalogue.Controllers.CRUD
         }
 
         // GET: Employee
-        [Authorize(Roles = "admin, manager")]
+        [Authorize(Roles = "admin")]
         public ActionResult Index(int? page)
         {
             List<Position> positions = db.Positions.ToList();
@@ -49,7 +49,7 @@ namespace Catalogue.Controllers.CRUD
         }
 
         // GET: Employee/Details/5
-        [Authorize(Roles = "admin, manager")]
+        [Authorize(Roles = "admin")]
         public ActionResult Details(int? id)
         {
 
@@ -62,7 +62,7 @@ namespace Catalogue.Controllers.CRUD
 
         [HttpGet]
         // GET: Employee/Create
-        [Authorize(Roles = "admin, manager")]
+        [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
             SelectList departmentList = new SelectList(db.Departments, "DepartmentId", "DepartmentName");
@@ -74,7 +74,7 @@ namespace Catalogue.Controllers.CRUD
         
         // POST: Employee/Create
         [HttpPost]
-        [Authorize(Roles = "admin, manager")]
+        [Authorize(Roles = "admin")]
         public ActionResult Create(Employee collection, HttpPostedFileBase productImg)
         {
             if (ModelState.IsValid)
@@ -103,7 +103,7 @@ namespace Catalogue.Controllers.CRUD
         }
 
         [HttpGet]
-        [Authorize(Roles = "admin, manager")]
+        [Authorize(Roles = "admin")]
         // GET: Employee/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -122,7 +122,7 @@ namespace Catalogue.Controllers.CRUD
 
         // POST: Employee/Edit/5
         [HttpPost]
-        [Authorize(Roles = "admin, manager")]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int id, Employee collection, HttpPostedFileBase productImg, string photo)
         {
             if (ModelState.IsValid)
@@ -156,7 +156,7 @@ namespace Catalogue.Controllers.CRUD
         }
 
         // GET: Employee/Delete/5
-        [Authorize(Roles = "admin, manager")]
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -170,7 +170,7 @@ namespace Catalogue.Controllers.CRUD
         // POST: Employee/Delete/5
         [HttpPost]
         [ActionName("Delete")]
-        [Authorize(Roles = "admin, manager")]
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(int? id, string photoName)
         {
             Employee employee = new Employee();

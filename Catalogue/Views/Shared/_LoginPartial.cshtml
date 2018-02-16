@@ -5,12 +5,13 @@
     {
     @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
+<ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.ActionLink("Здравствуйте, " + User.Identity.GetUserName() + "!", "Index", "Main", routeValues: null, htmlAttributes: new { title = "Панель администратора" })
+            @Html.ActionLink("Здравствуйте, " + User.Identity.GetUserName() + "!", "ChangePassword", "Manage", routeValues: null, htmlAttributes: new { title = "Смена пароля" })
         </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Выйти</a></li>
-    </ul>
+
+    <li><a href="javascript:document.getElementById('logoutForm').submit()">Выйти</a></li>
+</ul>
     }
 }
 else

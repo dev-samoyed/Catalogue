@@ -42,7 +42,7 @@
                                      <p>Поиск</p>
                                  </a>
                              </li>
-                             @if (Request.IsAuthenticated)
+                             @if (User.IsInRole("admin"))
                              {
                              <li class="active">
                                  <a href="@Url.Action("Index", "Main")">
