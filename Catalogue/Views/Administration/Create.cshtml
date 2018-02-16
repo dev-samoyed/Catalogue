@@ -4,7 +4,7 @@
     ViewBag.Title = "Добавление органа управления";
     Layout = "~/Views/Shared/_AminPanel.cshtml";
 }
-
+<div id="se-pre-con" style="display:none;"></div>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -13,7 +13,7 @@
                     <h2>Добавление административного органа управления</h2>
                 </div>
                 <div class="content">
-                   @using (Html.BeginForm())
+                   @using (Html.BeginForm("Create", "Administration", FormMethod.Post, new { enctype = "multipart/form-data", id = "create-form" }))
                    {
                     @Html.AntiForgeryToken()
 
@@ -25,7 +25,7 @@
                             @Html.LabelFor(model => model.DivisionId, "Административное деление", htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
                                 @Html.DropDownListFor(model => model.DivisionId, ViewBag.AdministrationList as SelectList, "Выберите административное деление...")
-                                @Html.ValidationMessageFor(model => model.DivisionId, "", new { @class = "text-danger" })
+                                @Html.ValidationMessageFor(model => model.DivisionId, "", new { @class = "text-danger validation-span" })
                             </div>
                         </div>
                         <!-- Field AdministrationName with Validation -->
@@ -33,7 +33,7 @@
                             @Html.LabelFor(model => model.AdministrationName, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10" style="word-wrap:break-word">
                                 @Html.EditorFor(model => model.AdministrationName, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.AdministrationName, "", new { @class = "text-danger" })
+                                @Html.ValidationMessageFor(model => model.AdministrationName, "", new { @class = "text-danger validation-span" })
                             </div>
                         </div>
                         <!-- Field AdministrationPost with Validation -->
@@ -41,7 +41,7 @@
                             @Html.LabelFor(model => model.AdministrationPost, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
                                 @Html.EditorFor(model => model.AdministrationPost, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
-                                @Html.ValidationMessageFor(model => model.AdministrationPost, "", new { @class = "text-danger" })
+                                @Html.ValidationMessageFor(model => model.AdministrationPost, "", new { @class = "text-danger validation-span" })
                             </div>
                         </div>
                         <!-- Field AdministrationAddress with Validation -->
@@ -49,7 +49,7 @@
                             @Html.LabelFor(model => model.AdministrationAddress, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
                                 @Html.EditorFor(model => model.AdministrationAddress, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.AdministrationAddress, "", new { @class = "text-danger" })
+                                @Html.ValidationMessageFor(model => model.AdministrationAddress, "", new { @class = "text-danger validation-span" })
                             </div>
                         </div>
                         <!-- Field AdministrationFax with Validation -->
@@ -81,13 +81,13 @@
                             @Html.LabelFor(model => model.AdministrationCode, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
                                 @Html.EditorFor(model => model.AdministrationCode, new { htmlAttributes = new { @class = "form-control" } })
-                                @Html.ValidationMessageFor(model => model.AdministrationCode, "", new { @class = "text-danger" })
+                                @Html.ValidationMessageFor(model => model.AdministrationCode, "", new { @class = "text-danger validation-span" })
                             </div>
                         </div>
                         <!-- Buttons Add and Clear -->
                         <div class="form-group">
                             <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Добавить" class="btn btn-default"/> |
+                                <input type="submit" value="Добавить" class="btn btn-default" id="btn"/> |
                                 <a class="btn btn-default" name="backButton" id="backButton" href="@Url.Action("Index","Administration")">Назад</a>
                             </div>
                         </div>

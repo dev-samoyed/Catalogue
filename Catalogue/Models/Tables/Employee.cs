@@ -13,7 +13,7 @@ namespace Catalogue.Models.Tables
         public int EmployeeId { get; set; }
 
         [Display(Name = "ФИО")]
-        [RegularExpression(@"^[a-zA-ZА-Яа-я ]+$", ErrorMessage = "Ввод цифр запрещен")]
+        [RegularExpression(@"^[a-zA-ZЁёӨөҮүҢңА-Яа-я ]+$", ErrorMessage = "Ввод цифр запрещен")]
         [StringLength(100, ErrorMessage = "Длина строки не должна превышать 100 символов")]
         [Required(ErrorMessage = "Заполните поле!")]
         public string EmployeeFullName { get; set; }

@@ -10,7 +10,7 @@
             Вы точно хотите удалить:<span><b>  @Html.DisplayFor(model => model.DivisionName)</b></span>
         </div>
     </div>
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("Delete", "Division", FormMethod.Post, new { enctype = "multipart/form-data", @class = "delete-form" }))
     {
         @Html.AntiForgeryToken()
         <div class="modal-footer">

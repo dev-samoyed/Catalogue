@@ -6,45 +6,46 @@
             <div id="result" class="content">
                 @if (Model.Count <= 0)
                 {
-                    <p>Нет результатов</p>
+                    <h4 style="text-align:center;"><u>Нет результатов</u></h4><br />
                     <table id="list-table"></table>
 
                 }
                 else
                 {
+
                     <table class="table table-striped" id="list-table">
-                        <thead>
+                        <tbody>
                             <tr>
-                                <th>
+                                <th class="col-md-1">
                                     Фото сотрудника
                                 </th>
-                                <th>
+                                <th class="col-md-2">
                                     Наименование отдела
                                 </th>
-                                <th>
+                                <th class="col-md-1">
                                     Наименование должности
                                 </th>
-                                <th>
+                                <th class="col-md-2">
                                     ФИО
                                 </th>
-                                <th>
+                                <th class="col-md-1">
                                     Кабинет
                                 </th>
-                                <th>
+                                <th class="col-md-1">
                                     Телефон
                                 </th>
-                                <th>
+                                <th class="col-md-1">
                                     Дата принятия
                                 </th>
-                                <th>
+                                <th class="col-md-1">
                                     Дата увольнения
                                 </th>
-                                <th>
+                                <th style="text-align: center;">
                                     Действия
                                 </th>
                             </tr>
-                        </thead>
-                        <tbody>
+
+
                             @foreach (Catalogue.Models.Tables.Employee item in Model)
                             {
                                 var myModal = "myModal" + item.EmployeeId;

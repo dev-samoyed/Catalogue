@@ -9,7 +9,7 @@
 
 <div class="container-fluid">
 
-
+    <div id="se-pre-con" style="display:none;"></div>
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -35,7 +35,7 @@
                     <input type="hidden" name="type" value="department" />
                     <div class="header">
                         <div class="row">
-                            <div class="col-md-10">
+                            <div class="col-md-11">
                                 <input type="text" class="form-control" id="xyz-search-input" name="title" placeholder="Введите название отдела" required>
                             </div>
                             <div class="col-md-1">
@@ -49,7 +49,7 @@
 
                 <hr>
 
-                <div id="results"></div>
+                <div id="results" class="content"></div>
 
                 <div class="content" id="accordion">
 
@@ -97,7 +97,7 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-                                                    <input type="submit" value="Удалить" class="btn btn-danger" />
+                                                    <input type="submit" value="Удалить" class="btn btn-danger" id="btn1"/>
                                                 </div>
                                             </div>
                                         </div>

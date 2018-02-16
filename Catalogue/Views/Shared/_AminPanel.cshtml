@@ -123,7 +123,7 @@
     @Scripts.Render("~/bundles/bootstrap")
         @Scripts.Render("~/Scripts/jquery.unobtrusive-ajax.js")
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-    @Scripts.Render("~/Scripts/app.js")
+    
 
     <script src="@Url.Content("~/Content/assets/js/bootstrap.min.js")" type="text/javascript"></script>
 
@@ -134,7 +134,8 @@
     <script src="@Url.Content("~/Content/assets/js/demo.js")"></script>
     <script src="@Url.Content("~/Scripts/pagination.js")"></script>
 
-
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/app.js")
     @RenderSection("scripts", required: false)
     </body>
 </html>
