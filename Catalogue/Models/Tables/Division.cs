@@ -8,7 +8,6 @@ namespace Catalogue.Models.Tables
 {
     public class Division
     {
-        [Required(ErrorMessage = "Выберите деление")]
         public int DivisionId { get; set; }
 
         [Display(Name = "Административное деление")]

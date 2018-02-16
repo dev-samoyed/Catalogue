@@ -9,7 +9,7 @@
 
 <div class="container-fluid">
 
-
+    <div id="se-pre-con" style="display:none;"></div>
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -21,6 +21,7 @@
                 </div>
                 <hr />
                 @using (Ajax.BeginForm("AdminSearch", "Search", null,
+
                 new AjaxOptions
                 {
                     UpdateTargetId = "results",
@@ -28,6 +29,7 @@
                     OnSuccess = "hideAccordion()"
                 },
                 new { @class = "ajax-form", @id="ajax-form" }))
+
                 {
                     @Html.AntiForgeryToken()
                     <input type="hidden" name="type" value="department" />
@@ -80,6 +82,7 @@
                                         <a class="btn btn-default" name="detailsButton" id="detailsButton" href="@Url.Action("Details","Department", new {id = item.DepartmentId})"><i class="fa fa-eye" aria-hidden="true" title="Просмотреть" data-toggle="tooltip" data-placement="top"></i></a>
                                         <a class="btn btn-default" name="deleteButton" id="deleteButton" href="@Url.Action("Delete", "Department", new { id = item.DepartmentId})" data-toggle="modal" data-target="#@myModal"
                                            data-whatever="@item.DepartmentId"><i class="fa fa-trash" aria-hidden="true" title="Удалить" data-toggle="tooltip" data-placement="top"></i></a>
+
                                     </div>
                                     <!-- Modal -->
                                     <div class="modal fade" id="@myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -94,11 +97,12 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-                                                    <input type="submit" value="Удалить" class="btn btn-danger" />
+                                                    <input type="submit" value="Удалить" class="btn btn-danger" id="btn1"/>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+
                                 </td>
                             </tr>
                         }

@@ -15,7 +15,7 @@
                 {
                     UpdateTargetId = "results",
                     LoadingElementId = "loading",
-                    OnSuccess = "removeBlock()"
+                    OnSuccess = "hideAccordion()"
                 }, new { @class = "ajax-form" }))
                 {
                     @Html.AntiForgeryToken()
@@ -82,7 +82,9 @@
                 
                 <hr>
 
-                <div id="results" class="content">
+                <div id="results"></div>
+
+                <div id="accordion" class="content">
                     <table class="table table-hover table-responsive table-condensed table-striped">
                         <caption>Список сотрудников</caption>
                         <thead>

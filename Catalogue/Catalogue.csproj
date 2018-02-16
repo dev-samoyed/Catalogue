@@ -241,8 +241,6 @@
       <DependentUpon>Catalogue.Models.Tables.CatalogueContext.mdf</DependentUpon>
     </Content>
     <Content Include="Content\app.css" />
-    <Content Include="Content\assets\css\animate.min.css" />
-    <Content Include="Content\assets\css\bootstrap.min.css" />
     <Content Include="Content\assets\css\demo.css" />
     <Content Include="Content\assets\css\light-bootstrap-dashboard.css" />
     <Content Include="Content\assets\css\pe-icon-7-stroke.css" />
@@ -301,6 +299,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="images\icons\favicon.png" />
+    <Content Include="Scripts\admin_pagination.js" />
     <Content Include="Scripts\app.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -430,6 +429,8 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -512,10 +513,8 @@
     <Content Include="Views\Employee\Create.cshtml" />
     <Content Include="Views\Employee\Delete.cshtml" />
     <Content Include="Views\Home\DepartmentEmployees.cshtml" />
-    <Content Include="Views\Home\EmployeeSearch.cshtml" />
     <Content Include="Views\Home\NotFound.cshtml" />
     <Content Include="Views\Home\ShowEmployee.cshtml" />
-    <Content Include="Views\Home\Settings.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
     <Content Include="Views\Home\AjaxDepartmentEmployees.cshtml" />
     <Content Include="Views\Home\AjaxShowEmployee.cshtml" />

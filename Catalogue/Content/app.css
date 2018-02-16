@@ -18,3 +18,9 @@ html {
 .employee-list{
     margin-left: 2%;
 }
+
+.tumb {
+    width: 100px !important;
+    height: 100px;
+    cursor: pointer;
+}

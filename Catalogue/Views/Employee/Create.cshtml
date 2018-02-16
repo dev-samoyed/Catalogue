@@ -13,7 +13,7 @@
                     <h2>Добавление сотрудника</h2>
                 </div>               
                 <div class="content">
-                    @using (Html.BeginForm("Create", "Employee", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    @using (Html.BeginForm("Create", "Employee", FormMethod.Post, new { enctype = "multipart/form-data",id = "create-form" }))
                     {
                         @Html.AntiForgeryToken()
                         <div class="form-horizontal">
@@ -145,7 +145,7 @@
                             <!-- Buttons Add and Clear -->
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Добавить" class="btn btn-default" id="button"/> |
+                                    <input type="submit" value="Добавить" class="btn btn-default"  id="btn"/> |
                                     <a class="btn btn-default" name="backButton" id="backButton" href="@Url.Action("Index","Employee")">Назад</a>
                                 </div>
                             </div>

@@ -10,12 +10,12 @@
             Вы точно хотите удалить:<span><b>  @Html.DisplayFor(model => model.AdministrationName)</b></span>
         </div>
     </div>
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("Delete", "Administration", FormMethod.Post, new { enctype = "multipart/form-data", @class = "delete-form" }))
     {
         @Html.AntiForgeryToken()
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-            <input type="submit" value="Удалить" class="btn btn-danger"/>
+            <input type="submit" value="Удалить" class="btn btn-danger" id="btn1"/>
         </div>
     }
 </div>

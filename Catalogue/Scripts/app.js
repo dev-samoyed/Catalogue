@@ -12,6 +12,13 @@ function hideEmployeeList() {
 function toPrevMain(from = "") {
     if (from == "list") {
         $("#employee-list").empty();
+    } else if (from == "admin") {
+        $("#name").val("");
+        $("#position-select-list").val("");
+        $("#department-select-list").val("");
+        $("#administration-select-list").val("");
+        $("#division-select-list").val("");
+        $("#results").empty();
     } else {
         $("#results").empty();
     }  
@@ -84,26 +91,44 @@ function toPrevMain(from = "") {
         $('[data-toggle="tooltip"]').tooltip()
     })
 
-        $(document).ready(function(){
-            $('form').submit(function(e){
-                var form = $(this);
-                e.preventDefault();
+    $(document).ready(function(){
+        $('#create-form').on('submit', function(e){
+            var form = $(this);
+            e.preventDefault();
+            var elements = $(".validation-span");
+            var validated = true;
+            $.each(elements, function(e, v){
+                validated = $(v).is(':empty');
 
-                if (!$(".validation-span").is(":empty")) {
+                if(!validated){
                     $("#se-pre-con").hide();
-                    console.log("not valid");
                     return false;
-                } else {
-                    $('input, select').focus(function() {
-                        console.log("validation ok");
-                        this.blur();
-                        form.submit(); 
-                        return true;
-                    });
-                    
                 }
-                console.log("this");
-                //$("#se-pre-con").show();
-                       
             });
+
+            if(!validated){
+                return false;
+            }
+
+            $('#btn').blur();
+            $('input').blur();
+            $("#se-pre-con").show();
+            form.off('submit');
+            form.submit(); 
         });
+        $("a[name='deleteButton']").click(function(){
+            $("#se-pre-con").show();
+            setTimeout(function(){
+                $("#se-pre-con").hide();
+                $('.delete-form').on('submit', function(e){
+                    var form = $(this);
+                    e.preventDefault();
+                    $('#btn1').blur();
+                    $('input').blur();
+                    $("#se-pre-con").show();
+                    form.off('submit');
+                    form.submit(); 
+                });
+            }, 100)
+        });
+    });  

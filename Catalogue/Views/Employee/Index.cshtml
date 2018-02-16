@@ -6,7 +6,7 @@
     ViewBag.Title = "Сотрудники";
     Layout = "~/Views/Shared/_AminPanel.cshtml";
 }
-
+<div id="se-pre-con" style="display:none;"></div>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -22,7 +22,7 @@
                 {
                     UpdateTargetId = "results",
                     LoadingElementId = "loading",
-                    OnSuccess = "removeBlock()"
+                    OnSuccess = "hideAccordion()"
                 }, new { @class = "ajax-form" }))
                 {
                     @Html.AntiForgeryToken()
@@ -38,7 +38,7 @@
                         </h3>
                         <div class="row">
                             <div class="col-md-11">
-                                <input type="text" id="name" class="form-control" name="name" placeholder="впишите имя сотрудника">
+                                <input type="text" id="name" class="form-control" name="name" placeholder="впишите имя сотрудника" required>
                             </div>
                             <div class="col-md-1">
                                 <span class="input-group-btn">
@@ -92,8 +92,10 @@
                 }
 
                 <hr>
+                
+                <div id="results"></div>
 
-                <div class="content" id="results">
+                <div class="content" id="accordion">
                     <table class="table table-striped" id="listTable">
                         <tr>
                             <th class="col-md-1">
@@ -175,7 +177,7 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-                                                    <input type="submit" value="Удалить" class="btn btn-danger" />
+                                                    <input type="submit" value="Удалить" class="btn btn-danger" id="btn1"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -245,6 +247,7 @@
 
 @section Scripts {
     <script>
+        check_input("Введите название должности");
         pagination();
     </script>
 }
