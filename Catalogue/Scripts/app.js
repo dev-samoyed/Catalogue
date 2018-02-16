@@ -12,10 +12,16 @@ function hideEmployeeList() {
 function toPrevMain(from = "") {
     if (from == "list") {
         $("#employee-list").empty();
+    } else if (from == "admin") {
+        $("#name").val("");
+        $("#position-select-list").val("");
+        $("#department-select-list").val("");
+        $("#administration-select-list").val("");
+        $("#division-select-list").val("");
+        $("#results").empty();
     } else {
         $("#results").empty();
-    }
-    
+    }  
     $("#accordion").show();
 }
 
@@ -86,13 +92,43 @@ function toPrevMain(from = "") {
     })
 
     $(document).ready(function(){
-        $('#button').click(function(){
-            $(this).attr('disabled', 'disabled');
-            $('form').submit();
-            setTimeout(function () { $('#button').removeAttr('disabled'); }, 3000);
+        $('#create-form').on('submit', function(e){
+            var form = $(this);
+            e.preventDefault();
+            var elements = $(".validation-span");
+            var validated = true;
+            $.each(elements, function(e, v){
+                validated = $(v).is(':empty');
+
+                if(!validated){
+                    $("#se-pre-con").hide();
+                    return false;
+                }
+            });
+
+            if(!validated){
+                return false;
+            }
+
+            $('#btn').blur();
+            $('input').blur();
+            $("#se-pre-con").show();
+            form.off('submit');
+            form.submit(); 
         });
-
-
-    });
-
-
+        $("a[name='deleteButton']").click(function(){
+            $("#se-pre-con").show();
+            setTimeout(function(){
+                $("#se-pre-con").hide();
+                $('.delete-form').on('submit', function(e){
+                    var form = $(this);
+                    e.preventDefault();
+                    $('#btn1').blur();
+                    $('input').blur();
+                    $("#se-pre-con").show();
+                    form.off('submit');
+                    form.submit(); 
+                });
+            }, 100)
+        });
+    });  

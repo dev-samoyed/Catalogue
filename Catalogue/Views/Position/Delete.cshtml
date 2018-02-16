@@ -1,5 +1,6 @@
 ﻿@model Catalogue.Models.Tables.Position
 
+<div id="se-pre-con" style="display:none;"></div>
 <div class="modal-content">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -10,12 +11,12 @@
             Вы точно хотите удалить:<span><b>  @Html.DisplayFor(model => model.PositionName)</b></span>
         </div>
     </div>
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("Delete", "Position", FormMethod.Post, new { enctype = "multipart/form-data", @class = "delete-form" }))
     {
         @Html.AntiForgeryToken()
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-            <input type="submit" value="Удалить" class="btn btn-danger" />
+            <input type="submit" value="Удалить" class="btn btn-danger" id="btn1"/>
         </div>
     }
 </div>

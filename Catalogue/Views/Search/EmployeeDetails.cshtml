@@ -1,0 +1,114 @@
+﻿@model Catalogue.Models.Tables.Employee
+
+@{
+    ViewBag.Title = "Просмотр сотрудника";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="header">
+                    <h2>Просмотр сотрудника</h2>
+                </div>
+                <div class="content">
+                    <div>
+                        <hr />
+                        <dl class="dl-horizontal">
+                            <!-- Field EmployeePhoto -->
+                            <dt>
+                                @Html.DisplayNameFor(model => model.EmployeePhoto)
+                            </dt>
+                            <dd>
+                                <img src="~/images/@Model.EmployeePhoto" width="100" height="100" />
+                            </dd>
+                            <!-- Field DepartmentName -->
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Department.DepartmentName)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Department.DepartmentName)
+                            </dd>
+                            <!-- Field PositionName -->
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Position.PositionName)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Position.PositionName)
+                            </dd>
+                            <!-- Field EmployeeFullName -->
+                            <dt>
+                                @Html.DisplayNameFor(model => model.EmployeeFullName)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.EmployeeFullName)
+                            </dd>
+                            <!-- Field EmployeeRoom -->
+                            <dt>
+                                @Html.DisplayNameFor(model => model.EmployeeRoom)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.EmployeeRoom)
+                            </dd>
+                            <!-- Field EmployeeAddress -->
+                            <dt>
+                                @Html.DisplayNameFor(model => model.EmployeeAddress)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.EmployeeAddress)
+                            </dd>
+                            <!-- Field EmployeePhone -->
+                            <dt>
+                                @Html.DisplayNameFor(model => model.EmployeePhone)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.EmployeePhone)
+                            </dd>
+                            <!-- Field EmployeePersonalPhone -->
+                            <dt>
+                                @Html.DisplayNameFor(model => model.EmployeePersonalPhone)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.EmployeePersonalPhone)
+                            </dd>
+                            <!-- Field EmployeeEmail -->
+                            <dt>
+                                @Html.DisplayNameFor(model => model.EmployeeEmail)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.EmployeeEmail)
+                            </dd>
+                            <!-- Field EmployeeSkype -->
+                            <dt>
+                                @Html.DisplayNameFor(model => model.EmployeeSkype)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.EmployeeSkype)
+                            </dd>
+                            <!-- Field DateAdoption -->
+                            <dt>
+                                @Html.DisplayNameFor(model => model.DateAdoption)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.DateAdoption)
+                            </dd>
+                            <!-- Field DateDismissal -->
+                            <dt>
+                                @Html.DisplayNameFor(model => model.DateDismissal)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.DateDismissal)
+                            </dd>
+                        </dl>
+                    </div>
+                    <!-- Buttons Edit and Back -->
+                    <p>
+                        <a class="btn btn-default" name="backButton" id="backButton" href="@Url.Action("Index","Home")">Назад</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

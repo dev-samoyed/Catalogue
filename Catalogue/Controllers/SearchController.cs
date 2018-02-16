@@ -7,6 +7,7 @@ using System.Data.Entity;
 using Catalogue.Models.Tables;
 using PagedList.Mvc;
 using PagedList;
+using System.Net;
 
 using Catalogue.Controllers.Utils;
 
@@ -35,6 +36,8 @@ namespace Catalogue.Controllers
             string view = "";
             if (User.IsInRole("admin"))
                 view = "~/Views/Search/AdminEmployeeFilter.cshtml";
+            else if (User.IsInRole("manager"))
+                view = "~/Views/Search/ManagerEmployeeFilter.cshtml";
             else
                 view = "~/Views/Search/EmployeeFilter.cshtml";
 
@@ -51,7 +54,7 @@ namespace Catalogue.Controllers
         }
 
         // Forms a partial view with a list of found entities
-        //[Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin")]
         public ActionResult AdminSearch(string title, string type)
         {
             string view = "~/Views/Search/";
@@ -83,6 +86,16 @@ namespace Catalogue.Controllers
             }
 
             return PartialView(view);
+        }
+
+        [Authorize(Roles = "manager")]
+        public ActionResult EmployeeDetails (int? id)
+        {
+            if (id == null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            Employee employee = db.Employees.Include(p => p.Position).Include(d => d.Department).SingleOrDefault(e => e.EmployeeId == id);
+            return View(employee);
         }
 
         // Builds the main employee search query

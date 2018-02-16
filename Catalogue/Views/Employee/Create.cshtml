@@ -4,7 +4,7 @@
     ViewBag.Title = "Добавление сотрудника";
     Layout = "~/Views/Shared/_AminPanel.cshtml";
 }
-
+<div id="se-pre-con" style="display:none;"></div>
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12">
@@ -13,7 +13,7 @@
                     <h2>Добавление сотрудника</h2>
                 </div>               
                 <div class="content">
-                    @using (Html.BeginForm("Create", "Employee", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    @using (Html.BeginForm("Create", "Employee", FormMethod.Post, new { enctype = "multipart/form-data",id = "create-form" }))
                     {
                         @Html.AntiForgeryToken()
                         <div class="form-horizontal">
@@ -24,7 +24,7 @@
                                 @Html.LabelFor(model => model.EmployeeFullName, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
                                     @Html.EditorFor(model => model.EmployeeFullName, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.EmployeeFullName, "", new { @class = "text-danger" })
+                                    @Html.ValidationMessageFor(model => model.EmployeeFullName, "", new { @class = "text-danger validation-span" })
                                 </div>
                             </div>
                             <!-- Field EmployeeRoom with Validation -->
@@ -32,7 +32,7 @@
                                 @Html.LabelFor(model => model.EmployeeRoom, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
                                     @Html.EditorFor(model => model.EmployeeRoom, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.EmployeeRoom, "", new { @class = "text-danger" })
+                                    @Html.ValidationMessageFor(model => model.EmployeeRoom, "", new { @class = "text-danger validation-span" })
                                 </div>
                             </div>
                             <!-- Field EmployeeAddress with Validation -->
@@ -48,7 +48,7 @@
                                 @Html.LabelFor(model => model.EmployeePhone, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
                                     @Html.EditorFor(model => model.EmployeePhone, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
-                                    @Html.ValidationMessageFor(model => model.EmployeePhone, "", new { @class = "text-danger" })
+                                    @Html.ValidationMessageFor(model => model.EmployeePhone, "", new { @class = "text-danger validation-span" })
                                 </div>
                             </div>
                             <!-- Field EmployeePersonalPhone with Validation -->
@@ -80,7 +80,7 @@
                                 @Html.LabelFor(model => model.PositionId, "Должность", htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
                                     @Html.DropDownListFor(model => model.PositionId, ViewBag.PositionList as SelectList, "Выберите должность...")
-                                    @Html.ValidationMessageFor(model => model.PositionId, "", new { @class = "text-danger" })
+                                    @Html.ValidationMessageFor(model => model.PositionId, "", new { @class = "text-danger validation-span" })
                                 </div>
                             </div>
                             <!-- Field ComboBox DepartmentId with Validation -->
@@ -88,7 +88,7 @@
                                 @Html.LabelFor(model => model.DepartmentId, "Отдел", htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
                                     @Html.DropDownListFor(model => model.DepartmentId, ViewBag.DepartmentList as SelectList, "Выберите отдел...")
-                                    @Html.ValidationMessageFor(model => model.DepartmentId, "", new { @class = "text-danger" })
+                                    @Html.ValidationMessageFor(model => model.DepartmentId, "", new { @class = "text-danger validation-span" })
                                 </div>
                             </div>
                             <!-- Field DateAdoption with Validation -->
@@ -96,7 +96,7 @@
                                 @Html.LabelFor(model => model.DateAdoption, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
                                     @Html.EditorFor(model => model.DateAdoption, new { htmlAttributes = new { @class = "date-picker" } })
-                                    @Html.ValidationMessageFor(model => model.DateAdoption, "", new { @class = "text-danger" })
+                                    @Html.ValidationMessageFor(model => model.DateAdoption, "", new { @class = "text-danger validation-span" })
                                 </div>
                             </div>
                             <!-- Field DateDismissal with Validation -->
@@ -145,22 +145,19 @@
                             <!-- Buttons Add and Clear -->
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Добавить" class="btn btn-default" /> |
+                                    <input type="submit" value="Добавить" class="btn btn-default"  id="btn"/> |
                                     <a class="btn btn-default" name="backButton" id="backButton" href="@Url.Action("Index","Employee")">Назад</a>
                                 </div>
                             </div>
                         </div>
-                    }
-
-                    @Scripts.Render("~/bundles/jquery")
-                    @Scripts.Render("~/bundles/jqueryval")
-                    @Scripts.Render("~/Scripts/app.js")
-              
-                    <script type="text/javascript" charset="utf-8">
-                        checkPhotoPreview();
-                    </script>                    
+                    }                                                      
                 </div>
             </div>
         </div>
     </div>
 </div>
+@section Scripts {
+    <script type="text/javascript" charset="utf-8">
+        checkPhotoPreview();
+    </script>    
+}

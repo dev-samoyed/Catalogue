@@ -233,6 +233,14 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-Catalogue-20180108113947.mdf" />
+    <Content Include="App_Data\aspnet-Catalogue-20180108113947_log.ldf">
+      <DependentUpon>aspnet-Catalogue-20180108113947.mdf</DependentUpon>
+    </Content>
+    <Content Include="App_Data\Catalogue.Models.Tables.CatalogueContext.mdf" />
+    <Content Include="App_Data\Catalogue.Models.Tables.CatalogueContext_log.ldf">
+      <DependentUpon>Catalogue.Models.Tables.CatalogueContext.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\app.css" />
     <Content Include="Content\assets\css\demo.css" />
     <Content Include="Content\assets\css\light-bootstrap-dashboard.css" />
@@ -292,6 +300,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="images\icons\favicon.png" />
+    <Content Include="Scripts\admin_pagination.js" />
     <Content Include="Scripts\app.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -551,6 +560,8 @@
     <Content Include="Views\Department\Delete.cshtml" />
     <Content Include="Views\Error\NotFoundError.cshtml" />
     <Content Include="Views\Search\NotFound.cshtml" />
+    <Content Include="Views\Search\ManagerEmployeeFilter.cshtml" />
+    <Content Include="Views\Search\EmployeeDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -558,9 +569,7 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
