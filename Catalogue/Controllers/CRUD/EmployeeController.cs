@@ -17,6 +17,7 @@ namespace Catalogue.Controllers.CRUD
     public class EmployeeController : Controller
     {
         CatalogueContext db = new CatalogueContext();
+        
 
         // Ajax pagination PartialView Employee 
         [Authorize(Roles = "admin")]

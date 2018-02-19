@@ -12,24 +12,22 @@
                 }
                 else
                 {
-                    <table class="table table-hover table-responsive table-condensed" id="list-table">
+                    <table class="table table-hover table-responsive table-condensed  table-striped" id="list-table">
                         <caption>Список сотрудников</caption>
-                        <thead>
-                            <tr>
-                                <th>ФИО</th>
-                                <th>Отдел</th>
-                                <th>Должность</th>
-                                <th>Кабинет</th>
-                            </tr>
-                        </thead>
                         <tbody>
+                            <tr>
+                                <th class="col-md-3">ФИО</th>
+                                <th class="col-md-3">Отдел</th>
+                                <th class="col-md-2">Должность</th>
+                                <th class="col-md-2">Телефон</th>
+                            </tr>
                             @foreach (Catalogue.Models.Tables.Employee item in Model)
                             {
                                 <tr>
-                                    <td>@Html.DisplayFor(model => item.EmployeeFullName)</td>
-                                    <td>@Html.DisplayFor(model => item.Department.DepartmentName)</td>
-                                    <td>@Html.DisplayFor(model => item.Position.PositionName)</td>
-                                    <td>@Html.DisplayFor(model => item.EmployeeRoom)</td>
+                                    <td class="td-title">@Html.DisplayFor(model => item.EmployeeFullName)</td>
+                                    <td class="td-title">@Html.DisplayFor(model => item.Department.DepartmentName)</td>
+                                    <td class="td-title">@Html.DisplayFor(model => item.Position.PositionName)</td>
+                                    <td class="td-title">(@Html.DisplayFor(model => item.Department.Administration.AdministrationCode)) @Html.DisplayFor(model => item.EmployeePhone)</td>
                                 </tr>
                             }
                         </tbody>
@@ -43,6 +41,7 @@
                         Старница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
                     </div>
                 }
+                <button class="btn btn-default" onclick="toPrevMain('admin')">Вернуться к списку</button>
             </div>
         </div>
     </div>

@@ -40,8 +40,8 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.EmployeeFullName)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EmployeePhone)
+                <td class="td-title">
+                   (@Html.DisplayFor(model => item.Department.Administration.AdministrationCode)) @Html.DisplayFor(model => item.EmployeePhone)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.EmployeePersonalPhone)

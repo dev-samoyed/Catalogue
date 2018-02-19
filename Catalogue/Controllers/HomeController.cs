@@ -20,10 +20,10 @@ namespace Catalogue.Controllers
         [OutputCache(Duration = 30, Location = OutputCacheLocation.Downstream)]
         public ActionResult Index(int? page)
         {
-            int pageSize = 3;
+            int pageSize = 10;
             int pageNumber = (page ?? 1);
 
-            IPagedList<Employee> employees = db.Employees.OrderBy(e => e.EmployeeFullName).Include(d => d.Department).ToPagedList(pageNumber, pageSize);
+            IPagedList<Employee> employees = db.Employees.OrderBy(e => e.EmployeeFullName).ToPagedList(pageNumber, pageSize);
 
             List<Position> positions = db.Positions.ToList();
             ViewBag.Positions = positions;
@@ -37,7 +37,13 @@ namespace Catalogue.Controllers
             List<Division> divisions = db.Divisions.ToList();
             ViewBag.Divisions = divisions;
 
-            return View(employees);
+            string view = "";
+            if (User.IsInRole("manager"))
+                view = "~/Views/Home/ManagerIndex.cshtml";
+            else
+                view = "~/Views/Home/Index.cshtml";
+
+            return View(view, employees);
         }
     }
 }
