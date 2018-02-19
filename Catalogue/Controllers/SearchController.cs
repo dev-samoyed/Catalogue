@@ -25,13 +25,13 @@ namespace Catalogue.Controllers
 
             name = name.Trim();
             if (name.Length <= 0)
-                employees = db.Employees;
+                employees = db.Employees.OrderBy(c => c.EmployeeFullName);
             else
                 employees = BuildEmployeeSearchQueryByName(name);
 
             employees = FilterAdditions(employees, positionId, departmentId, administrationId, divisionId);
 
-            List<Employee> employeeMatches = AddIncludes(employees);
+            employees = AddIncludes(employees);
 
             string view = "";
             if (User.IsInRole("admin"))
@@ -41,10 +41,10 @@ namespace Catalogue.Controllers
             else
                 view = "~/Views/Search/EmployeeFilter.cshtml";
 
-            int pageSize = 3;
+            int pageSize = 10;
             int pageNumber = (page ?? 1);
 
-            return PartialView(view, employeeMatches.ToPagedList(pageNumber, pageSize));
+            return PartialView(view, employees.ToPagedList(pageNumber, pageSize));
         }
 
         // Forms not found partial view
@@ -94,7 +94,7 @@ namespace Catalogue.Controllers
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
-            Employee employee = db.Employees.Include(p => p.Position).Include(d => d.Department).SingleOrDefault(e => e.EmployeeId == id);
+            Employee employee = db.Employees.Include(p => p.Position).Include(d => d.Department).Include(e => e.Department.Administration).SingleOrDefault(e => e.EmployeeId == id);
             return View(employee);
         }
 
@@ -237,13 +237,13 @@ namespace Catalogue.Controllers
         }
 
         // Adds relationships Position and Department to the (Employee) query
-        private List<Employee> AddIncludes(IQueryable<Employee> query)
+        private IQueryable<Employee> AddIncludes(IQueryable<Employee> query)
         {
-            List<Employee> employeeMatches = query
+            IQueryable<Employee> employeeMatches = query
                 .OrderBy(c => c.EmployeeFullName)
-                .Include(p => p.Position)
                 .Include(d => d.Department)
-                .ToList();
+                .Include(e => e.Department.Administration)
+                .Include(p => p.Position);
 
             return employeeMatches;
         }

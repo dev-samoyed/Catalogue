@@ -44,8 +44,6 @@
                                     Действия
                                 </th>
                             </tr>
-
-
                             @foreach (Catalogue.Models.Tables.Employee item in Model)
                             {
                                 var myModal = "myModal" + item.EmployeeId;
@@ -68,7 +66,7 @@
                                         @item.EmployeeRoom
                                     </td>
                                     <td class="td-title">
-                                        @item.EmployeePhone
+                                        (@Html.DisplayFor(model => @item.Department.Administration.AdministrationCode)) @Html.DisplayFor(model => item.EmployeePhone)
                                     </td>
                                     <td>
                                         @item.DateAdoption
@@ -77,7 +75,7 @@
                                         @item.DateDismissal
                                     </td>
                                     <td>
-                                        <div class="btn-group">
+                                        <div class="btn-group-employee">
                                             <a class="btn btn-default" name="editButton" id="editButton" href="@Url.Action("Edit","Employee", new {id = item.EmployeeId})"><i class="fa fa-pencil" aria-hidden="true" title="Редактировать" data-toggle="tooltip" data-placement="top"></i></a>
                                             <a class="btn btn-default" name="detailsButton" id="detailsButton" href="@Url.Action("Details","Employee", new {id = item.EmployeeId})"><i class="fa fa-eye" aria-hidden="true" title="Просмотреть" data-toggle="tooltip" data-placement="top"></i></a>
                                             <a class="btn btn-default" name="deleteButton" id="deleteButton" href="@Url.Action("Delete","Employee", new {id = item.EmployeeId})" data-toggle="modal" data-target="#@myModal"
