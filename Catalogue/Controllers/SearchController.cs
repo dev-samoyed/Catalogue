@@ -94,7 +94,9 @@ namespace Catalogue.Controllers
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
+
             Employee employee = db.Employees.Include(p => p.Position).Include(d => d.Department).Include(e => e.Department.Administration).SingleOrDefault(e => e.EmployeeId == id);
+
             return View(employee);
         }
 

@@ -80,7 +80,9 @@ namespace Catalogue.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    if (User.IsInRole("admin"))
+                        return RedirectToAction("Index", "Main");
+                    return RedirectToAction("Index", "Home");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
