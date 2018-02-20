@@ -121,7 +121,7 @@ namespace Catalogue.Controllers.CRUD
             try
             {
                 if (id == null)
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    return HttpNotFound();
                 division = db.Divisions.Find(id);
                 if (division == null)
                     return HttpNotFound();
