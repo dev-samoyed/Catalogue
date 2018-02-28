@@ -81,6 +81,20 @@ div.loading {
     margin: 0 auto;
     overflow: inherit;
 }
+.btn-group-employee {
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 17%;
+    margin-left: 0%;
+}
+
+.btn-group, .btn-group-vertical {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 23%;
+}
+
 .modal-backdrop.in {
     opacity: 0;
 }
@@ -108,16 +122,3 @@ div.loading {
     padding-right: 0px !important;
 }
 
-.btn-group-employee {
-    display: inline-block;
-    vertical-align: middle;
-    padding-left: 17%;
-    margin-left: 0%;
-}
-
-.btn-group, .btn-group-vertical {
-    position: relative;
-    display: inline-block;
-    vertical-align: middle;
-    margin-left: 23%;
-}
