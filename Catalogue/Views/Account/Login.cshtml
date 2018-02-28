@@ -30,7 +30,6 @@
 
 </head>
 <body>
-
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100">
@@ -43,7 +42,7 @@
                     </span>
                 </div>
 
-                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
         {
             @Html.AntiForgeryToken()
             <form class="login100-form validate-form">
