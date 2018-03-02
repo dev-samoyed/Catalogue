@@ -37,7 +37,7 @@ namespace Catalogue.Controllers.CRUD
         public ActionResult Details(int? id)
         {
             if (id == null)
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return HttpNotFound();
             Department administration = db.Departments.Include(e => e.Administration).SingleOrDefault(d => d.DepartmentId == id);
             return View(administration);
         }
@@ -74,7 +74,7 @@ namespace Catalogue.Controllers.CRUD
         public ActionResult Edit(int? id)
         {
             if (id == null)
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return HttpNotFound();
             Department department = db.Departments.Find(id);
             if (department == null)
                 return HttpNotFound();
@@ -125,7 +125,7 @@ namespace Catalogue.Controllers.CRUD
             try
             {
                 if (id == null)
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    return HttpNotFound();
                 department = db.Departments.Find(id);
                 if (department == null)
                     return HttpNotFound();
