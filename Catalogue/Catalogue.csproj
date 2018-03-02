@@ -248,8 +248,12 @@
     <Content Include="Content\assets\img\5.png" />
     <Content Include="Content\assets\img\default-avatar.png" />
     <Content Include="Content\assets\img\full-screen-image-3.jpg" />
+    <Content Include="Content\assets\img\img-01.png" />
     <Content Include="Content\assets\img\loading-bubbles.svg" />
     <Content Include="Content\assets\img\mask.png" />
+    <Content Include="Content\assets\img\pattern.svg" />
+    <Content Include="Content\assets\img\polygon.jpg" />
+    <Content Include="Content\assets\img\Preloader_2.gif" />
     <Content Include="Content\assets\img\sidebar.jpg" />
     <Content Include="Content\assets\js\bootstrap-notify.js" />
     <Content Include="Content\assets\js\bootstrap-select.js" />
@@ -268,6 +272,7 @@
     <Content Include="Content\error\img\404.png" />
     <Content Include="Content\error\css\fonts.css" />
     <Content Include="Content\error\css\main.css" />
+    <Content Include="Content\font-awesome.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\vendor\animate\animate.css" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap-grid.css" />
@@ -278,6 +283,7 @@
     <Content Include="Content\vendor\bootstrap\css\bootstrap.min.css" />
     <Content Include="Content\vendor\bootstrap\js\bootstrap.js" />
     <Content Include="Content\vendor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\vendor\bootstrap\js\new.js" />
     <Content Include="Content\vendor\bootstrap\js\popper.js" />
     <Content Include="Content\vendor\bootstrap\js\popper.min.js" />
     <Content Include="Content\vendor\bootstrap\js\tooltip.js" />
@@ -298,6 +304,8 @@
     <Content Include="fonts\montserrat\OFL.txt" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\default-avatar.png" />
+    <Content Include="images\default\default-avatar.png" />
     <Content Include="images\icons\favicon.png" />
     <Content Include="Scripts\admin_pagination.js" />
     <Content Include="Scripts\app.js" />
