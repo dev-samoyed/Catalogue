@@ -46,7 +46,9 @@ namespace Catalogue.Models.Tables
         public string EmployeeSkype { get; set; }
 
         [Display(Name = "Фото сотрудника")]
+
         [RegularExpression(@"([a-zA-Z0-9\s_\\.\-:])+(.png|.jpg|.jpeg|.PNG|.JPG|.JPEG)$", ErrorMessage = "Формат файла должен быть .jpg, .png, .jpeg")]       
+
         public string EmployeePhoto { get; set; }
 
         /// <summary>

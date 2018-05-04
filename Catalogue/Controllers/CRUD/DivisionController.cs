@@ -37,7 +37,7 @@ namespace Catalogue.Controllers.CRUD
         public ActionResult Details(int? id)
         {
             if (id == null)
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return HttpNotFound();
             Division division = db.Divisions.Find(id);
             if (division == null)
                 return HttpNotFound();
@@ -75,7 +75,7 @@ namespace Catalogue.Controllers.CRUD
         public ActionResult Edit(int? id)
         {
             if (id == null)
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return HttpNotFound();
             Division division = db.Divisions.Find(id);
             if (division == null)
                 return HttpNotFound();
@@ -121,7 +121,7 @@ namespace Catalogue.Controllers.CRUD
             try
             {
                 if (id == null)
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    return HttpNotFound();
                 division = db.Divisions.Find(id);
                 if (division == null)
                     return HttpNotFound();

@@ -36,7 +36,7 @@ namespace Catalogue.Controllers.CRUD
         public ActionResult Details(int? id)
         {
             if (id == null)
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                 return HttpNotFound();
             Position position = db.Positions.Find(id);
             if (position == null)
                 return HttpNotFound();
@@ -74,7 +74,7 @@ namespace Catalogue.Controllers.CRUD
         public ActionResult Edit(int? id)
         {
             if (id == null)
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                 return HttpNotFound();
             Position position = db.Positions.Find(id);
             if (position == null)
                 return HttpNotFound();
@@ -120,7 +120,7 @@ namespace Catalogue.Controllers.CRUD
             try
             {
                 if (id == null)
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                     return HttpNotFound();
                 position = db.Positions.Find(id);
                 if (position == null)
                     return HttpNotFound();
