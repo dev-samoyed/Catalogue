@@ -87,8 +87,9 @@ namespace Catalogue.Controllers.CRUD
                 else
                 {
                     var fileName = Path.GetFileName(productImg.FileName);
-                    
-                    fileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + fileName;
+                    string[] pictureFormat = fileName.Split('.');
+
+                    fileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + "." + pictureFormat.Last();
 
                     var directoryToSave = Server.MapPath(Url.Content("~/images"));
 
@@ -141,8 +142,9 @@ namespace Catalogue.Controllers.CRUD
                     }
 
                     var fileName = Path.GetFileName(productImg.FileName);
+                    string[] pictureFormat = fileName.Split('.');
 
-                    fileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + fileName;
+                    fileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + "." + pictureFormat.Last();
 
                     var directoryToSave = Server.MapPath(Url.Content("~/images"));
 

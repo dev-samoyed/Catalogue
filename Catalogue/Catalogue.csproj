@@ -272,7 +272,6 @@
     <Content Include="Content\error\img\404.png" />
     <Content Include="Content\error\css\fonts.css" />
     <Content Include="Content\error\css\main.css" />
-    <Content Include="Content\font-awesome.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\vendor\animate\animate.css" />
     <Content Include="Content\vendor\bootstrap\css\bootstrap-grid.css" />
