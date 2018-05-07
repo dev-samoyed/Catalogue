@@ -55,7 +55,7 @@ namespace Catalogue.Controllers.CRUD
         {
 
             if (id == null)
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return HttpNotFound();
             
             Employee employee = db.Employees.Include(p => p.Position).Include(d => d.Department).SingleOrDefault(e => e.EmployeeId == id);
             return View(employee);
@@ -178,7 +178,7 @@ namespace Catalogue.Controllers.CRUD
             try
             {
                 if (id == null)
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    return HttpNotFound();
                 employee = db.Employees.Find(id);
                 if (employee == null)
                     return HttpNotFound();
