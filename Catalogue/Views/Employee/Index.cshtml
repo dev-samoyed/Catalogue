@@ -48,12 +48,22 @@
                         </div>
                         <div class="row">
                             <div class="col-md-3">
-                                <label class="control-label" for="position-select-list">Выберите должность (опционально)</label>
-                                <select class="form-control" id="position-select-list" name="positionId">
-                                    <option selected value="">Должность</option>
-                                    @foreach (Catalogue.Models.Tables.Position position in ViewBag.Positions)
+                                <label class="control-label" for="administration-select-list">Выберите орган управления (опционально)</label>
+                                <select id="administration-select-list" class="form-control" name="administrationId">
+                                    <option selected=selected value="">Орган управления</option>
+                                    @foreach (Catalogue.Models.Tables.Administration administration in ViewBag.Admins)
                                     {
-                                        <option value="@position.PositionId">@position.PositionName</option>
+                                        <option value="@administration.AdministrationId">@administration.AdministrationName</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="control-label" for="division-select-list">Выберите регион (опционально)</label>
+                                <select id="division-select-list" class="form-control" name="divisionId">
+                                    <option selected=selected value="">Регион</option>
+                                    @foreach (Catalogue.Models.Tables.Division division in ViewBag.Divisions)
+                                    {
+                                        <option value="@division.DivisionId">@division.DivisionName</option>
                                     }
                                 </select>
                             </div>
@@ -68,22 +78,12 @@
                                 </select>
                             </div>
                             <div class="col-md-3">
-                                <label class="control-label" for="administration-select-list">Выберите орган управления (опционально)</label>
-                                <select id="administration-select-list" class="form-control" name="administrationId">
-                                    <option selected value="">Орган управления</option>
-                                    @foreach (Catalogue.Models.Tables.Administration administration in ViewBag.Admins)
+                                <label class="control-label" for="position-select-list">Выберите должность (опционально)</label>
+                                <select class="form-control" id="position-select-list" name="positionId">
+                                    <option selected=selected value="">Должность</option>
+                                    @foreach (Catalogue.Models.Tables.Position position in ViewBag.Positions)
                                     {
-                                        <option value="@administration.AdministrationId">@administration.AdministrationName</option>
-                                    }
-                                </select>
-                            </div>
-                            <div class="col-md-3">
-                                <label class="control-label" for="division-select-list">Выберите регион (опционально)</label>
-                                <select id="division-select-list" class="form-control" name="divisionId">
-                                    <option selected value="">Регион</option>
-                                    @foreach (Catalogue.Models.Tables.Division division in ViewBag.Divisions)
-                                    {
-                                        <option value="@division.DivisionId">@division.DivisionName</option>
+                                        <option value="@position.PositionId">@position.PositionName</option>
                                     }
                                 </select>
                             </div>

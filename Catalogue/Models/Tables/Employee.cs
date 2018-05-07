@@ -20,7 +20,7 @@ namespace Catalogue.Models.Tables
 
         [Display(Name = "Кабинет")]
         [StringLength(10, ErrorMessage = "Длина строки не должна превышать 10 символов")]
-        [Required(ErrorMessage = "Заполните поле!")]
+        //[Required(ErrorMessage = "Заполните поле!")]
         public string EmployeeRoom { get; set; }
 
         [Display(Name = "Адрес")]
@@ -62,7 +62,7 @@ namespace Catalogue.Models.Tables
         public Department Department { get; set; }
 
         [Display(Name = "Дата принятия")]
-        [Required(ErrorMessage = "Необходимо выбрать дату принятия сотрудника!")]
+        //[Required(ErrorMessage = "Необходимо выбрать дату принятия сотрудника!")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime DateAdoption { get; set; }

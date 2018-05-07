@@ -47,7 +47,7 @@ namespace Catalogue.Controllers.CRUD
         [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
-            SelectList divisionList = new SelectList(db.Divisions, "DivisionId", "DivisionName");
+            SelectList divisionList = new SelectList(db.Divisions.OrderBy(d => d.DivisionName), "DivisionId", "DivisionName");
             ViewBag.AdministrationList = divisionList;
             return View();
         }
@@ -79,7 +79,7 @@ namespace Catalogue.Controllers.CRUD
             if (administration == null)
                 return HttpNotFound();
 
-            SelectList divisionList = new SelectList(db.Divisions, "DivisionId", "DivisionName");
+            SelectList divisionList = new SelectList(db.Divisions.OrderBy(d => d.DivisionName), "DivisionId", "DivisionName");
             ViewBag.AdministrationList = divisionList;
             return View(administration);
         }

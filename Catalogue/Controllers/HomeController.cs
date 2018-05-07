@@ -25,16 +25,16 @@ namespace Catalogue.Controllers
 
             IPagedList<Employee> employees = db.Employees.OrderBy(e => e.EmployeeFullName).ToPagedList(pageNumber, pageSize);
 
-            List<Position> positions = db.Positions.ToList();
+            List<Position> positions = db.Positions.OrderBy(p => p.PositionName).ToList();
             ViewBag.Positions = positions;
 
-            List<Department> departments = db.Departments.ToList();
+            List<Department> departments = db.Departments.OrderBy(d => d.DepartmentName).ToList();
             ViewBag.Departments = departments;
 
-            List<Administration> admins = db.Administrations.ToList();
+            List<Administration> admins = db.Administrations.OrderBy(a => a.AdministrationName).ToList();
             ViewBag.Admins = admins;
 
-            List<Division> divisions = db.Divisions.ToList();
+            List<Division> divisions = db.Divisions.OrderBy(d => d.DivisionName).ToList();
             ViewBag.Divisions = divisions;
 
             string view = "";

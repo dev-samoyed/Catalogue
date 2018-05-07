@@ -47,7 +47,7 @@ namespace Catalogue.Controllers.CRUD
         // GET: Department/Create
         public ActionResult Create()
         {
-            SelectList administrationList = new SelectList(db.Administrations, "AdministrationId", "AdministrationName");
+            SelectList administrationList = new SelectList(db.Administrations.OrderBy(a => a.AdministrationName), "AdministrationId", "AdministrationName");
             ViewBag.AdministrationList = administrationList;
             return View();
         }
@@ -79,7 +79,7 @@ namespace Catalogue.Controllers.CRUD
             if (department == null)
                 return HttpNotFound();
 
-            SelectList administrationList = new SelectList(db.Administrations, "AdministrationId", "AdministrationName");
+            SelectList administrationList = new SelectList(db.Administrations.OrderBy(a => a.AdministrationName), "AdministrationId", "AdministrationName");
             ViewBag.AdministrationList = administrationList;
             return View(department);
         }

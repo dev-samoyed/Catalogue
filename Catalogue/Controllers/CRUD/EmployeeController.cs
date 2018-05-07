@@ -32,16 +32,16 @@ namespace Catalogue.Controllers.CRUD
         [Authorize(Roles = "admin")]
         public ActionResult Index(int? page)
         {
-            List<Position> positions = db.Positions.ToList();
+            List<Position> positions = db.Positions.OrderBy(p => p.PositionName).ToList();
             ViewBag.Positions = positions;
 
-            List<Department> departments = db.Departments.ToList();
+            List<Department> departments = db.Departments.OrderBy(d => d.DepartmentName).ToList();
             ViewBag.Departments = departments;
 
-            List<Administration> admins = db.Administrations.ToList();
+            List<Administration> admins = db.Administrations.OrderBy(a => a.AdministrationName).ToList();
             ViewBag.Admins = admins;
 
-            List<Division> divisions = db.Divisions.ToList();
+            List<Division> divisions = db.Divisions.OrderBy(d => d.DivisionName).ToList();
             ViewBag.Divisions = divisions;
 
             int pageSize = 10;
@@ -66,9 +66,9 @@ namespace Catalogue.Controllers.CRUD
         [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
-            SelectList departmentList = new SelectList(db.Departments, "DepartmentId", "DepartmentName");
+            SelectList departmentList = new SelectList(db.Departments.OrderBy(d => d.DepartmentName), "DepartmentId", "DepartmentName");
             ViewBag.DepartmentList = departmentList;
-            SelectList positionList = new SelectList(db.Positions, "PositionId", "PositionName");
+            SelectList positionList = new SelectList(db.Positions.OrderBy(p => p.PositionName), "PositionId", "PositionName");
             ViewBag.PositionList = positionList;
             return View();
         }
@@ -114,9 +114,9 @@ namespace Catalogue.Controllers.CRUD
             if (employee == null)
                 return HttpNotFound();
 
-            SelectList departmentList = new SelectList(db.Departments, "DepartmentId", "DepartmentName");
+            SelectList departmentList = new SelectList(db.Departments.OrderBy(d => d.DepartmentName), "DepartmentId", "DepartmentName");
             ViewBag.DepartmentList = departmentList;
-            SelectList positionList = new SelectList(db.Positions, "PositionId", "PositionName");
+            SelectList positionList = new SelectList(db.Positions.OrderBy(p => p.PositionName), "PositionId", "PositionName");
             ViewBag.PositionList = positionList;
             return View(employee);
         }

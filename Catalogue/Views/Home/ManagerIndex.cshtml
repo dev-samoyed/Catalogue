@@ -41,29 +41,9 @@
                         </div>
                         <div class="row">
                             <div class="col-md-3">
-                                <label class="control-label" for="position-select-list">Выберите должность (опционально)</label>
-                                <select class="form-control" id="position-select-list" name="positionId">
-                                    <option selected value="">Должность</option>
-                                    @foreach (Catalogue.Models.Tables.Position position in ViewBag.Positions)
-                                    {
-                                        <option value="@position.PositionId">@position.PositionName</option>
-                                    }
-                                </select>
-                            </div>
-                            <div class="col-md-3">
-                                <label class="control-label" for="department-select-list">Выберите отдел (опционально)</label>
-                                <select id="department-select-list" class="form-control" name="departmentId">
-                                    <option selected value="">Отдел</option>
-                                    @foreach (Catalogue.Models.Tables.Department department in ViewBag.Departments)
-                                    {
-                                        <option value="@department.DepartmentId">@department.DepartmentName</option>
-                                    }
-                                </select>
-                            </div>
-                            <div class="col-md-3">
                                 <label class="control-label" for="administration-select-list">Выберите орган управления (опционально)</label>
                                 <select id="administration-select-list" class="form-control" name="administrationId">
-                                    <option selected value="">Орган управления</option>
+                                    <option selected=selected value="">Орган управления</option>
                                     @foreach (Catalogue.Models.Tables.Administration administration in ViewBag.Admins)
                                     {
                                         <option value="@administration.AdministrationId">@administration.AdministrationName</option>
@@ -73,13 +53,33 @@
                             <div class="col-md-3">
                                 <label class="control-label" for="division-select-list">Выберите регион (опционально)</label>
                                 <select id="division-select-list" class="form-control" name="divisionId">
-                                    <option selected value="">Регион</option>
+                                    <option selected=selected value="">Регион</option>
                                     @foreach (Catalogue.Models.Tables.Division division in ViewBag.Divisions)
                                     {
                                         <option value="@division.DivisionId">@division.DivisionName</option>
                                     }
                                 </select>
                             </div>
+                            <div class="col-md-3">
+                                <label class="control-label" for="department-select-list">Выберите отдел (опционально)</label>
+                                <select id="department-select-list" class="form-control" name="departmentId">
+                                    <option selected=selected value="">Отдел</option>
+                                    @foreach (Catalogue.Models.Tables.Department department in ViewBag.Departments)
+                                    {
+                                        <option value="@department.DepartmentId">@department.DepartmentName</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="control-label" for="position-select-list">Выберите должность (опционально)</label>
+                                <select class="form-control" id="position-select-list" name="positionId">
+                                    <option selected value="">Должность</option>
+                                    @foreach (Catalogue.Models.Tables.Position position in ViewBag.Positions)
+                                    {
+                                        <option value="@position.PositionId">@position.PositionName</option>
+                                    }
+                                </select>
+                            </div>                                                
                         </div>
                     </div><!-- /input-group -->
                 }
