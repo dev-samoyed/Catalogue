@@ -99,7 +99,6 @@
                             @Html.LabelFor(model => model.DateAdoption, htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-10">
                                 @Html.EditorFor(model => model.DateAdoption, new { htmlAttributes = new { @class = "date-picker" } })
-                                @Html.ValidationMessageFor(model => model.DateAdoption, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <!-- Field DateDismissal with Validation -->
@@ -123,9 +122,16 @@
                           
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
-                                    <input type="file" name="productImg" id="imageBrowes" class="btn btn-default" accept="image/x-png,image/gif,image/jpeg"/>
+                                    <input type="file" name="productImg" id="imageBrowes" class="btn btn-default" style="display:inline-block;" accept="image/x-png,image/gif,image/jpeg"/>
                                     <input type="button" value="Сброс" id="imageBrowes"  class="btn btn-default" onclick="ClearPreview()" />
                                     <input type="hidden" name="photo" value="@Model.EmployeePhoto"/>                                   
+                                </div>
+                            </div>
+                            <!-- Buttons Save and Clear -->
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Сохранить" class="btn btn-default" /> |
+                                    <a class="btn btn-default" name="backButton" id="backButton" href="@Url.Action("Index","Employee")">Назад</a>
                                 </div>
                             </div>
                         </div>
@@ -144,14 +150,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- Buttons Save and Clear -->
-                        <div class="form-group">
-                            <div class="col-md-offset-2 col-md-10">
-                                <input type="submit" value="Сохранить" class="btn btn-default" /> |
-                                <a class="btn btn-default" name="backButton" id="backButton" href="@Url.Action("Index","Employee")">Назад</a>
-                            </div>
-                        </div>
+                        </div>                        
                     </div>
                    }
                 @Scripts.Render("~/bundles/jquery")

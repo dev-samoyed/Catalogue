@@ -132,9 +132,8 @@
                             var myModal = "myModal" + item.EmployeeId;
                             <tr>
                                 <td>
-                                        <span data-link="@Url.Content($"~/images/{item.EmployeePhoto}")" class="lightbox">
-                                            <img src="~/images/@item.EmployeePhoto" class="tumb" />
-                                        </span>
+                                    <img src="~/images/@item.EmployeePhoto" width="80" height="100" />
+
                                 </td>
                                 <td class="td-title">
                                     @Html.DisplayFor(modelItem => item.Department.DepartmentName)
@@ -200,50 +199,6 @@
         </div>
     </div>
 </div>
-
-<div id="backdrop"></div>
-<div id="box">
-    <div id="close">Закрыть <i class="pe-7s-close-circle"></i></div>
-    <img src="" alt="" id="image">
-</div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var lightbox = document.getElementsByClassName('lightbox');
-
-        var backdrop = document.getElementById("backdrop");
-        var box = document.getElementById("box");
-        var close = document.getElementById("close");
-        var image = document.getElementById("image");
-
-        for (var i = 0; i < lightbox.length; i++) {
-            lightbox[i].addEventListener('click', event, false);
-        }
-
-        function event() {
-            var link = this.dataset.link;
-
-            backdrop.style.opacity = '.50';
-            backdrop.style.display = 'block';
-
-            box.style.opacity = '1.00';
-            box.style.display = 'block';
-
-            image.src = link;
-        }
-
-        close.addEventListener('click', close_box, false);
-        backdrop.addEventListener('click', close_box, false);
-
-        function close_box() {
-            backdrop.style.opacity = '0';
-            backdrop.style.display = 'none';
-
-            box.style.opacity = '0';
-            box.style.display = 'none';
-        }
-    })
-</script>
 
 @section Scripts {
     <script>

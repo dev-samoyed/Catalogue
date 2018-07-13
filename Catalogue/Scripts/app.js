@@ -91,6 +91,13 @@ function toPrevMain(from = "") {
         $('[data-toggle="tooltip"]').tooltip()
     })
 
+    //$(function () {
+    //    $(".list").selectBoxIt({
+    //        theme: "default",
+    //        autoWidth: false
+    //    });
+    //});
+
     $(document).ready(function(){
         $('#create-form').on('submit', function(e){
             var form = $(this);

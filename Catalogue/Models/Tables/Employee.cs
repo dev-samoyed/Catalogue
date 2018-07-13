@@ -67,7 +67,7 @@ namespace Catalogue.Models.Tables
         //[Required(ErrorMessage = "Необходимо выбрать дату принятия сотрудника!")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime DateAdoption { get; set; }
+        public Nullable<DateTime> DateAdoption { get; set; }
 
         [Display(Name = "Дата увольнения")]
         [DataType(DataType.Date)]

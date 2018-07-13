@@ -43,16 +43,37 @@
                                      <p>Поиск</p>
                                  </a>
                              </li>
+
                              @if (User.IsInRole("admin"))
                              {
-                             <li class="active">
-                                 <a href="@Url.Action("Index", "Main")">
-                                     <i class="pe-7s-home"></i>
-                                     <p>Панель администратора</p>
-                                 </a>
-                             </li>
+                                 <li class="active">
+                                     <a href="@Url.Action("Index", "Division")">
+                                         <i class="pe-7s-home"></i>
+                                         <p>Панель администратора</p>
+                                     </a>
+                                 </li>
+                                 <li class="active">
+                                     <a href="~/Content/Guide.docx" download="Руководство пользователя.docx">
+                                         <i class="pe-7s-download"></i>
+                                         <p>Руководство</p>
+                                     </a>
+                                 </li>
                              }
                          </ul>
+                         <ul class="nav">
+                             <li class="active active-pro">
+                                 <a href="https://www.accuweather.com/ru/kg/bishkek/222844/weather-forecast/222844" class="aw-widget-legal" style="display:none;"></a>
+                                 <div id="awcc1528878694547" class="aw-widget-current" style="width:99%;" data-locationkey="" data-unit="c" data-language="ru" data-useip="true" data-uid="awcc1528878694547"></div>
+                                 <script type="text/javascript" src="https://oap.accuweather.com/launch.js"></script>
+                                 <script id="valutakg-widget" async="true" src="https://valuta.kg/widget/loader.js"></script>
+                             </li>
+
+                         </ul>
+                         @*<div class="container-fluid">
+                             <div class="row">
+                                 
+                             </div>
+                         </div>*@
                      </div>
                  </div>
 
@@ -77,6 +98,7 @@
              </nav>
 
              <div class="content">
+          
                  @RenderBody()
              </div>
 

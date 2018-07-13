@@ -19,7 +19,7 @@
 }
 .td-title {
    word-wrap:break-word;
-    overflow-wrap:break-word;
+   overflow-wrap:break-word;
 }
 
 .custom-checkbox{
@@ -69,7 +69,7 @@
 }
 
 .tumb {
-    width: 100px !important;
+    width: 80px !important;
     height: 100px;
     cursor: pointer;
 }
@@ -115,10 +115,27 @@ div.loading {
     width: 30%;
 }
 .modal.fade .modal-dialog {
-
     width: 30%;
 }
 .modal-open {
     padding-right: 0px !important;
 }
 
+.selectboxit-container .selectboxit, .selectboxit-container .selectboxit-options {
+  width: 600px; /* Width of the dropdown button */
+  border-radius:0;
+  max-height:240px;
+}
+
+.selectboxit-options .selectboxit-option .selectboxit-option-anchor {
+    white-space: normal;
+    min-height: 30px;
+    height: auto;
+} 
+
+.aw-toggle {
+    display: none;
+}
+.vlkg {
+    width: 99%;
+}

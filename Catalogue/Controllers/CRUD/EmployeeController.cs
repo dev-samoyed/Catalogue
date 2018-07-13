@@ -11,6 +11,7 @@ using System.IO;
 using Catalogue.Models;
 using System.Data.Entity.Validation;
 using System.Web.Helpers;
+using System.Web.UI;
 
 namespace Catalogue.Controllers.CRUD
 {
@@ -21,6 +22,7 @@ namespace Catalogue.Controllers.CRUD
 
         // Ajax pagination PartialView Employee 
         [Authorize(Roles = "admin")]
+        [OutputCache(Duration = 30, Location = OutputCacheLocation.Downstream)]
         public ActionResult AjaxPositionList(int? page)
         {
             int pageSize = 10;
@@ -30,6 +32,7 @@ namespace Catalogue.Controllers.CRUD
 
         // GET: Employee
         [Authorize(Roles = "admin")]
+        [OutputCache(Duration = 30, Location = OutputCacheLocation.Downstream)]
         public ActionResult Index(int? page)
         {
             List<Position> positions = db.Positions.OrderBy(p => p.PositionName).ToList();
@@ -66,7 +69,22 @@ namespace Catalogue.Controllers.CRUD
         [Authorize(Roles = "admin")]
         public ActionResult Create()
         {
-            SelectList departmentList = new SelectList(db.Departments.OrderBy(d => d.DepartmentName), "DepartmentId", "DepartmentName");
+            List<CustomSelectModel> customSelectModel = new List<CustomSelectModel>();
+            var departmentsWithAdministrations = db.Departments.Include(a => a.Administration).Where(x => x.AdministrationId == x.Administration.AdministrationId).OrderBy(d => d.DepartmentName).ToList();
+
+            foreach (var item in departmentsWithAdministrations)
+            {
+
+                customSelectModel.Add(
+                    new CustomSelectModel
+                    {
+                        DepartmentId = item.DepartmentId,
+                        DepartmentName = item.DepartmentName + " (" + item.Administration.AdministrationName + ")"
+                    }
+                );
+            }
+
+            SelectList departmentList = new SelectList(customSelectModel, "DepartmentId", "DepartmentName");
             ViewBag.DepartmentList = departmentList;
             SelectList positionList = new SelectList(db.Positions.OrderBy(p => p.PositionName), "PositionId", "PositionName");
             ViewBag.PositionList = positionList;
@@ -79,7 +97,7 @@ namespace Catalogue.Controllers.CRUD
         public ActionResult Create(Employee collection, HttpPostedFileBase productImg)
         {
             if (ModelState.IsValid)
-            {          
+            {
                 if (productImg == null)
                 {
                     collection.EmployeePhoto = "default-avatar.png";
@@ -88,7 +106,7 @@ namespace Catalogue.Controllers.CRUD
                 {
                     var fileName = Path.GetFileName(productImg.FileName);
                     
-                    fileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + fileName;
+                    fileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + "." + fileName.Split('.').Last().ToLower();
 
                     var directoryToSave = Server.MapPath(Url.Content("~/images"));
 
@@ -114,7 +132,22 @@ namespace Catalogue.Controllers.CRUD
             if (employee == null)
                 return HttpNotFound();
 
-            SelectList departmentList = new SelectList(db.Departments.OrderBy(d => d.DepartmentName), "DepartmentId", "DepartmentName");
+            List<CustomSelectModel> customSelectModel = new List<CustomSelectModel>();
+            var departmentsWithAdministrations = db.Departments.Include(a => a.Administration).Where(x => x.AdministrationId == x.Administration.AdministrationId).OrderBy(d => d.DepartmentName).ToList();
+
+            foreach (var item in departmentsWithAdministrations)
+            {
+
+                customSelectModel.Add(
+                    new CustomSelectModel
+                    {
+                        DepartmentId = item.DepartmentId,
+                        DepartmentName = item.DepartmentName + " (" + item.Administration.AdministrationName + ")"
+                    }
+                );
+            }
+
+            SelectList departmentList = new SelectList(customSelectModel, "DepartmentId", "DepartmentName");
             ViewBag.DepartmentList = departmentList;
             SelectList positionList = new SelectList(db.Positions.OrderBy(p => p.PositionName), "PositionId", "PositionName");
             ViewBag.PositionList = positionList;
@@ -142,7 +175,7 @@ namespace Catalogue.Controllers.CRUD
 
                     var fileName = Path.GetFileName(productImg.FileName);
 
-                    fileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + fileName;
+                    fileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + "." + fileName.Split('.').Last().ToLower();
 
                     var directoryToSave = Server.MapPath(Url.Content("~/images"));
 

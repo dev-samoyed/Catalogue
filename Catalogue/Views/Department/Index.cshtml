@@ -6,9 +6,7 @@
     ViewBag.Title = "Отделы";
     Layout = "~/Views/Shared/_AminPanel.cshtml";
 }
-
 <div class="container-fluid">
-
     <div id="se-pre-con" style="display:none;"></div>
     <div class="row">
         <div class="col-md-12">
@@ -19,9 +17,9 @@
                         <a class="btn btn-default" name="createButton" id="createButton" href="@Url.Action("Create","Department")">Добавить новую запись</a>
                     </p>
                 </div>
+
                 <hr />
                 @using (Ajax.BeginForm("AdminSearch", "Search", null,
-
                 new AjaxOptions
                 {
                     UpdateTargetId = "results",
@@ -29,7 +27,6 @@
                     OnSuccess = "hideAccordion()"
                 },
                 new { @class = "ajax-form", @id="ajax-form" }))
-
                 {
                     @Html.AntiForgeryToken()
                     <input type="hidden" name="type" value="department" />
@@ -69,42 +66,42 @@
                         @foreach (var item in Model)
                         {
                             var myModal = "myModal" + item.DepartmentId;
-                            <tr>
-                                <td class="td-title">
-                                    @Html.DisplayFor(modelItem => item.DepartmentName)
-                                </td>
-                                <td class="td-title">
-                                    @Html.DisplayFor(modelItem => item.Administration.AdministrationName)
-                                </td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a class="btn btn-default" name="editButton" id="editButton" href="@Url.Action("Edit","Department", new {id = item.DepartmentId})"><i class="fa fa-pencil" aria-hidden="true" title="Редактировать" data-toggle="tooltip" data-placement="top"></i></a>
-                                        <a class="btn btn-default" name="detailsButton" id="detailsButton" href="@Url.Action("Details","Department", new {id = item.DepartmentId})"><i class="fa fa-eye" aria-hidden="true" title="Просмотреть" data-toggle="tooltip" data-placement="top"></i></a>
-                                        <a class="btn btn-default" name="deleteButton" id="deleteButton" href="@Url.Action("Delete", "Department", new { id = item.DepartmentId})" data-toggle="modal" data-target="#@myModal"
-                                           data-whatever="@item.DepartmentId"><i class="fa fa-trash" aria-hidden="true" title="Удалить" data-toggle="tooltip" data-placement="top"></i></a>
+                        <tr>
+                            <td class="td-title">
+                                @Html.DisplayFor(modelItem => item.DepartmentName)
+                            </td>
+                            <td class="td-title">
+                                @Html.DisplayFor(modelItem => item.Administration.AdministrationName)
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    <a class="btn btn-default" name="editButton" id="editButton" href="@Url.Action("Edit","Department", new {id = item.DepartmentId})"><i class="fa fa-pencil" aria-hidden="true" title="Редактировать" data-toggle="tooltip" data-placement="top"></i></a>
+                                    <a class="btn btn-default" name="detailsButton" id="detailsButton" href="@Url.Action("Details","Department", new {id = item.DepartmentId})"><i class="fa fa-eye" aria-hidden="true" title="Просмотреть" data-toggle="tooltip" data-placement="top"></i></a>
+                                    <a class="btn btn-default" name="deleteButton" id="deleteButton" href="@Url.Action("Delete", "Department", new { id = item.DepartmentId})" data-toggle="modal" data-target="#@myModal"
+                                       data-whatever="@item.DepartmentId"><i class="fa fa-trash" aria-hidden="true" title="Удалить" data-toggle="tooltip" data-placement="top"></i></a>
 
-                                    </div>
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="@myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                        <div class="modal-dialog modal-sm" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                    <h4 class="modal-title" id="myModalLabel">Удаление</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    Вы точно хотите удалить: <span><b>@item.DepartmentName</b></span>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-                                                    <input type="submit" value="Удалить" class="btn btn-danger" id="btn1"/>
-                                                </div>
+                                </div>
+                                <!-- Modal -->
+                                <div class="modal fade" id="@myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                    <div class="modal-dialog modal-sm" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title" id="myModalLabel">Удаление</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                Вы точно хотите удалить: <span><b>@item.DepartmentName</b></span>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                                                <input type="submit" value="Удалить" class="btn btn-danger" id="btn1" />
                                             </div>
                                         </div>
                                     </div>
+                                </div>
 
-                                </td>
-                            </tr>
+                            </td>
+                        </tr>
                         }
                     </table>
 

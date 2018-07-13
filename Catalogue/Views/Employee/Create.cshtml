@@ -79,7 +79,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.PositionId, "Должность", htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.DropDownListFor(model => model.PositionId, ViewBag.PositionList as SelectList, "Выберите должность...")
+                                    @Html.DropDownListFor(model => model.PositionId, ViewBag.PositionList as SelectList, "Выберите должность...", new {@class = "list", @id = "testselectset", @required = "required" })
                                     @Html.ValidationMessageFor(model => model.PositionId, "", new { @class = "text-danger validation-span" })
                                 </div>
                             </div>
@@ -87,7 +87,7 @@
                             <div class="form-group">
                                 @Html.LabelFor(model => model.DepartmentId, "Отдел", htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
-                                    @Html.DropDownListFor(model => model.DepartmentId, ViewBag.DepartmentList as SelectList, "Выберите отдел...")
+                                    @Html.DropDownListFor(model => model.DepartmentId, ViewBag.DepartmentList as SelectList, "Выберите отдел...", new { @class = "list", @id = "testselectset", @required = "required" })
                                     @Html.ValidationMessageFor(model => model.DepartmentId, "", new { @class = "text-danger validation-span" })
                                 </div>
                             </div>
@@ -96,7 +96,6 @@
                                 @Html.LabelFor(model => model.DateAdoption, htmlAttributes: new { @class = "control-label col-md-2" })
                                 <div class="col-md-10">
                                     @Html.EditorFor(model => model.DateAdoption, new { htmlAttributes = new { @class = "date-picker" } })
-                                    @Html.ValidationMessageFor(model => model.DateAdoption, "", new { @class = "text-danger validation-span" })
                                 </div>
                             </div>
                             <!-- Field DateDismissal with Validation -->
@@ -120,9 +119,16 @@
 
                                 <div class="form-group">
                                     <div class="col-md-offset-2 col-md-10">
-                                        <input type="file" name="productImg" id="imageBrowes" class="btn btn-default" accept="image/x-png,image/gif,image/jpeg"/>
+                                        <input type="file" name="productImg" id="imageBrowes" class="btn btn-default" style="display:inline-block;" accept="image/x-png,image/gif,image/jpeg"/>
                                         <input type="button" value="Сброс" id="imageBrowes" onclick="ClearPreview()" class="btn btn-default" />
                                         @Html.ValidationMessageFor(model => model.EmployeePhoto, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <!-- Buttons Add and Clear -->
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="submit" value="Добавить" class="btn btn-default" id="btn" /> |
+                                        <a class="btn btn-default" name="backButton" id="backButton" href="@Url.Action("Index","Employee")">Назад</a>
                                     </div>
                                 </div>
                             </div>
@@ -142,13 +148,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Buttons Add and Clear -->
-                            <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-                                    <input type="submit" value="Добавить" class="btn btn-default"  id="btn"/> |
-                                    <a class="btn btn-default" name="backButton" id="backButton" href="@Url.Action("Index","Employee")">Назад</a>
-                                </div>
-                            </div>
+                           
                         </div>
                     }                                                      
                 </div>
