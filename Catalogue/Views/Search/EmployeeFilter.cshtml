@@ -8,7 +8,7 @@
                 {
                     <p>Нет результатов</p>
                     <table id="list-table"></table>
-                    
+
                 }
                 else
                 {
@@ -38,7 +38,7 @@
                         Model,
                         page => Url.Action("EmployeeFilter", new { page }))
 
-                        Старница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
+                        Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
                     </div>
                 }
                 <button class="btn btn-default" onclick="toPrevMain('admin')">Вернуться к списку</button>
